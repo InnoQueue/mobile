@@ -35,6 +35,7 @@ class _QueuesPageState extends State<QueuesPage> {
           centerTitle: true,
         ),
         backgroundColor: Colors.grey.shade100,
+        floatingActionButton: const ExpandableFab(),
         body: BlocBuilder<QueuesBloc, QueuesState>(
           builder: (context, state) {
             return state.when(
