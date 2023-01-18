@@ -1,6 +1,9 @@
 import 'dart:math';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:innoq/presentation/presentation.dart';
 
 class ExpandableFab extends StatefulWidget {
   const ExpandableFab({super.key});
@@ -44,17 +47,23 @@ class _ExpandableFabState extends State<ExpandableFab>
     if (isOnMainButton) {
       if (_controller.isCompleted) {
       } else {
-        _controller.forward();
+        if (!_controller.isAnimating) {
+          HapticFeedback.lightImpact();
+          _controller.forward();
+        }
       }
     }
 
     return GestureDetector(
-      behavior: HitTestBehavior.opaque,
       onLongPressStart: (details) =>
           setState(() => localPosition = details.localPosition),
       onLongPressMoveUpdate: (details) =>
           setState(() => localPosition = details.localPosition),
-      onLongPressEnd: (details) => setState(() => localPosition = null),
+      onLongPressEnd: (details) {
+        if (isOnQrButton) onTapQr();
+        if (isOnAddButton) onTapAdd();
+        setState(() => localPosition = null);
+      },
       child: SizedBox(
         height: 110,
         width: 110,
@@ -67,18 +76,24 @@ class _ExpandableFabState extends State<ExpandableFab>
               isHovered: isOnQrButton,
               animationValue: animation.value,
               icon: Icons.qr_code,
+              onTap: onTapQr,
             ),
             _SecondaryButton(
               angle: addAngle,
               isHovered: isOnAddButton,
               animationValue: animation.value,
               icon: Icons.add,
+              onTap: onTapAdd,
             ),
             _MainButton(
               onTap: () {
                 if (_controller.isCompleted) {
                   _controller.reverse();
-                } else {}
+                } else {
+                  if (_controller.isDismissed) {
+                    onTapAdd();
+                  }
+                }
               },
               animationValue: animation.value,
             ),
@@ -86,6 +101,15 @@ class _ExpandableFabState extends State<ExpandableFab>
         ),
       ),
     );
+  }
+
+  void onTapQr() {
+    print('qr');
+  }
+
+  void onTapAdd() {
+    context.router.push(const AddQueueRoute());
+    _controller.reverse();
   }
 
   bool get isOnMainButton {
@@ -124,41 +148,57 @@ class _ExpandableFabState extends State<ExpandableFab>
   }
 }
 
-class _SecondaryButton extends StatelessWidget {
+class _SecondaryButton extends StatefulWidget {
   final double angle;
   final bool isHovered;
   final double animationValue;
   final IconData icon;
+  final void Function() onTap;
   const _SecondaryButton({
     required this.angle,
     required this.isHovered,
     required this.animationValue,
     required this.icon,
+    required this.onTap,
   });
+
+  @override
+  State<_SecondaryButton> createState() => _SecondaryButtonState();
+}
+
+class _SecondaryButtonState extends State<_SecondaryButton> {
+  @override
+  void didUpdateWidget(covariant _SecondaryButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (!oldWidget.isHovered && widget.isHovered) {
+      HapticFeedback.lightImpact();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
       offset: Offset(
-        -cos(angle) * 60 * animationValue,
-        -sin(angle) * 60 * animationValue,
+        -cos(widget.angle) * 60 * widget.animationValue,
+        -sin(widget.angle) * 60 * widget.animationValue,
       ),
       child: Container(
         height: 55,
         width: 55,
         alignment: Alignment.center,
         child: AnimatedScale(
-          scale: isHovered ? 1.35 : 1,
+          scale: widget.isHovered ? 1.35 : 1,
           curve: Curves.elasticOut,
           duration: const Duration(milliseconds: 400),
           child: Transform.scale(
-            scale: animationValue,
+            scale: widget.animationValue,
             child: _FloatingActionButton(
-              onTap: () {},
+              onTap: widget.onTap,
               icon: Transform.rotate(
-                angle: -pi / 2 * (1 - animationValue),
+                angle: -pi / 2 * (1 - widget.animationValue),
                 child: Icon(
-                  icon,
+                  widget.icon,
                   color: Colors.white,
                 ),
               ),

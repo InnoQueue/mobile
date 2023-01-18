@@ -6,8 +6,8 @@ part 'create_queue_request.g.dart';
 @freezed
 class CreateQueueRequest with _$CreateQueueRequest {
   const factory CreateQueueRequest({
-    required String name,
-    required String color,
+    required String queueName,
+    required String queueColor,
     required bool trackExpenses,
   }) = _CreateQueueRequest;
 

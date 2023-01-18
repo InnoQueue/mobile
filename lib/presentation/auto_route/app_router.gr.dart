@@ -23,6 +23,15 @@ class _$AppRouter extends RootStackRouter {
         child: const LandingPage(),
       );
     },
+    AddQueueRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: const AddQueuePage(),
+        customRouteBuilder: modalSheetBuilder,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
     TasksRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -76,7 +85,11 @@ class _$AppRouter extends RootStackRouter {
               parent: LandingRoute.name,
             ),
           ],
-        )
+        ),
+        RouteConfig(
+          AddQueueRoute.name,
+          path: 'add_queue',
+        ),
       ];
 }
 
@@ -91,6 +104,18 @@ class LandingRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'LandingRoute';
+}
+
+/// generated route for
+/// [AddQueuePage]
+class AddQueueRoute extends PageRouteInfo<void> {
+  const AddQueueRoute()
+      : super(
+          AddQueueRoute.name,
+          path: 'add_queue',
+        );
+
+  static const String name = 'AddQueueRoute';
 }
 
 /// generated route for

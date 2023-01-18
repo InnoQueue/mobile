@@ -15,4 +15,19 @@ class QueuesRepository {
     var response = await queuesApi.getTasks();
     return TaskListResponse.fromJson(response.data).toDoTasks;
   }
+
+  Future<void> createQueue({
+    required String name,
+    required String color,
+    required bool trackExpenses,
+  }) async {
+    var response = await queuesApi.createQueue(
+      CreateQueueRequest(
+        queueName: name,
+        queueColor: color,
+        trackExpenses: trackExpenses,
+      ),
+    );
+    //return QueueListResponse.fromJson(response.data);
+  }
 }
