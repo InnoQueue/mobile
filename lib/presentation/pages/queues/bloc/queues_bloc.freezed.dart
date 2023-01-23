@@ -19,32 +19,41 @@ mixin _$QueuesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadData,
+    required TResult Function(String name, String color, bool trackExpenses)
+        createQueue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadData,
+    TResult? Function(String name, String color, bool trackExpenses)?
+        createQueue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadData,
+    TResult Function(String name, String color, bool trackExpenses)?
+        createQueue,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadData value) loadData,
+    required TResult Function(_CreateQueue value) createQueue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadData value)? loadData,
+    TResult? Function(_CreateQueue value)? createQueue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadData value)? loadData,
+    TResult Function(_CreateQueue value)? createQueue,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +116,8 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadData,
+    required TResult Function(String name, String color, bool trackExpenses)
+        createQueue,
   }) {
     return loadData();
   }
@@ -115,6 +126,8 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadData,
+    TResult? Function(String name, String color, bool trackExpenses)?
+        createQueue,
   }) {
     return loadData?.call();
   }
@@ -123,6 +136,8 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadData,
+    TResult Function(String name, String color, bool trackExpenses)?
+        createQueue,
     required TResult orElse(),
   }) {
     if (loadData != null) {
@@ -135,6 +150,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadData value) loadData,
+    required TResult Function(_CreateQueue value) createQueue,
   }) {
     return loadData(this);
   }
@@ -143,6 +159,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadData value)? loadData,
+    TResult? Function(_CreateQueue value)? createQueue,
   }) {
     return loadData?.call(this);
   }
@@ -151,6 +168,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadData value)? loadData,
+    TResult Function(_CreateQueue value)? createQueue,
     required TResult orElse(),
   }) {
     if (loadData != null) {
@@ -162,6 +180,165 @@ class _$_LoadData implements _LoadData {
 
 abstract class _LoadData implements QueuesEvent {
   const factory _LoadData() = _$_LoadData;
+}
+
+/// @nodoc
+abstract class _$$_CreateQueueCopyWith<$Res> {
+  factory _$$_CreateQueueCopyWith(
+          _$_CreateQueue value, $Res Function(_$_CreateQueue) then) =
+      __$$_CreateQueueCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String name, String color, bool trackExpenses});
+}
+
+/// @nodoc
+class __$$_CreateQueueCopyWithImpl<$Res>
+    extends _$QueuesEventCopyWithImpl<$Res, _$_CreateQueue>
+    implements _$$_CreateQueueCopyWith<$Res> {
+  __$$_CreateQueueCopyWithImpl(
+      _$_CreateQueue _value, $Res Function(_$_CreateQueue) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? color = null,
+    Object? trackExpenses = null,
+  }) {
+    return _then(_$_CreateQueue(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String,
+      trackExpenses: null == trackExpenses
+          ? _value.trackExpenses
+          : trackExpenses // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CreateQueue implements _CreateQueue {
+  const _$_CreateQueue(
+      {required this.name, required this.color, required this.trackExpenses});
+
+  @override
+  final String name;
+  @override
+  final String color;
+  @override
+  final bool trackExpenses;
+
+  @override
+  String toString() {
+    return 'QueuesEvent.createQueue(name: $name, color: $color, trackExpenses: $trackExpenses)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CreateQueue &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.trackExpenses, trackExpenses) ||
+                other.trackExpenses == trackExpenses));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, name, color, trackExpenses);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CreateQueueCopyWith<_$_CreateQueue> get copyWith =>
+      __$$_CreateQueueCopyWithImpl<_$_CreateQueue>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadData,
+    required TResult Function(String name, String color, bool trackExpenses)
+        createQueue,
+  }) {
+    return createQueue(name, color, trackExpenses);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadData,
+    TResult? Function(String name, String color, bool trackExpenses)?
+        createQueue,
+  }) {
+    return createQueue?.call(name, color, trackExpenses);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadData,
+    TResult Function(String name, String color, bool trackExpenses)?
+        createQueue,
+    required TResult orElse(),
+  }) {
+    if (createQueue != null) {
+      return createQueue(name, color, trackExpenses);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadData value) loadData,
+    required TResult Function(_CreateQueue value) createQueue,
+  }) {
+    return createQueue(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadData value)? loadData,
+    TResult? Function(_CreateQueue value)? createQueue,
+  }) {
+    return createQueue?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadData value)? loadData,
+    TResult Function(_CreateQueue value)? createQueue,
+    required TResult orElse(),
+  }) {
+    if (createQueue != null) {
+      return createQueue(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateQueue implements QueuesEvent {
+  const factory _CreateQueue(
+      {required final String name,
+      required final String color,
+      required final bool trackExpenses}) = _$_CreateQueue;
+
+  String get name;
+  String get color;
+  bool get trackExpenses;
+  @JsonKey(ignore: true)
+  _$$_CreateQueueCopyWith<_$_CreateQueue> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

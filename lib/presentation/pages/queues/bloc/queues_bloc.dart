@@ -14,12 +14,28 @@ part 'queues_bloc.freezed.dart';
 class QueuesBloc extends Bloc<QueuesEvent, QueuesState> {
   QueuesBloc() : super(const _Initial()) {
     on<_LoadData>(_loadData);
+    on<_CreateQueue>(_createQueue);
   }
 
   Future<void> _loadData(
     _LoadData event,
     Emitter<QueuesState> emit,
   ) async {
+    var queuesInfo = await getIt.get<QueuesRepository>().getQueues();
+    var activeQueuesInfo = queuesInfo.queues;
+    emit(QueuesState.dataLoaded(activeQueuesInfo));
+  }
+
+  Future<void> _createQueue(
+    _CreateQueue event,
+    Emitter<QueuesState> emit,
+  ) async {
+    emit(const QueuesState.initial());
+    await getIt.get<QueuesRepository>().createQueue(
+          name: event.name,
+          color: event.color,
+          trackExpenses: event.trackExpenses,
+        );
     var queuesInfo = await getIt.get<QueuesRepository>().getQueues();
     var activeQueuesInfo = queuesInfo.queues;
     emit(QueuesState.dataLoaded(activeQueuesInfo));

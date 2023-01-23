@@ -52,7 +52,15 @@ class QueueItem extends StatelessWidget {
           ),
           _Avatar(color: colors[queue.queueColor]!),
           const SizedBox(width: 20),
-          _TaskName(queue.queueName),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _TaskName(queue.queueName),
+              const SizedBox(height: 2),
+              _DutyName(queue.onDutyUserName),
+            ],
+          ),
           const Spacer(),
           const SizedBox(width: 20),
         ],
@@ -103,6 +111,22 @@ class _TaskName extends StatelessWidget {
       name,
       style: const TextStyle(
         fontSize: 16,
+      ),
+    );
+  }
+}
+
+class _DutyName extends StatelessWidget {
+  final String name;
+  const _DutyName(this.name);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      name,
+      style: const TextStyle(
+        fontSize: 12,
+        color: Colors.grey,
       ),
     );
   }

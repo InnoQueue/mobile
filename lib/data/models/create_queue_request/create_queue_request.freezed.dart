@@ -20,8 +20,8 @@ CreateQueueRequest _$CreateQueueRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreateQueueRequest {
-  String get name => throw _privateConstructorUsedError;
-  String get color => throw _privateConstructorUsedError;
+  String get queueName => throw _privateConstructorUsedError;
+  String get queueColor => throw _privateConstructorUsedError;
   bool get trackExpenses => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $CreateQueueRequestCopyWith<$Res> {
           CreateQueueRequest value, $Res Function(CreateQueueRequest) then) =
       _$CreateQueueRequestCopyWithImpl<$Res, CreateQueueRequest>;
   @useResult
-  $Res call({String name, String color, bool trackExpenses});
+  $Res call({String queueName, String queueColor, bool trackExpenses});
 }
 
 /// @nodoc
@@ -52,18 +52,18 @@ class _$CreateQueueRequestCopyWithImpl<$Res, $Val extends CreateQueueRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? color = null,
+    Object? queueName = null,
+    Object? queueColor = null,
     Object? trackExpenses = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      queueName: null == queueName
+          ? _value.queueName
+          : queueName // ignore: cast_nullable_to_non_nullable
               as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      queueColor: null == queueColor
+          ? _value.queueColor
+          : queueColor // ignore: cast_nullable_to_non_nullable
               as String,
       trackExpenses: null == trackExpenses
           ? _value.trackExpenses
@@ -81,7 +81,7 @@ abstract class _$$_CreateQueueRequestCopyWith<$Res>
       __$$_CreateQueueRequestCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String color, bool trackExpenses});
+  $Res call({String queueName, String queueColor, bool trackExpenses});
 }
 
 /// @nodoc
@@ -95,18 +95,18 @@ class __$$_CreateQueueRequestCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? color = null,
+    Object? queueName = null,
+    Object? queueColor = null,
     Object? trackExpenses = null,
   }) {
     return _then(_$_CreateQueueRequest(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      queueName: null == queueName
+          ? _value.queueName
+          : queueName // ignore: cast_nullable_to_non_nullable
               as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      queueColor: null == queueColor
+          ? _value.queueColor
+          : queueColor // ignore: cast_nullable_to_non_nullable
               as String,
       trackExpenses: null == trackExpenses
           ? _value.trackExpenses
@@ -120,21 +120,23 @@ class __$$_CreateQueueRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CreateQueueRequest implements _CreateQueueRequest {
   const _$_CreateQueueRequest(
-      {required this.name, required this.color, required this.trackExpenses});
+      {required this.queueName,
+      required this.queueColor,
+      required this.trackExpenses});
 
   factory _$_CreateQueueRequest.fromJson(Map<String, dynamic> json) =>
       _$$_CreateQueueRequestFromJson(json);
 
   @override
-  final String name;
+  final String queueName;
   @override
-  final String color;
+  final String queueColor;
   @override
   final bool trackExpenses;
 
   @override
   String toString() {
-    return 'CreateQueueRequest(name: $name, color: $color, trackExpenses: $trackExpenses)';
+    return 'CreateQueueRequest(queueName: $queueName, queueColor: $queueColor, trackExpenses: $trackExpenses)';
   }
 
   @override
@@ -142,15 +144,18 @@ class _$_CreateQueueRequest implements _CreateQueueRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CreateQueueRequest &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.color, color) || other.color == color) &&
+            (identical(other.queueName, queueName) ||
+                other.queueName == queueName) &&
+            (identical(other.queueColor, queueColor) ||
+                other.queueColor == queueColor) &&
             (identical(other.trackExpenses, trackExpenses) ||
                 other.trackExpenses == trackExpenses));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, color, trackExpenses);
+  int get hashCode =>
+      Object.hash(runtimeType, queueName, queueColor, trackExpenses);
 
   @JsonKey(ignore: true)
   @override
@@ -169,17 +174,17 @@ class _$_CreateQueueRequest implements _CreateQueueRequest {
 
 abstract class _CreateQueueRequest implements CreateQueueRequest {
   const factory _CreateQueueRequest(
-      {required final String name,
-      required final String color,
+      {required final String queueName,
+      required final String queueColor,
       required final bool trackExpenses}) = _$_CreateQueueRequest;
 
   factory _CreateQueueRequest.fromJson(Map<String, dynamic> json) =
       _$_CreateQueueRequest.fromJson;
 
   @override
-  String get name;
+  String get queueName;
   @override
-  String get color;
+  String get queueColor;
   @override
   bool get trackExpenses;
   @override
