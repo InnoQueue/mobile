@@ -107,10 +107,13 @@ class _ColorPaletteState extends State<ColorPalette> {
     int currentColumn = (localPosition!.dx - dx) ~/ (size + padding);
     int currentRow = localPosition!.dy ~/ (size + padding);
 
-    if (currentColumn >= columns || currentRow >= rows) return null;
+    if (currentColumn >= columns ||
+        currentRow >= rows ||
+        currentColumn < 0 ||
+        currentRow < 0) return null;
 
-    int result = currentColumn + currentRow * columns;
-    if (result != _lastHoveredIndex) {
+    int result = (currentColumn + currentRow * columns);
+    if (result != _lastHoveredIndex && result < colors.length) {
       HapticFeedback.lightImpact();
     }
 

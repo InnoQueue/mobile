@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../presentation.dart';
 
@@ -42,37 +43,39 @@ class AppRouter extends _$AppRouter {}
 Route<T> modalSheetBuilder<T>(
     BuildContext context, Widget child, CustomPage<T> page) {
   return ModalBottomSheetRoute(
-    backgroundColor: Colors.transparent,
+    expanded: false,
     settings: page,
-    builder: (context) => Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          height: 20,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(15),
-            ),
-            border: Border.all(
+    builder: (context) => Material(
+      color: Colors.transparent,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: 20,
+            decoration: BoxDecoration(
               color: Colors.white,
-              width: 0,
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(15),
+              ),
+              border: Border.all(
+                color: Colors.white,
+                width: 0,
+              ),
             ),
-          ),
-          child: Center(
-            child: Container(
-              height: 4,
-              width: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade900,
-                borderRadius: BorderRadius.circular(2),
+            child: Center(
+              child: Container(
+                height: 4,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade900,
+                  borderRadius: BorderRadius.circular(2),
+                ),
               ),
             ),
           ),
-        ),
-        child,
-      ],
+          child,
+        ],
+      ),
     ),
-    isScrollControlled: true,
   );
 }
