@@ -10,6 +10,7 @@ class UserModel with _$UserModel {
     required String userName,
     required int expenses,
     required bool active,
+    required bool onDuty,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

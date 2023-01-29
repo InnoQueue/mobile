@@ -13,11 +13,6 @@ class QueuesPage extends StatefulWidget {
 
 class _QueuesPageState extends State<QueuesPage> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocProvider<QueuesBloc>(
       create: (context) => getIt.get<QueuesBloc>()

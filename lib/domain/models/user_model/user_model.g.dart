@@ -11,6 +11,7 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       userName: json['userName'] as String,
       expenses: json['expenses'] as int,
       active: json['active'] as bool,
+      onDuty: json['onDuty'] as bool,
     );
 
 Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
@@ -19,4 +20,5 @@ Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
       'userName': instance.userName,
       'expenses': instance.expenses,
       'active': instance.active,
+      'onDuty': instance.onDuty,
     };

@@ -21,13 +21,25 @@ class QueuesRepository {
     required String color,
     required bool trackExpenses,
   }) async {
-    var response = await queuesApi.createQueue(
+    await queuesApi.createQueue(
       CreateQueueRequest(
         queueName: name,
         queueColor: color,
         trackExpenses: trackExpenses,
       ),
     );
-    //return QueueListResponse.fromJson(response.data);
+  }
+
+  Future<QueueModel> getQueue(int queueId) async {
+    var response = await queuesApi.getQueue(queueId);
+    return QueueModel.fromJson(response.data);
+  }
+
+  Future<void> completeTask({
+    required int queueId,
+    double? expenses,
+  }) async {
+    await queuesApi.completeTask(queueId, expenses: expenses);
+    //return QueueModel.fromJson(response.data);
   }
 }

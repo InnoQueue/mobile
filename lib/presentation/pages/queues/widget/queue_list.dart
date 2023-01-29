@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:innoq/data/models/queue_info/queue_info.dart';
@@ -14,10 +15,7 @@ class QueueList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 10,
-      ),
+      padding: const EdgeInsets.all(10),
       itemBuilder: (context, index) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 5),
         child: QueueItem(
@@ -38,32 +36,40 @@ class QueueItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 65,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: Colors.white,
-      ),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 50,
-            child: queue.active ? null : const _FrozenIndicator(),
-          ),
-          _Avatar(color: colors[queue.queueColor]!),
-          const SizedBox(width: 20),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _TaskName(queue.queueName),
-              const SizedBox(height: 2),
-              _DutyName(queue.onDutyUserName),
-            ],
-          ),
-          const Spacer(),
-          const SizedBox(width: 20),
-        ],
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        context.router.push(
+          QueueDetailsRoute(queueInfo: queue),
+        );
+      },
+      child: Container(
+        height: 65,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.white,
+        ),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 50,
+              child: queue.active ? null : const _FrozenIndicator(),
+            ),
+            _Avatar(color: colors[queue.queueColor]!),
+            const SizedBox(width: 20),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _TaskName(queue.queueName),
+                const SizedBox(height: 2),
+                _DutyName(queue.onDutyUserName),
+              ],
+            ),
+            const Spacer(),
+            const SizedBox(width: 20),
+          ],
+        ),
       ),
     );
   }

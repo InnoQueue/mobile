@@ -11,12 +11,9 @@ class QueueModel with _$QueueModel {
     required int queueId,
     required String queueName,
     required String queueColor,
-    required UserModel currentUser,
-    required List<UserModel> partisipants,
+    required List<UserModel> participants,
     required bool trackExpenses,
-    required bool actvie,
     required bool admin,
-    required bool yourTurn,
   }) = _QueueModel;
 
   factory QueueModel.fromJson(Map<String, dynamic> json) =>

@@ -1,19 +1,20 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../application/application.dart';
-import '../../presentation.dart';
+import '../presentation.dart';
 
-class AddQueuePage extends StatefulWidget {
-  const AddQueuePage({super.key});
+class AddProgressPage extends StatefulWidget {
+  final void Function(double) submitExpenses;
+
+  const AddProgressPage({required this.submitExpenses, super.key});
 
   @override
-  State<AddQueuePage> createState() => _AddQueuePageState();
+  State<AddProgressPage> createState() => _AddProgressPageState();
 }
 
-class _AddQueuePageState extends State<AddQueuePage> {
-  String name = '';
-  String color = colors.entries.first.key;
+class _AddProgressPageState extends State<AddProgressPage> {
+  String expenses = '';
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,11 @@ class _AddQueuePageState extends State<AddQueuePage> {
           ),
       color: Colors.white,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 8),
           const Text(
-            'Create a Queue',
+            'Submit Expenses',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -39,8 +39,11 @@ class _AddQueuePageState extends State<AddQueuePage> {
           ),
           TextField(
             cursorColor: Colors.grey,
+            keyboardType: const TextInputType.numberWithOptions(
+              decimal: true,
+            ),
             decoration: InputDecoration(
-              hintText: 'input name',
+              hintText: 'input expenses',
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey.shade800),
               ),
@@ -48,32 +51,24 @@ class _AddQueuePageState extends State<AddQueuePage> {
                 borderSide: BorderSide(color: Colors.grey.shade800),
               ),
             ),
-            onChanged: (value) => setState(() => name = value),
-          ),
-          const SizedBox(height: 20),
-          Center(
-            child: ColorPalette(
-              onUpdate: (value) => color = value,
-            ),
+            onChanged: (value) => setState(() => expenses = value),
           ),
           const SizedBox(height: 50),
           _SubmitButton(
-            onPressed: name.isEmpty
+            onPressed: !isValueValid
                 ? null
                 : () {
-                    getIt.get<QueuesBloc>().add(
-                          QueuesEvent.createQueue(
-                            name: name,
-                            color: color,
-                            trackExpenses: false,
-                          ),
-                        );
+                    widget.submitExpenses(double.parse(expenses));
                     context.router.pop();
                   },
           ),
         ],
       ),
     );
+  }
+
+  bool get isValueValid {
+    return double.tryParse(expenses) != null;
   }
 }
 
@@ -104,7 +99,7 @@ class _SubmitButton extends StatelessWidget {
           ),
         ),
         child: const Text(
-          'Create',
+          'Submit',
         ),
       ),
     );

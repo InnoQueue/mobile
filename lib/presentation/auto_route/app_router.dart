@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../presentation.dart';
+import '../../data/data.dart';
+import '../../domain/domain.dart';
 
 part 'app_router.gr.dart';
 
@@ -12,28 +15,55 @@ part 'app_router.gr.dart';
     AutoRoute(
       path: '/',
       page: LandingPage,
+      initial: true,
       children: [
         AutoRoute(
           path: 'todos',
-          page: TasksPage,
+          name: 'TodosRouter',
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(path: '', page: TasksPage),
+            RedirectRoute(path: '*', redirectTo: ''),
+          ],
         ),
         AutoRoute(
           path: 'queues',
-          page: QueuesPage,
+          name: 'QueuesRouter',
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(path: '', page: QueuesPage),
+            AutoRoute(path: 'details', page: QueueDetailsPage),
+            RedirectRoute(path: '*', redirectTo: ''),
+          ],
         ),
         AutoRoute(
           path: 'notifications',
-          page: NotificationsPage,
+          name: 'NotificationsRouter',
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(path: '', page: NotificationsPage),
+            RedirectRoute(path: '*', redirectTo: ''),
+          ],
         ),
         AutoRoute(
           path: 'settings',
-          page: SettingsPage,
+          name: 'SettingsRouter',
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(path: '', page: SettingsPage),
+            RedirectRoute(path: '*', redirectTo: ''),
+          ],
         ),
       ],
     ),
     CustomRoute(
       path: 'add_queue',
       page: AddQueuePage,
+      customRouteBuilder: modalSheetBuilder,
+    ),
+    CustomRoute(
+      path: 'add_progress',
+      page: AddProgressPage,
       customRouteBuilder: modalSheetBuilder,
     ),
   ],
@@ -45,35 +75,40 @@ Route<T> modalSheetBuilder<T>(
   return ModalBottomSheetRoute(
     expanded: false,
     settings: page,
-    builder: (context) => Material(
-      color: Colors.transparent,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+    builder: (context) => Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Column(
         children: [
-          Container(
-            height: 20,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(15),
-              ),
-              border: Border.all(
-                color: Colors.white,
-                width: 0,
-              ),
-            ),
-            child: Center(
-              child: Container(
-                height: 4,
-                width: 50,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade900,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () => context.router.pop(),
             ),
           ),
-          child,
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Center(
+                child: Container(
+                  height: 4,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade900,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: child,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     ),

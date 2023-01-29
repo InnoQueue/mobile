@@ -32,6 +32,43 @@ class _$AppRouter extends RootStackRouter {
         barrierDismissible: false,
       );
     },
+    AddProgressRoute.name: (routeData) {
+      final args = routeData.argsAs<AddProgressRouteArgs>();
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: AddProgressPage(
+          submitExpenses: args.submitExpenses,
+          key: args.key,
+        ),
+        customRouteBuilder: modalSheetBuilder,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
+    TodosRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const EmptyRouterPage(),
+      );
+    },
+    QueuesRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const EmptyRouterPage(),
+      );
+    },
+    NotificationsRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const EmptyRouterPage(),
+      );
+    },
+    SettingsRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const EmptyRouterPage(),
+      );
+    },
     TasksRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -42,6 +79,16 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const QueuesPage(),
+      );
+    },
+    QueueDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<QueueDetailsRouteArgs>();
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: QueueDetailsPage(
+          queueInfo: args.queueInfo,
+          key: args.key,
+        ),
       );
     },
     NotificationsRoute.name: (routeData) {
@@ -65,30 +112,95 @@ class _$AppRouter extends RootStackRouter {
           path: '/',
           children: [
             RouteConfig(
-              TasksRoute.name,
+              TodosRouter.name,
               path: 'todos',
               parent: LandingRoute.name,
+              children: [
+                RouteConfig(
+                  TasksRoute.name,
+                  path: '',
+                  parent: TodosRouter.name,
+                ),
+                RouteConfig(
+                  '*#redirect',
+                  path: '*',
+                  parent: TodosRouter.name,
+                  redirectTo: '',
+                  fullMatch: true,
+                ),
+              ],
             ),
             RouteConfig(
-              QueuesRoute.name,
+              QueuesRouter.name,
               path: 'queues',
               parent: LandingRoute.name,
+              children: [
+                RouteConfig(
+                  QueuesRoute.name,
+                  path: '',
+                  parent: QueuesRouter.name,
+                ),
+                RouteConfig(
+                  QueueDetailsRoute.name,
+                  path: 'details',
+                  parent: QueuesRouter.name,
+                ),
+                RouteConfig(
+                  '*#redirect',
+                  path: '*',
+                  parent: QueuesRouter.name,
+                  redirectTo: '',
+                  fullMatch: true,
+                ),
+              ],
             ),
             RouteConfig(
-              NotificationsRoute.name,
+              NotificationsRouter.name,
               path: 'notifications',
               parent: LandingRoute.name,
+              children: [
+                RouteConfig(
+                  NotificationsRoute.name,
+                  path: '',
+                  parent: NotificationsRouter.name,
+                ),
+                RouteConfig(
+                  '*#redirect',
+                  path: '*',
+                  parent: NotificationsRouter.name,
+                  redirectTo: '',
+                  fullMatch: true,
+                ),
+              ],
             ),
             RouteConfig(
-              SettingsRoute.name,
+              SettingsRouter.name,
               path: 'settings',
               parent: LandingRoute.name,
+              children: [
+                RouteConfig(
+                  SettingsRoute.name,
+                  path: '',
+                  parent: SettingsRouter.name,
+                ),
+                RouteConfig(
+                  '*#redirect',
+                  path: '*',
+                  parent: SettingsRouter.name,
+                  redirectTo: '',
+                  fullMatch: true,
+                ),
+              ],
             ),
           ],
         ),
         RouteConfig(
           AddQueueRoute.name,
           path: 'add_queue',
+        ),
+        RouteConfig(
+          AddProgressRoute.name,
+          path: 'add_progress',
         ),
       ];
 }
@@ -119,12 +231,98 @@ class AddQueueRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [AddProgressPage]
+class AddProgressRoute extends PageRouteInfo<AddProgressRouteArgs> {
+  AddProgressRoute({
+    required void Function(double) submitExpenses,
+    Key? key,
+  }) : super(
+          AddProgressRoute.name,
+          path: 'add_progress',
+          args: AddProgressRouteArgs(
+            submitExpenses: submitExpenses,
+            key: key,
+          ),
+        );
+
+  static const String name = 'AddProgressRoute';
+}
+
+class AddProgressRouteArgs {
+  const AddProgressRouteArgs({
+    required this.submitExpenses,
+    this.key,
+  });
+
+  final void Function(double) submitExpenses;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AddProgressRouteArgs{submitExpenses: $submitExpenses, key: $key}';
+  }
+}
+
+/// generated route for
+/// [EmptyRouterPage]
+class TodosRouter extends PageRouteInfo<void> {
+  const TodosRouter({List<PageRouteInfo>? children})
+      : super(
+          TodosRouter.name,
+          path: 'todos',
+          initialChildren: children,
+        );
+
+  static const String name = 'TodosRouter';
+}
+
+/// generated route for
+/// [EmptyRouterPage]
+class QueuesRouter extends PageRouteInfo<void> {
+  const QueuesRouter({List<PageRouteInfo>? children})
+      : super(
+          QueuesRouter.name,
+          path: 'queues',
+          initialChildren: children,
+        );
+
+  static const String name = 'QueuesRouter';
+}
+
+/// generated route for
+/// [EmptyRouterPage]
+class NotificationsRouter extends PageRouteInfo<void> {
+  const NotificationsRouter({List<PageRouteInfo>? children})
+      : super(
+          NotificationsRouter.name,
+          path: 'notifications',
+          initialChildren: children,
+        );
+
+  static const String name = 'NotificationsRouter';
+}
+
+/// generated route for
+/// [EmptyRouterPage]
+class SettingsRouter extends PageRouteInfo<void> {
+  const SettingsRouter({List<PageRouteInfo>? children})
+      : super(
+          SettingsRouter.name,
+          path: 'settings',
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsRouter';
+}
+
+/// generated route for
 /// [TasksPage]
 class TasksRoute extends PageRouteInfo<void> {
   const TasksRoute()
       : super(
           TasksRoute.name,
-          path: 'todos',
+          path: '',
         );
 
   static const String name = 'TasksRoute';
@@ -136,10 +334,44 @@ class QueuesRoute extends PageRouteInfo<void> {
   const QueuesRoute()
       : super(
           QueuesRoute.name,
-          path: 'queues',
+          path: '',
         );
 
   static const String name = 'QueuesRoute';
+}
+
+/// generated route for
+/// [QueueDetailsPage]
+class QueueDetailsRoute extends PageRouteInfo<QueueDetailsRouteArgs> {
+  QueueDetailsRoute({
+    required QueueInfo queueInfo,
+    Key? key,
+  }) : super(
+          QueueDetailsRoute.name,
+          path: 'details',
+          args: QueueDetailsRouteArgs(
+            queueInfo: queueInfo,
+            key: key,
+          ),
+        );
+
+  static const String name = 'QueueDetailsRoute';
+}
+
+class QueueDetailsRouteArgs {
+  const QueueDetailsRouteArgs({
+    required this.queueInfo,
+    this.key,
+  });
+
+  final QueueInfo queueInfo;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'QueueDetailsRouteArgs{queueInfo: $queueInfo, key: $key}';
+  }
 }
 
 /// generated route for
@@ -148,7 +380,7 @@ class NotificationsRoute extends PageRouteInfo<void> {
   const NotificationsRoute()
       : super(
           NotificationsRoute.name,
-          path: 'notifications',
+          path: '',
         );
 
   static const String name = 'NotificationsRoute';
@@ -160,7 +392,7 @@ class SettingsRoute extends PageRouteInfo<void> {
   const SettingsRoute()
       : super(
           SettingsRoute.name,
-          path: 'settings',
+          path: '',
         );
 
   static const String name = 'SettingsRoute';
