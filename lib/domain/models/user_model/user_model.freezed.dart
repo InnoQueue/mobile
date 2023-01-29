@@ -24,6 +24,7 @@ mixin _$UserModel {
   String get userName => throw _privateConstructorUsedError;
   int get expenses => throw _privateConstructorUsedError;
   bool get active => throw _privateConstructorUsedError;
+  bool get onDuty => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,8 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({int userId, String userName, int expenses, bool active});
+  $Res call(
+      {int userId, String userName, int expenses, bool active, bool onDuty});
 }
 
 /// @nodoc
@@ -56,6 +58,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? userName = null,
     Object? expenses = null,
     Object? active = null,
+    Object? onDuty = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -74,6 +77,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool,
+      onDuty: null == onDuty
+          ? _value.onDuty
+          : onDuty // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -85,7 +92,8 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       __$$_UserModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int userId, String userName, int expenses, bool active});
+  $Res call(
+      {int userId, String userName, int expenses, bool active, bool onDuty});
 }
 
 /// @nodoc
@@ -103,6 +111,7 @@ class __$$_UserModelCopyWithImpl<$Res>
     Object? userName = null,
     Object? expenses = null,
     Object? active = null,
+    Object? onDuty = null,
   }) {
     return _then(_$_UserModel(
       userId: null == userId
@@ -121,6 +130,10 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool,
+      onDuty: null == onDuty
+          ? _value.onDuty
+          : onDuty // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -132,7 +145,8 @@ class _$_UserModel implements _UserModel {
       {required this.userId,
       required this.userName,
       required this.expenses,
-      required this.active});
+      required this.active,
+      required this.onDuty});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -145,10 +159,12 @@ class _$_UserModel implements _UserModel {
   final int expenses;
   @override
   final bool active;
+  @override
+  final bool onDuty;
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, userName: $userName, expenses: $expenses, active: $active)';
+    return 'UserModel(userId: $userId, userName: $userName, expenses: $expenses, active: $active, onDuty: $onDuty)';
   }
 
   @override
@@ -161,13 +177,14 @@ class _$_UserModel implements _UserModel {
                 other.userName == userName) &&
             (identical(other.expenses, expenses) ||
                 other.expenses == expenses) &&
-            (identical(other.active, active) || other.active == active));
+            (identical(other.active, active) || other.active == active) &&
+            (identical(other.onDuty, onDuty) || other.onDuty == onDuty));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, userId, userName, expenses, active);
+      Object.hash(runtimeType, userId, userName, expenses, active, onDuty);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +205,8 @@ abstract class _UserModel implements UserModel {
       {required final int userId,
       required final String userName,
       required final int expenses,
-      required final bool active}) = _$_UserModel;
+      required final bool active,
+      required final bool onDuty}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
@@ -201,6 +219,8 @@ abstract class _UserModel implements UserModel {
   int get expenses;
   @override
   bool get active;
+  @override
+  bool get onDuty;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>

@@ -23,12 +23,9 @@ mixin _$QueueModel {
   int get queueId => throw _privateConstructorUsedError;
   String get queueName => throw _privateConstructorUsedError;
   String get queueColor => throw _privateConstructorUsedError;
-  UserModel get currentUser => throw _privateConstructorUsedError;
-  List<UserModel> get partisipants => throw _privateConstructorUsedError;
+  List<UserModel> get participants => throw _privateConstructorUsedError;
   bool get trackExpenses => throw _privateConstructorUsedError;
-  bool get actvie => throw _privateConstructorUsedError;
   bool get admin => throw _privateConstructorUsedError;
-  bool get yourTurn => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,14 +43,9 @@ abstract class $QueueModelCopyWith<$Res> {
       {int queueId,
       String queueName,
       String queueColor,
-      UserModel currentUser,
-      List<UserModel> partisipants,
+      List<UserModel> participants,
       bool trackExpenses,
-      bool actvie,
-      bool admin,
-      bool yourTurn});
-
-  $UserModelCopyWith<$Res> get currentUser;
+      bool admin});
 }
 
 /// @nodoc
@@ -72,12 +64,9 @@ class _$QueueModelCopyWithImpl<$Res, $Val extends QueueModel>
     Object? queueId = null,
     Object? queueName = null,
     Object? queueColor = null,
-    Object? currentUser = null,
-    Object? partisipants = null,
+    Object? participants = null,
     Object? trackExpenses = null,
-    Object? actvie = null,
     Object? admin = null,
-    Object? yourTurn = null,
   }) {
     return _then(_value.copyWith(
       queueId: null == queueId
@@ -92,39 +81,19 @@ class _$QueueModelCopyWithImpl<$Res, $Val extends QueueModel>
           ? _value.queueColor
           : queueColor // ignore: cast_nullable_to_non_nullable
               as String,
-      currentUser: null == currentUser
-          ? _value.currentUser
-          : currentUser // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      partisipants: null == partisipants
-          ? _value.partisipants
-          : partisipants // ignore: cast_nullable_to_non_nullable
+      participants: null == participants
+          ? _value.participants
+          : participants // ignore: cast_nullable_to_non_nullable
               as List<UserModel>,
       trackExpenses: null == trackExpenses
           ? _value.trackExpenses
           : trackExpenses // ignore: cast_nullable_to_non_nullable
               as bool,
-      actvie: null == actvie
-          ? _value.actvie
-          : actvie // ignore: cast_nullable_to_non_nullable
-              as bool,
       admin: null == admin
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
               as bool,
-      yourTurn: null == yourTurn
-          ? _value.yourTurn
-          : yourTurn // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get currentUser {
-    return $UserModelCopyWith<$Res>(_value.currentUser, (value) {
-      return _then(_value.copyWith(currentUser: value) as $Val);
-    });
   }
 }
 
@@ -140,15 +109,9 @@ abstract class _$$_QueueModelCopyWith<$Res>
       {int queueId,
       String queueName,
       String queueColor,
-      UserModel currentUser,
-      List<UserModel> partisipants,
+      List<UserModel> participants,
       bool trackExpenses,
-      bool actvie,
-      bool admin,
-      bool yourTurn});
-
-  @override
-  $UserModelCopyWith<$Res> get currentUser;
+      bool admin});
 }
 
 /// @nodoc
@@ -165,12 +128,9 @@ class __$$_QueueModelCopyWithImpl<$Res>
     Object? queueId = null,
     Object? queueName = null,
     Object? queueColor = null,
-    Object? currentUser = null,
-    Object? partisipants = null,
+    Object? participants = null,
     Object? trackExpenses = null,
-    Object? actvie = null,
     Object? admin = null,
-    Object? yourTurn = null,
   }) {
     return _then(_$_QueueModel(
       queueId: null == queueId
@@ -185,29 +145,17 @@ class __$$_QueueModelCopyWithImpl<$Res>
           ? _value.queueColor
           : queueColor // ignore: cast_nullable_to_non_nullable
               as String,
-      currentUser: null == currentUser
-          ? _value.currentUser
-          : currentUser // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      partisipants: null == partisipants
-          ? _value._partisipants
-          : partisipants // ignore: cast_nullable_to_non_nullable
+      participants: null == participants
+          ? _value._participants
+          : participants // ignore: cast_nullable_to_non_nullable
               as List<UserModel>,
       trackExpenses: null == trackExpenses
           ? _value.trackExpenses
           : trackExpenses // ignore: cast_nullable_to_non_nullable
               as bool,
-      actvie: null == actvie
-          ? _value.actvie
-          : actvie // ignore: cast_nullable_to_non_nullable
-              as bool,
       admin: null == admin
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
-              as bool,
-      yourTurn: null == yourTurn
-          ? _value.yourTurn
-          : yourTurn // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -220,13 +168,10 @@ class _$_QueueModel implements _QueueModel {
       {required this.queueId,
       required this.queueName,
       required this.queueColor,
-      required this.currentUser,
-      required final List<UserModel> partisipants,
+      required final List<UserModel> participants,
       required this.trackExpenses,
-      required this.actvie,
-      required this.admin,
-      required this.yourTurn})
-      : _partisipants = partisipants;
+      required this.admin})
+      : _participants = participants;
 
   factory _$_QueueModel.fromJson(Map<String, dynamic> json) =>
       _$$_QueueModelFromJson(json);
@@ -237,28 +182,22 @@ class _$_QueueModel implements _QueueModel {
   final String queueName;
   @override
   final String queueColor;
+  final List<UserModel> _participants;
   @override
-  final UserModel currentUser;
-  final List<UserModel> _partisipants;
-  @override
-  List<UserModel> get partisipants {
-    if (_partisipants is EqualUnmodifiableListView) return _partisipants;
+  List<UserModel> get participants {
+    if (_participants is EqualUnmodifiableListView) return _participants;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_partisipants);
+    return EqualUnmodifiableListView(_participants);
   }
 
   @override
   final bool trackExpenses;
   @override
-  final bool actvie;
-  @override
   final bool admin;
-  @override
-  final bool yourTurn;
 
   @override
   String toString() {
-    return 'QueueModel(queueId: $queueId, queueName: $queueName, queueColor: $queueColor, currentUser: $currentUser, partisipants: $partisipants, trackExpenses: $trackExpenses, actvie: $actvie, admin: $admin, yourTurn: $yourTurn)';
+    return 'QueueModel(queueId: $queueId, queueName: $queueName, queueColor: $queueColor, participants: $participants, trackExpenses: $trackExpenses, admin: $admin)';
   }
 
   @override
@@ -271,31 +210,17 @@ class _$_QueueModel implements _QueueModel {
                 other.queueName == queueName) &&
             (identical(other.queueColor, queueColor) ||
                 other.queueColor == queueColor) &&
-            (identical(other.currentUser, currentUser) ||
-                other.currentUser == currentUser) &&
             const DeepCollectionEquality()
-                .equals(other._partisipants, _partisipants) &&
+                .equals(other._participants, _participants) &&
             (identical(other.trackExpenses, trackExpenses) ||
                 other.trackExpenses == trackExpenses) &&
-            (identical(other.actvie, actvie) || other.actvie == actvie) &&
-            (identical(other.admin, admin) || other.admin == admin) &&
-            (identical(other.yourTurn, yourTurn) ||
-                other.yourTurn == yourTurn));
+            (identical(other.admin, admin) || other.admin == admin));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      queueId,
-      queueName,
-      queueColor,
-      currentUser,
-      const DeepCollectionEquality().hash(_partisipants),
-      trackExpenses,
-      actvie,
-      admin,
-      yourTurn);
+  int get hashCode => Object.hash(runtimeType, queueId, queueName, queueColor,
+      const DeepCollectionEquality().hash(_participants), trackExpenses, admin);
 
   @JsonKey(ignore: true)
   @override
@@ -316,12 +241,9 @@ abstract class _QueueModel implements QueueModel {
       {required final int queueId,
       required final String queueName,
       required final String queueColor,
-      required final UserModel currentUser,
-      required final List<UserModel> partisipants,
+      required final List<UserModel> participants,
       required final bool trackExpenses,
-      required final bool actvie,
-      required final bool admin,
-      required final bool yourTurn}) = _$_QueueModel;
+      required final bool admin}) = _$_QueueModel;
 
   factory _QueueModel.fromJson(Map<String, dynamic> json) =
       _$_QueueModel.fromJson;
@@ -333,17 +255,11 @@ abstract class _QueueModel implements QueueModel {
   @override
   String get queueColor;
   @override
-  UserModel get currentUser;
-  @override
-  List<UserModel> get partisipants;
+  List<UserModel> get participants;
   @override
   bool get trackExpenses;
   @override
-  bool get actvie;
-  @override
   bool get admin;
-  @override
-  bool get yourTurn;
   @override
   @JsonKey(ignore: true)
   _$$_QueueModelCopyWith<_$_QueueModel> get copyWith =>

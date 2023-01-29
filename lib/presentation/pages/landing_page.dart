@@ -11,10 +11,10 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   final routes = const [
-    TasksRoute(),
-    QueuesRoute(),
-    NotificationsRoute(),
-    SettingsRoute(),
+    TodosRouter(),
+    QueuesRouter(),
+    NotificationsRouter(),
+    SettingsRouter(),
   ];
 
   @override
