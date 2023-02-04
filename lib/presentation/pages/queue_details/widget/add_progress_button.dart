@@ -13,48 +13,28 @@ class AddProgressButton extends StatelessWidget {
       builder: (context, state) {
         var currentQueue = context.read<QueueDetailsBloc>().currentQueue;
 
-        return SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: 40,
-          child: ElevatedButton(
-            onPressed: () {
-              if (currentQueue.trackExpenses) {
-                context.router.push(
-                  AddProgressRoute(
-                    submitExpenses: (expenses) {
-                      context.read<QueueDetailsBloc>().add(
-                            QueueDetailsEvent.completeTask(
-                              expenses: expenses,
-                            ),
-                          );
-                    },
-                  ),
-                );
-              } else {
-                context
-                    .read<QueueDetailsBloc>()
-                    .add(const QueueDetailsEvent.completeTask());
-              }
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(
-                Colors.green.shade300,
-              ),
-              foregroundColor: const MaterialStatePropertyAll(
-                Colors.white,
-              ),
-              elevation: const MaterialStatePropertyAll(0),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(13),
+        return CustomButton(
+          onPressed: () {
+            if (currentQueue.trackExpenses) {
+              context.router.push(
+                AddProgressRoute(
+                  submitExpenses: (expenses) {
+                    context.read<QueueDetailsBloc>().add(
+                          QueueDetailsEvent.completeTask(
+                            expenses: expenses,
+                          ),
+                        );
+                  },
                 ),
-              ),
-            ),
-            child: const Text(
-              'Add Progress',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
+              );
+            } else {
+              context
+                  .read<QueueDetailsBloc>()
+                  .add(const QueueDetailsEvent.completeTask());
+            }
+          },
+          backgroundColor: Colors.green.shade300,
+          text: 'Add Progress',
         );
       },
     );

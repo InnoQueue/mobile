@@ -45,6 +45,15 @@ class _$AppRouter extends RootStackRouter {
         barrierDismissible: false,
       );
     },
+    FiltersRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: const FiltersPage(),
+        customRouteBuilder: modalSheetBuilder,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
     TodosRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -202,6 +211,10 @@ class _$AppRouter extends RootStackRouter {
           AddProgressRoute.name,
           path: 'add_progress',
         ),
+        RouteConfig(
+          FiltersRoute.name,
+          path: 'filters',
+        ),
       ];
 }
 
@@ -262,6 +275,18 @@ class AddProgressRouteArgs {
   String toString() {
     return 'AddProgressRouteArgs{submitExpenses: $submitExpenses, key: $key}';
   }
+}
+
+/// generated route for
+/// [FiltersPage]
+class FiltersRoute extends PageRouteInfo<void> {
+  const FiltersRoute()
+      : super(
+          FiltersRoute.name,
+          path: 'filters',
+        );
+
+  static const String name = 'FiltersRoute';
 }
 
 /// generated route for

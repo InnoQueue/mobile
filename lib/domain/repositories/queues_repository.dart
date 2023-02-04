@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 
+import '../../application/application.dart';
 import '../../data/data.dart';
 import '../domain.dart';
 
@@ -8,8 +9,12 @@ class QueuesRepository {
   QueuesApi queuesApi;
   QueuesRepository(this.queuesApi);
 
-  Future<QueueListResponse> getQueues() async =>
-      QueueListResponse.fromJson((await queuesApi.getQueues()).data);
+  Future<QueueListResponse> getQueues() async {
+    SortEnum? currentSort = getIt.get<SettingsRepository>().getPrefferedSort();
+    return QueueListResponse.fromJson((await queuesApi.getQueues(
+            currentSort != null ? QueueListRequest(sort: currentSort) : null))
+        .data);
+  }
 
   Future<List<TaskModel>> getTasks() async {
     var response = await queuesApi.getTasks();
@@ -40,6 +45,13 @@ class QueuesRepository {
     double? expenses,
   }) async {
     await queuesApi.completeTask(queueId, expenses: expenses);
-    //return QueueModel.fromJson(response.data);
+  }
+
+  Future<void> skipTask(int queueId) async {
+    await queuesApi.skipTask(queueId);
+  }
+
+  Future<void> shakeUser(int queueId) async {
+    await queuesApi.shakeUser(queueId);
   }
 }
