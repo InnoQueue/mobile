@@ -22,6 +22,8 @@ dependencies:
   basic_utils: ^5.4.2
   modal_bottom_sheet: ^2.1.2
   shared_preferences: ^2.0.17
+  intl: ^0.18.0
+  visibility_detector: ^0.3.3
 
 dev_dependencies:
   flutter_test:

@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 import 'application/application.dart';
-import 'domain/models/sort_enum/sort_enum.dart';
 import 'presentation/presentation.dart';
 
 void main() async {
