@@ -56,7 +56,7 @@ class _FilterButtom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.filter_alt_outlined),
+      icon: const Icon(Icons.sort_rounded),
       color: Colors.black,
       onPressed: () {
         context.router.push(const FiltersRoute());

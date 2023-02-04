@@ -243,15 +243,11 @@ class _FloatingActionButton extends StatelessWidget {
   final double size;
   final Color color;
   final void Function()? onTap;
-  final void Function()? onLongPress;
-  final void Function(bool)? onHover;
   const _FloatingActionButton({
     required this.icon,
     required this.size,
     required this.color,
     this.onTap,
-    this.onLongPress,
-    this.onHover,
   });
 
   @override
