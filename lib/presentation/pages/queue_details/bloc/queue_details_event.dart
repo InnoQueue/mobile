@@ -9,4 +9,6 @@ class QueueDetailsEvent with _$QueueDetailsEvent {
   const factory QueueDetailsEvent.completeTask({
     double? expenses,
   }) = _CompleteTask;
+
+  const factory QueueDetailsEvent.skipTask() = _SkipTask;
 }

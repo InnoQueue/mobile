@@ -20,18 +20,21 @@ mixin _$QueueDetailsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
     required TResult Function(double? expenses) completeTask,
+    required TResult Function() skipTask,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
     TResult? Function(double? expenses)? completeTask,
+    TResult? Function()? skipTask,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
     TResult Function(double? expenses)? completeTask,
+    TResult Function()? skipTask,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$QueueDetailsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchQueue value) fetchQueue,
     required TResult Function(_CompleteTask value) completeTask,
+    required TResult Function(_SkipTask value) skipTask,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchQueue value)? fetchQueue,
     TResult? Function(_CompleteTask value)? completeTask,
+    TResult? Function(_SkipTask value)? skipTask,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchQueue value)? fetchQueue,
     TResult Function(_CompleteTask value)? completeTask,
+    TResult Function(_SkipTask value)? skipTask,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,6 +146,7 @@ class _$_FetchQueue implements _FetchQueue {
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
     required TResult Function(double? expenses) completeTask,
+    required TResult Function() skipTask,
   }) {
     return fetchQueue(queueId);
   }
@@ -149,6 +156,7 @@ class _$_FetchQueue implements _FetchQueue {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
     TResult? Function(double? expenses)? completeTask,
+    TResult? Function()? skipTask,
   }) {
     return fetchQueue?.call(queueId);
   }
@@ -158,6 +166,7 @@ class _$_FetchQueue implements _FetchQueue {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
     TResult Function(double? expenses)? completeTask,
+    TResult Function()? skipTask,
     required TResult orElse(),
   }) {
     if (fetchQueue != null) {
@@ -171,6 +180,7 @@ class _$_FetchQueue implements _FetchQueue {
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchQueue value) fetchQueue,
     required TResult Function(_CompleteTask value) completeTask,
+    required TResult Function(_SkipTask value) skipTask,
   }) {
     return fetchQueue(this);
   }
@@ -180,6 +190,7 @@ class _$_FetchQueue implements _FetchQueue {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchQueue value)? fetchQueue,
     TResult? Function(_CompleteTask value)? completeTask,
+    TResult? Function(_SkipTask value)? skipTask,
   }) {
     return fetchQueue?.call(this);
   }
@@ -189,6 +200,7 @@ class _$_FetchQueue implements _FetchQueue {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchQueue value)? fetchQueue,
     TResult Function(_CompleteTask value)? completeTask,
+    TResult Function(_SkipTask value)? skipTask,
     required TResult orElse(),
   }) {
     if (fetchQueue != null) {
@@ -274,6 +286,7 @@ class _$_CompleteTask implements _CompleteTask {
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
     required TResult Function(double? expenses) completeTask,
+    required TResult Function() skipTask,
   }) {
     return completeTask(expenses);
   }
@@ -283,6 +296,7 @@ class _$_CompleteTask implements _CompleteTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
     TResult? Function(double? expenses)? completeTask,
+    TResult? Function()? skipTask,
   }) {
     return completeTask?.call(expenses);
   }
@@ -292,6 +306,7 @@ class _$_CompleteTask implements _CompleteTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
     TResult Function(double? expenses)? completeTask,
+    TResult Function()? skipTask,
     required TResult orElse(),
   }) {
     if (completeTask != null) {
@@ -305,6 +320,7 @@ class _$_CompleteTask implements _CompleteTask {
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchQueue value) fetchQueue,
     required TResult Function(_CompleteTask value) completeTask,
+    required TResult Function(_SkipTask value) skipTask,
   }) {
     return completeTask(this);
   }
@@ -314,6 +330,7 @@ class _$_CompleteTask implements _CompleteTask {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchQueue value)? fetchQueue,
     TResult? Function(_CompleteTask value)? completeTask,
+    TResult? Function(_SkipTask value)? skipTask,
   }) {
     return completeTask?.call(this);
   }
@@ -323,6 +340,7 @@ class _$_CompleteTask implements _CompleteTask {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchQueue value)? fetchQueue,
     TResult Function(_CompleteTask value)? completeTask,
+    TResult Function(_SkipTask value)? skipTask,
     required TResult orElse(),
   }) {
     if (completeTask != null) {
@@ -339,6 +357,114 @@ abstract class _CompleteTask implements QueueDetailsEvent {
   @JsonKey(ignore: true)
   _$$_CompleteTaskCopyWith<_$_CompleteTask> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SkipTaskCopyWith<$Res> {
+  factory _$$_SkipTaskCopyWith(
+          _$_SkipTask value, $Res Function(_$_SkipTask) then) =
+      __$$_SkipTaskCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SkipTaskCopyWithImpl<$Res>
+    extends _$QueueDetailsEventCopyWithImpl<$Res, _$_SkipTask>
+    implements _$$_SkipTaskCopyWith<$Res> {
+  __$$_SkipTaskCopyWithImpl(
+      _$_SkipTask _value, $Res Function(_$_SkipTask) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SkipTask implements _SkipTask {
+  const _$_SkipTask();
+
+  @override
+  String toString() {
+    return 'QueueDetailsEvent.skipTask()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SkipTask);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int queueId) fetchQueue,
+    required TResult Function(double? expenses) completeTask,
+    required TResult Function() skipTask,
+  }) {
+    return skipTask();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int queueId)? fetchQueue,
+    TResult? Function(double? expenses)? completeTask,
+    TResult? Function()? skipTask,
+  }) {
+    return skipTask?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int queueId)? fetchQueue,
+    TResult Function(double? expenses)? completeTask,
+    TResult Function()? skipTask,
+    required TResult orElse(),
+  }) {
+    if (skipTask != null) {
+      return skipTask();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchQueue value) fetchQueue,
+    required TResult Function(_CompleteTask value) completeTask,
+    required TResult Function(_SkipTask value) skipTask,
+  }) {
+    return skipTask(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchQueue value)? fetchQueue,
+    TResult? Function(_CompleteTask value)? completeTask,
+    TResult? Function(_SkipTask value)? skipTask,
+  }) {
+    return skipTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchQueue value)? fetchQueue,
+    TResult Function(_CompleteTask value)? completeTask,
+    TResult Function(_SkipTask value)? skipTask,
+    required TResult orElse(),
+  }) {
+    if (skipTask != null) {
+      return skipTask(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SkipTask implements QueueDetailsEvent {
+  const factory _SkipTask() = _$_SkipTask;
 }
 
 /// @nodoc

@@ -20,6 +20,7 @@ class QueueDetailsBloc extends Bloc<QueueDetailsEvent, QueueDetailsState> {
   QueueDetailsBloc() : super(const _Initial()) {
     on<_FetchQueue>(_fecthQueue);
     on<_CompleteTask>(_completeTask);
+    on<_SkipTask>(_skipTask);
   }
 
   Future<void> _fecthQueue(
@@ -41,5 +42,22 @@ class QueueDetailsBloc extends Bloc<QueueDetailsEvent, QueueDetailsState> {
           expenses: event.expenses,
         );
     add(QueueDetailsEvent.fetchQueue(currentQueue.queueId));
+  }
+
+  Future<void> _skipTask(
+    _SkipTask event,
+    Emitter<QueueDetailsState> emit,
+  ) async {
+    emit(const QueueDetailsState.initial());
+    await getIt.get<QueuesRepository>().skipTask(currentQueue.queueId);
+    add(QueueDetailsEvent.fetchQueue(currentQueue.queueId));
+  }
+
+  //TODO: implement user repository
+  bool get isMyTurn =>
+      currentQueue.participants.firstWhere((e) => e.onDuty).userId == 1;
+
+  void shakeUser() {
+    getIt.get<QueuesRepository>().shakeUser(currentQueue.queueId);
   }
 }

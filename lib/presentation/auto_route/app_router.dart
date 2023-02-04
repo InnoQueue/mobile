@@ -1,11 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart' as mbsh;
 
 import '../presentation.dart';
 import '../../data/data.dart';
-import '../../domain/domain.dart';
 
 part 'app_router.gr.dart';
 
@@ -66,13 +65,18 @@ part 'app_router.gr.dart';
       page: AddProgressPage,
       customRouteBuilder: modalSheetBuilder,
     ),
+    CustomRoute(
+      path: 'filters',
+      page: FiltersPage,
+      customRouteBuilder: modalSheetBuilder,
+    ),
   ],
 )
 class AppRouter extends _$AppRouter {}
 
 Route<T> modalSheetBuilder<T>(
     BuildContext context, Widget child, CustomPage<T> page) {
-  return ModalBottomSheetRoute(
+  return mbsh.ModalBottomSheetRoute(
     expanded: false,
     settings: page,
     builder: (context) => Scaffold(

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,6 +29,9 @@ class _QueuesPageState extends State<QueuesPage> {
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
+          actions: const [
+            _FilterButtom(),
+          ],
         ),
         backgroundColor: Colors.grey.shade100,
         floatingActionButton: const ExpandableFab(),
@@ -42,6 +46,23 @@ class _QueuesPageState extends State<QueuesPage> {
           },
         ),
       ),
+    );
+  }
+}
+
+class _FilterButtom extends StatelessWidget {
+  const _FilterButtom();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.filter_alt_outlined),
+      color: Colors.black,
+      onPressed: () {
+        context.router.push(const FiltersRoute());
+      },
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
     );
   }
 }

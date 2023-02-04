@@ -50,30 +50,34 @@ class _MainContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(10),
-      children: const [
-        QueueHeading(),
-        SizedBox(height: 10),
-        AddProgressButton(),
-        SizedBox(height: 20),
-        Padding(
+      children: [
+        const QueueHeading(),
+        const SizedBox(height: 10),
+        const AddProgressButton(),
+        const SizedBox(height: 10),
+        if (context.read<QueueDetailsBloc>().isMyTurn) ...[
+          const SkipButton(),
+          const SizedBox(height: 20),
+        ],
+        const Padding(
           padding: EdgeInsets.only(left: 15),
           child: Text(
             'On duty:',
             style: TextStyle(color: Colors.grey),
           ),
         ),
-        SizedBox(height: 10),
-        OnDutyTile(),
-        SizedBox(height: 20),
-        Padding(
+        const SizedBox(height: 10),
+        const OnDutyTile(),
+        const SizedBox(height: 20),
+        const Padding(
           padding: EdgeInsets.only(left: 15),
           child: Text(
             'Other participants:',
             style: TextStyle(color: Colors.grey),
           ),
         ),
-        SizedBox(height: 10),
-        ParticipantTile(),
+        const SizedBox(height: 10),
+        const ParticipantTile(),
       ],
     );
   }

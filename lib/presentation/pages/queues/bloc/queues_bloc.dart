@@ -21,9 +21,10 @@ class QueuesBloc extends Bloc<QueuesEvent, QueuesState> {
     _LoadData event,
     Emitter<QueuesState> emit,
   ) async {
+    emit(const _Initial());
     var queuesInfo = await getIt.get<QueuesRepository>().getQueues();
     var activeQueuesInfo = queuesInfo.queues;
-    emit(QueuesState.dataLoaded(activeQueuesInfo));
+    emit(QueuesState.dataLoaded(activeQueuesInfo.toList()));
   }
 
   Future<void> _createQueue(
@@ -38,6 +39,6 @@ class QueuesBloc extends Bloc<QueuesEvent, QueuesState> {
         );
     var queuesInfo = await getIt.get<QueuesRepository>().getQueues();
     var activeQueuesInfo = queuesInfo.queues;
-    emit(QueuesState.dataLoaded(activeQueuesInfo));
+    emit(QueuesState.dataLoaded(activeQueuesInfo.toList()));
   }
 }

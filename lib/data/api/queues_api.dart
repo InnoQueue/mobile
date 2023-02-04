@@ -6,16 +6,19 @@ import 'dio.dart';
 
 @Singleton()
 class QueuesApi {
-  Future<Response> getQueues() async => await dio.get('/queues');
+  Future<Response> getQueues([QueueListRequest? request]) async =>
+      await dio.get(
+        '/queues',
+        queryParameters: request?.toJson(),
+      );
 
   Future<Response> getQueue(int queueId) async =>
       await dio.get('/queues/$queueId');
 
   Future<Response> getTasks() async => await dio.get('/queues/tasks');
 
-  Future<Response> skipTask(int taskId) async => await dio.post(
-        '/queues/tasks/skip',
-        data: {'taskId': taskId},
+  Future<Response> skipTask(int queueId) async => await dio.post(
+        '/queues/$queueId/skip',
       );
 
   Future<Response> completeTasks({
@@ -31,7 +34,7 @@ class QueuesApi {
       );
 
   Future<Response> shakeUser(int queueId) async =>
-      await dio.post('/queues/shake/$queueId');
+      await dio.post('/queues/$queueId/shake');
 
   Future<Response> completeTask(int queueId, {double? expenses}) async =>
       await dio.post('/queues/$queueId/complete', data: {
