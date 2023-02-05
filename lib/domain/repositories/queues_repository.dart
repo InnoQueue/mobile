@@ -26,6 +26,11 @@ class QueuesRepository {
     required String color,
     required bool trackExpenses,
   }) async {
+    print(CreateQueueRequest(
+      queueName: name,
+      queueColor: color,
+      trackExpenses: trackExpenses,
+    ).toJson());
     await queuesApi.createQueue(
       CreateQueueRequest(
         queueName: name,

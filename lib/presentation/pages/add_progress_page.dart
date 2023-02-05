@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../presentation.dart';
+
 class AddProgressPage extends StatefulWidget {
   final void Function(double) submitExpenses;
 
@@ -19,7 +21,7 @@ class _AddProgressPageState extends State<AddProgressPage> {
       padding: MediaQuery.of(context).viewInsets.add(
             const EdgeInsets.symmetric(
               horizontal: 20,
-              vertical: 10,
+              vertical: 15,
             ),
           ),
       color: Colors.white,
@@ -34,20 +36,8 @@ class _AddProgressPageState extends State<AddProgressPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          TextField(
-            cursorColor: Colors.grey,
-            keyboardType: const TextInputType.numberWithOptions(
-              decimal: true,
-            ),
-            decoration: InputDecoration(
-              hintText: 'input expenses',
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade800),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade800),
-              ),
-            ),
+          CustomTextField(
+            hintText: 'input expenses',
             onChanged: (value) => setState(() => expenses = value),
           ),
           const SizedBox(height: 50),

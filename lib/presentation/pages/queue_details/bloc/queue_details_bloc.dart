@@ -11,10 +11,10 @@ part 'queue_details_bloc.freezed.dart';
 class QueueDetailsBloc extends Bloc<QueueDetailsEvent, QueueDetailsState> {
   late QueueModel currentQueue;
 
-  UserModel get onDuty =>
+  ParticipantModel get onDuty =>
       currentQueue.participants.firstWhere((user) => user.onDuty);
 
-  List<UserModel> get otherParticipants =>
+  List<ParticipantModel> get otherParticipants =>
       currentQueue.participants.where((user) => !user.onDuty).toList();
 
   QueueDetailsBloc() : super(const _Initial()) {
@@ -53,9 +53,9 @@ class QueueDetailsBloc extends Bloc<QueueDetailsEvent, QueueDetailsState> {
     add(QueueDetailsEvent.fetchQueue(currentQueue.queueId));
   }
 
-  //TODO: implement user repository
   bool get isMyTurn =>
-      currentQueue.participants.firstWhere((e) => e.onDuty).userId == 1;
+      currentQueue.participants.firstWhere((e) => e.onDuty).userId ==
+      getIt.get<UserRepository>().getUser()!.userId;
 
   void shakeUser() {
     getIt.get<QueuesRepository>().shakeUser(currentQueue.queueId);

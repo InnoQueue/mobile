@@ -6,6 +6,8 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart' as mbsh;
 import '../presentation.dart';
 import '../../data/data.dart';
 
+export 'auto_route_guards.dart';
+
 part 'app_router.gr.dart';
 
 @MaterialAutoRouter(
@@ -15,6 +17,7 @@ part 'app_router.gr.dart';
       path: '/',
       page: LandingPage,
       initial: true,
+      guards: [LoginGuard],
       children: [
         AutoRoute(
           path: 'todos',
@@ -55,6 +58,10 @@ part 'app_router.gr.dart';
         ),
       ],
     ),
+    AutoRoute(
+      path: 'login',
+      page: LoginPage,
+    ),
     CustomRoute(
       path: 'add_queue',
       page: AddQueuePage,
@@ -70,9 +77,28 @@ part 'app_router.gr.dart';
       page: FiltersPage,
       customRouteBuilder: modalSheetBuilder,
     ),
+    CustomRoute(
+      path: 'theme',
+      page: ThemePage,
+      customRouteBuilder: modalSheetBuilder,
+    ),
+    CustomRoute(
+      path: 'language',
+      page: LanguagePage,
+      customRouteBuilder: modalSheetBuilder,
+    ),
+    CustomRoute(
+      path: 'notification_settings',
+      page: NotificationSettingsPage,
+      customRouteBuilder: modalSheetBuilder,
+    ),
   ],
 )
-class AppRouter extends _$AppRouter {}
+class AppRouter extends _$AppRouter {
+  AppRouter({
+    required super.loginGuard,
+  });
+}
 
 Route<T> modalSheetBuilder<T>(
     BuildContext context, Widget child, CustomPage<T> page) {

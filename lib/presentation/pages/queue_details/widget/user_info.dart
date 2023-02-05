@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../domain/domain.dart';
 
 class UserInfo extends StatelessWidget {
-  final UserModel user;
+  final ParticipantModel user;
   const UserInfo({required this.user, super.key});
 
   @override

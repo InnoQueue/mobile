@@ -37,18 +37,10 @@ class _AddQueuePageState extends State<AddQueuePage> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          TextField(
-            cursorColor: Colors.grey,
-            decoration: InputDecoration(
-              hintText: 'input name',
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade800),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade800),
-              ),
-            ),
+          CustomTextField(
+            hintText: 'input name',
             onChanged: (value) => setState(() => name = value),
+            keyBoardType: TextInputType.name,
           ),
           const SizedBox(height: 20),
           Center(
