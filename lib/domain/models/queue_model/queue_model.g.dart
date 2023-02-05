@@ -12,7 +12,7 @@ _$_QueueModel _$$_QueueModelFromJson(Map<String, dynamic> json) =>
       queueName: json['queueName'] as String,
       queueColor: json['queueColor'] as String,
       participants: (json['participants'] as List<dynamic>)
-          .map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ParticipantModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       trackExpenses: json['trackExpenses'] as bool,
       admin: json['admin'] as bool,

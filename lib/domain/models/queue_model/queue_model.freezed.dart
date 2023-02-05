@@ -23,7 +23,7 @@ mixin _$QueueModel {
   int get queueId => throw _privateConstructorUsedError;
   String get queueName => throw _privateConstructorUsedError;
   String get queueColor => throw _privateConstructorUsedError;
-  List<UserModel> get participants => throw _privateConstructorUsedError;
+  List<ParticipantModel> get participants => throw _privateConstructorUsedError;
   bool get trackExpenses => throw _privateConstructorUsedError;
   bool get admin => throw _privateConstructorUsedError;
 
@@ -43,7 +43,7 @@ abstract class $QueueModelCopyWith<$Res> {
       {int queueId,
       String queueName,
       String queueColor,
-      List<UserModel> participants,
+      List<ParticipantModel> participants,
       bool trackExpenses,
       bool admin});
 }
@@ -84,7 +84,7 @@ class _$QueueModelCopyWithImpl<$Res, $Val extends QueueModel>
       participants: null == participants
           ? _value.participants
           : participants // ignore: cast_nullable_to_non_nullable
-              as List<UserModel>,
+              as List<ParticipantModel>,
       trackExpenses: null == trackExpenses
           ? _value.trackExpenses
           : trackExpenses // ignore: cast_nullable_to_non_nullable
@@ -109,7 +109,7 @@ abstract class _$$_QueueModelCopyWith<$Res>
       {int queueId,
       String queueName,
       String queueColor,
-      List<UserModel> participants,
+      List<ParticipantModel> participants,
       bool trackExpenses,
       bool admin});
 }
@@ -148,7 +148,7 @@ class __$$_QueueModelCopyWithImpl<$Res>
       participants: null == participants
           ? _value._participants
           : participants // ignore: cast_nullable_to_non_nullable
-              as List<UserModel>,
+              as List<ParticipantModel>,
       trackExpenses: null == trackExpenses
           ? _value.trackExpenses
           : trackExpenses // ignore: cast_nullable_to_non_nullable
@@ -168,7 +168,7 @@ class _$_QueueModel implements _QueueModel {
       {required this.queueId,
       required this.queueName,
       required this.queueColor,
-      required final List<UserModel> participants,
+      required final List<ParticipantModel> participants,
       required this.trackExpenses,
       required this.admin})
       : _participants = participants;
@@ -182,9 +182,9 @@ class _$_QueueModel implements _QueueModel {
   final String queueName;
   @override
   final String queueColor;
-  final List<UserModel> _participants;
+  final List<ParticipantModel> _participants;
   @override
-  List<UserModel> get participants {
+  List<ParticipantModel> get participants {
     if (_participants is EqualUnmodifiableListView) return _participants;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_participants);
@@ -241,7 +241,7 @@ abstract class _QueueModel implements QueueModel {
       {required final int queueId,
       required final String queueName,
       required final String queueColor,
-      required final List<UserModel> participants,
+      required final List<ParticipantModel> participants,
       required final bool trackExpenses,
       required final bool admin}) = _$_QueueModel;
 
@@ -255,7 +255,7 @@ abstract class _QueueModel implements QueueModel {
   @override
   String get queueColor;
   @override
-  List<UserModel> get participants;
+  List<ParticipantModel> get participants;
   @override
   bool get trackExpenses;
   @override

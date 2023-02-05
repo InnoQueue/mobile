@@ -131,8 +131,7 @@ String getText(NotificationModel notificationModel) {
   String? queueName = notificationModel.queueName;
   int? participantId = notificationModel.participantId;
 
-  //TODO: implement user repository
-  int userId = 1;
+  int userId = getIt.get<UserRepository>().getUser()!.userId;
 
   switch (notificationModel.messageType) {
     case NotificationType.yourTurn:

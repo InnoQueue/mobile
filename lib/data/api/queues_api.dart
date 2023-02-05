@@ -5,7 +5,9 @@ import '../data.dart';
 import 'dio.dart';
 
 @Singleton()
-class QueuesApi {
+class QueuesApi extends BaseApi {
+  QueuesApi(super.userRepository);
+
   Future<Response> getQueues([QueueListRequest? request]) async =>
       await dio.get(
         '/queues',
@@ -58,8 +60,9 @@ class QueuesApi {
   Future<Response> deleteQueue(int queueId) async =>
       await dio.delete('/queues/$queueId');
 
-  Future<Response> createQueue(CreateQueueRequest request) async =>
-      await dio.post('/queues', data: request.toJson());
+  Future<Response> createQueue(CreateQueueRequest request) async {
+    return await dio.post('/queues', data: request.toJson());
+  }
 
   Future<Response> editQueue(EditQueueRequest request) async =>
       await dio.patch('/queues', data: request.toJson());

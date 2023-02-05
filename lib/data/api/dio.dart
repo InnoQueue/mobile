@@ -1,13 +1,17 @@
 import 'package:dio/dio.dart';
 
-String _token = '11111';
+import '../../domain/domain.dart';
+
 String _baseUrl = 'https://innoqueue-dev.herokuapp.com/api/v1';
 
-Dio dio = Dio(
-  BaseOptions(
-    baseUrl: _baseUrl,
-    headers: {
-      "user-token": _token,
-    },
-  ),
-);
+class BaseApi {
+  final UserRepository userRepository;
+
+  BaseApi(this.userRepository);
+
+  Dio get dio => Dio(
+        BaseOptions(baseUrl: _baseUrl, headers: {
+          'user-token': userRepository.getUser()?.token,
+        }),
+      );
+}

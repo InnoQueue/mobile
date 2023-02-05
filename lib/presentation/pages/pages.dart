@@ -7,3 +7,7 @@ export 'landing_page.dart';
 export 'queue_details/queue_details.dart';
 export 'add_progress_page.dart';
 export 'filters_page.dart';
+export 'login/login.dart';
+export 'theme_page.dart';
+export 'language_page.dart';
+export 'notification_settings_page.dart';

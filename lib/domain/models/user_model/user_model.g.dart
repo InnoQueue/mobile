@@ -8,17 +8,15 @@ part of 'user_model.dart';
 
 _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       userId: json['userId'] as int,
+      token: json['token'] as String,
+      fcmToken: json['fcmToken'] as String,
       userName: json['userName'] as String,
-      expenses: json['expenses'] as int,
-      active: json['active'] as bool,
-      onDuty: json['onDuty'] as bool,
     );
 
 Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
     <String, dynamic>{
       'userId': instance.userId,
+      'token': instance.token,
+      'fcmToken': instance.fcmToken,
       'userName': instance.userName,
-      'expenses': instance.expenses,
-      'active': instance.active,
-      'onDuty': instance.onDuty,
     };

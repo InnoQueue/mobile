@@ -13,7 +13,12 @@
 part of 'app_router.dart';
 
 class _$AppRouter extends RootStackRouter {
-  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+  _$AppRouter({
+    GlobalKey<NavigatorState>? navigatorKey,
+    required this.loginGuard,
+  }) : super(navigatorKey);
+
+  final LoginGuard loginGuard;
 
   @override
   final Map<String, PageFactory> pagesMap = {
@@ -21,6 +26,12 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const LandingPage(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const LoginPage(),
       );
     },
     AddQueueRoute.name: (routeData) {
@@ -49,6 +60,33 @@ class _$AppRouter extends RootStackRouter {
       return CustomPage<dynamic>(
         routeData: routeData,
         child: const FiltersPage(),
+        customRouteBuilder: modalSheetBuilder,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
+    ThemeRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: const ThemePage(),
+        customRouteBuilder: modalSheetBuilder,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
+    LanguageRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: const LanguagePage(),
+        customRouteBuilder: modalSheetBuilder,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
+    NotificationSettingsRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: const NotificationSettingsPage(),
         customRouteBuilder: modalSheetBuilder,
         opaque: true,
         barrierDismissible: false,
@@ -119,6 +157,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           LandingRoute.name,
           path: '/',
+          guards: [loginGuard],
           children: [
             RouteConfig(
               TodosRouter.name,
@@ -204,6 +243,10 @@ class _$AppRouter extends RootStackRouter {
           ],
         ),
         RouteConfig(
+          LoginRoute.name,
+          path: 'login',
+        ),
+        RouteConfig(
           AddQueueRoute.name,
           path: 'add_queue',
         ),
@@ -214,6 +257,18 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           FiltersRoute.name,
           path: 'filters',
+        ),
+        RouteConfig(
+          ThemeRoute.name,
+          path: 'theme',
+        ),
+        RouteConfig(
+          LanguageRoute.name,
+          path: 'language',
+        ),
+        RouteConfig(
+          NotificationSettingsRoute.name,
+          path: 'notification_settings',
         ),
       ];
 }
@@ -229,6 +284,18 @@ class LandingRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'LandingRoute';
+}
+
+/// generated route for
+/// [LoginPage]
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute()
+      : super(
+          LoginRoute.name,
+          path: 'login',
+        );
+
+  static const String name = 'LoginRoute';
 }
 
 /// generated route for
@@ -287,6 +354,42 @@ class FiltersRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'FiltersRoute';
+}
+
+/// generated route for
+/// [ThemePage]
+class ThemeRoute extends PageRouteInfo<void> {
+  const ThemeRoute()
+      : super(
+          ThemeRoute.name,
+          path: 'theme',
+        );
+
+  static const String name = 'ThemeRoute';
+}
+
+/// generated route for
+/// [LanguagePage]
+class LanguageRoute extends PageRouteInfo<void> {
+  const LanguageRoute()
+      : super(
+          LanguageRoute.name,
+          path: 'language',
+        );
+
+  static const String name = 'LanguageRoute';
+}
+
+/// generated route for
+/// [NotificationSettingsPage]
+class NotificationSettingsRoute extends PageRouteInfo<void> {
+  const NotificationSettingsRoute()
+      : super(
+          NotificationSettingsRoute.name,
+          path: 'notification_settings',
+        );
+
+  static const String name = 'NotificationSettingsRoute';
 }
 
 /// generated route for

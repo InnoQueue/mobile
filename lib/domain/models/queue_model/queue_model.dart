@@ -11,7 +11,7 @@ class QueueModel with _$QueueModel {
     required int queueId,
     required String queueName,
     required String queueColor,
-    required List<UserModel> participants,
+    required List<ParticipantModel> participants,
     required bool trackExpenses,
     required bool admin,
   }) = _QueueModel;

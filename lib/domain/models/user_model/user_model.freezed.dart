@@ -21,10 +21,9 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserModel {
   int get userId => throw _privateConstructorUsedError;
+  String get token => throw _privateConstructorUsedError;
+  String get fcmToken => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
-  int get expenses => throw _privateConstructorUsedError;
-  bool get active => throw _privateConstructorUsedError;
-  bool get onDuty => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,8 +36,7 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call(
-      {int userId, String userName, int expenses, bool active, bool onDuty});
+  $Res call({int userId, String token, String fcmToken, String userName});
 }
 
 /// @nodoc
@@ -55,32 +53,27 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? userId = null,
+    Object? token = null,
+    Object? fcmToken = null,
     Object? userName = null,
-    Object? expenses = null,
-    Object? active = null,
-    Object? onDuty = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      expenses: null == expenses
-          ? _value.expenses
-          : expenses // ignore: cast_nullable_to_non_nullable
-              as int,
-      active: null == active
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-      onDuty: null == onDuty
-          ? _value.onDuty
-          : onDuty // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -92,8 +85,7 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       __$$_UserModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int userId, String userName, int expenses, bool active, bool onDuty});
+  $Res call({int userId, String token, String fcmToken, String userName});
 }
 
 /// @nodoc
@@ -108,32 +100,27 @@ class __$$_UserModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
+    Object? token = null,
+    Object? fcmToken = null,
     Object? userName = null,
-    Object? expenses = null,
-    Object? active = null,
-    Object? onDuty = null,
   }) {
     return _then(_$_UserModel(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      expenses: null == expenses
-          ? _value.expenses
-          : expenses // ignore: cast_nullable_to_non_nullable
-              as int,
-      active: null == active
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-      onDuty: null == onDuty
-          ? _value.onDuty
-          : onDuty // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -143,10 +130,9 @@ class __$$_UserModelCopyWithImpl<$Res>
 class _$_UserModel implements _UserModel {
   const _$_UserModel(
       {required this.userId,
-      required this.userName,
-      required this.expenses,
-      required this.active,
-      required this.onDuty});
+      required this.token,
+      required this.fcmToken,
+      required this.userName});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -154,17 +140,15 @@ class _$_UserModel implements _UserModel {
   @override
   final int userId;
   @override
+  final String token;
+  @override
+  final String fcmToken;
+  @override
   final String userName;
-  @override
-  final int expenses;
-  @override
-  final bool active;
-  @override
-  final bool onDuty;
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, userName: $userName, expenses: $expenses, active: $active, onDuty: $onDuty)';
+    return 'UserModel(userId: $userId, token: $token, fcmToken: $fcmToken, userName: $userName)';
   }
 
   @override
@@ -173,18 +157,17 @@ class _$_UserModel implements _UserModel {
         (other.runtimeType == runtimeType &&
             other is _$_UserModel &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken) &&
             (identical(other.userName, userName) ||
-                other.userName == userName) &&
-            (identical(other.expenses, expenses) ||
-                other.expenses == expenses) &&
-            (identical(other.active, active) || other.active == active) &&
-            (identical(other.onDuty, onDuty) || other.onDuty == onDuty));
+                other.userName == userName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, userId, userName, expenses, active, onDuty);
+      Object.hash(runtimeType, userId, token, fcmToken, userName);
 
   @JsonKey(ignore: true)
   @override
@@ -203,10 +186,9 @@ class _$_UserModel implements _UserModel {
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
       {required final int userId,
-      required final String userName,
-      required final int expenses,
-      required final bool active,
-      required final bool onDuty}) = _$_UserModel;
+      required final String token,
+      required final String fcmToken,
+      required final String userName}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
@@ -214,13 +196,11 @@ abstract class _UserModel implements UserModel {
   @override
   int get userId;
   @override
+  String get token;
+  @override
+  String get fcmToken;
+  @override
   String get userName;
-  @override
-  int get expenses;
-  @override
-  bool get active;
-  @override
-  bool get onDuty;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>
