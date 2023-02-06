@@ -7,6 +7,7 @@ import '../presentation.dart';
 import '../../data/data.dart';
 
 export 'auto_route_guards.dart';
+export 'auto_route_observer.dart';
 
 part 'app_router.gr.dart';
 
