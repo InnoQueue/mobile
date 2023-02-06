@@ -15,6 +15,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   int _page = 0;
 
   List<NotificationModel> currentNotifications = [];
+  final List<int> _readNotificationIds = [];
 
   NotificationsBloc() : super(const _Initial()) {
     on<_FetchNotifications>(_fetchNotifications);
@@ -31,18 +32,29 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
               page: _page,
               size: _size,
             );
+
     currentNotifications.addAll(notificationsResponse.content);
     _page++;
 
     emit(NotificationsState.itemsFetched(
-      items: currentNotifications.toList(),
+      items: filteredNotifications.toList(),
       fetchedAll: notificationsResponse.last,
     ));
-
     _isLoading = false;
   }
 
-  void readNotification(int id) {
-    getIt.get<NotificationsRepository>().readNotification(id);
+  List<NotificationModel> get filteredNotifications => currentNotifications
+      .map(
+        (e) => e.copyWith(
+          read: e.read ? true : _readNotificationIds.contains(e.notificationId),
+        ),
+      )
+      .toList();
+
+  void readNotification(int id) async {
+    if (!_readNotificationIds.contains(id)) {
+      await getIt.get<NotificationsRepository>().readNotification(id);
+      _readNotificationIds.add(id);
+    }
   }
 }

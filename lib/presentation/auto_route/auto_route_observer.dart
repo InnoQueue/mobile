@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:innoq/presentation/auto_route/app_router.dart';
+
+import '../../application/application.dart';
+import '../presentation.dart';
 
 class AppRouterObserver extends AutoRouterObserver {
   bool notificationsOpen = false;
@@ -14,7 +16,7 @@ class AppRouterObserver extends AutoRouterObserver {
   @override
   void didInitTabRoute(TabPageRoute route, TabPageRoute? previousRoute) {
     if (notificationsOpen && route.name != NotificationsRouter.name) {
-      updateNotificationsStatus();
+      updateNotifications();
     }
     notificationsOpen = route.name == NotificationsRouter.name;
     debugPrint('Tab route visited: ${route.name}');
@@ -23,13 +25,15 @@ class AppRouterObserver extends AutoRouterObserver {
   @override
   void didChangeTabRoute(TabPageRoute route, TabPageRoute previousRoute) {
     if (notificationsOpen && route.name != NotificationsRouter.name) {
-      updateNotificationsStatus();
+      updateNotifications();
     }
     notificationsOpen = route.name == NotificationsRouter.name;
     debugPrint('Tab route re-visited: ${route.name}');
   }
 
-  void updateNotificationsStatus() {
-    print('should update');
+  void updateNotifications() {
+    getIt
+        .get<NotificationsBloc>()
+        .add(const NotificationsEvent.fetchNotifications());
   }
 }
