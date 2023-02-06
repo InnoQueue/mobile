@@ -8,7 +8,7 @@ class LoginGuard extends AutoRouteGuard {
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
     try {
       var user = getIt.get<UserRepository>().getUser();
-      print(user);
+
       if (user != null) {
         resolver.next(true);
       } else {
