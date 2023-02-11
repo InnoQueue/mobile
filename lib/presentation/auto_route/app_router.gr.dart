@@ -34,6 +34,20 @@ class _$AppRouter extends RootStackRouter {
         child: const LoginPage(),
       );
     },
+    QueueRouter.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<QueueRouterArgs>(
+          orElse: () => QueueRouterArgs(id: pathParams.getInt('id')));
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: WrappedRoute(
+            child: QueueDetailsWrapperPage(
+          id: args.id,
+          queueInfo: args.queueInfo,
+          key: args.key,
+        )),
+      );
+    },
     AddQueueRoute.name: (routeData) {
       return CustomPage<dynamic>(
         routeData: routeData,
@@ -128,16 +142,6 @@ class _$AppRouter extends RootStackRouter {
         child: const QueuesPage(),
       );
     },
-    QueueDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<QueueDetailsRouteArgs>();
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: QueueDetailsPage(
-          queueInfo: args.queueInfo,
-          key: args.key,
-        ),
-      );
-    },
     NotificationsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -148,6 +152,18 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const SettingsPage(),
+      );
+    },
+    QueueDetailsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const QueueDetailsPage(),
+      );
+    },
+    EditableQueueDetailsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const EditableQueueDetailsPage(),
       );
     },
   };
@@ -186,11 +202,6 @@ class _$AppRouter extends RootStackRouter {
                 RouteConfig(
                   QueuesRoute.name,
                   path: '',
-                  parent: QueuesRouter.name,
-                ),
-                RouteConfig(
-                  QueueDetailsRoute.name,
-                  path: 'details',
                   parent: QueuesRouter.name,
                 ),
                 RouteConfig(
@@ -247,6 +258,22 @@ class _$AppRouter extends RootStackRouter {
           path: 'login',
         ),
         RouteConfig(
+          QueueRouter.name,
+          path: '/queue:id',
+          children: [
+            RouteConfig(
+              QueueDetailsRoute.name,
+              path: '',
+              parent: QueueRouter.name,
+            ),
+            RouteConfig(
+              EditableQueueDetailsRoute.name,
+              path: 'edit',
+              parent: QueueRouter.name,
+            ),
+          ],
+        ),
+        RouteConfig(
           AddQueueRoute.name,
           path: 'add_queue',
         ),
@@ -296,6 +323,48 @@ class LoginRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'LoginRoute';
+}
+
+/// generated route for
+/// [QueueDetailsWrapperPage]
+class QueueRouter extends PageRouteInfo<QueueRouterArgs> {
+  QueueRouter({
+    required int id,
+    QueueInfo? queueInfo,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          QueueRouter.name,
+          path: '/queue:id',
+          args: QueueRouterArgs(
+            id: id,
+            queueInfo: queueInfo,
+            key: key,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
+
+  static const String name = 'QueueRouter';
+}
+
+class QueueRouterArgs {
+  const QueueRouterArgs({
+    required this.id,
+    this.queueInfo,
+    this.key,
+  });
+
+  final int id;
+
+  final QueueInfo? queueInfo;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'QueueRouterArgs{id: $id, queueInfo: $queueInfo, key: $key}';
+  }
 }
 
 /// generated route for
@@ -469,40 +538,6 @@ class QueuesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [QueueDetailsPage]
-class QueueDetailsRoute extends PageRouteInfo<QueueDetailsRouteArgs> {
-  QueueDetailsRoute({
-    required QueueInfo queueInfo,
-    Key? key,
-  }) : super(
-          QueueDetailsRoute.name,
-          path: 'details',
-          args: QueueDetailsRouteArgs(
-            queueInfo: queueInfo,
-            key: key,
-          ),
-        );
-
-  static const String name = 'QueueDetailsRoute';
-}
-
-class QueueDetailsRouteArgs {
-  const QueueDetailsRouteArgs({
-    required this.queueInfo,
-    this.key,
-  });
-
-  final QueueInfo queueInfo;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'QueueDetailsRouteArgs{queueInfo: $queueInfo, key: $key}';
-  }
-}
-
-/// generated route for
 /// [NotificationsPage]
 class NotificationsRoute extends PageRouteInfo<void> {
   const NotificationsRoute()
@@ -524,4 +559,28 @@ class SettingsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SettingsRoute';
+}
+
+/// generated route for
+/// [QueueDetailsPage]
+class QueueDetailsRoute extends PageRouteInfo<void> {
+  const QueueDetailsRoute()
+      : super(
+          QueueDetailsRoute.name,
+          path: '',
+        );
+
+  static const String name = 'QueueDetailsRoute';
+}
+
+/// generated route for
+/// [EditableQueueDetailsPage]
+class EditableQueueDetailsRoute extends PageRouteInfo<void> {
+  const EditableQueueDetailsRoute()
+      : super(
+          EditableQueueDetailsRoute.name,
+          path: 'edit',
+        );
+
+  static const String name = 'EditableQueueDetailsRoute';
 }

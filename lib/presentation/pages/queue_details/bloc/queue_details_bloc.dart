@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../application/application.dart';
+import '../../../../data/data.dart';
 import '../../../../domain/domain.dart';
 
 part 'queue_details_event.dart';
@@ -10,6 +11,7 @@ part 'queue_details_bloc.freezed.dart';
 
 class QueueDetailsBloc extends Bloc<QueueDetailsEvent, QueueDetailsState> {
   late QueueModel currentQueue;
+  QueueInfo? queueInfo;
 
   ParticipantModel get onDuty =>
       currentQueue.participants.firstWhere((user) => user.onDuty);
@@ -17,7 +19,7 @@ class QueueDetailsBloc extends Bloc<QueueDetailsEvent, QueueDetailsState> {
   List<ParticipantModel> get otherParticipants =>
       currentQueue.participants.where((user) => !user.onDuty).toList();
 
-  QueueDetailsBloc() : super(const _Initial()) {
+  QueueDetailsBloc(this.queueInfo) : super(const _Initial()) {
     on<_FetchQueue>(_fecthQueue);
     on<_CompleteTask>(_completeTask);
     on<_SkipTask>(_skipTask);

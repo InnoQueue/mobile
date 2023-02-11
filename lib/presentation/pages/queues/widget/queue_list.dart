@@ -39,9 +39,10 @@ class QueueItem extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        context.router.push(
-          QueueDetailsRoute(queueInfo: queue),
-        );
+        context.router.push(QueueRouter(
+          id: queue.queueId,
+          queueInfo: queue,
+        ));
       },
       child: Container(
         height: 65,

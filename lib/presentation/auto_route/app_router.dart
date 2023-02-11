@@ -35,7 +35,6 @@ part 'app_router.gr.dart';
           page: EmptyRouterPage,
           children: [
             AutoRoute(path: '', page: QueuesPage),
-            AutoRoute(path: 'details', page: QueueDetailsPage),
             RedirectRoute(path: '*', redirectTo: ''),
           ],
         ),
@@ -62,6 +61,15 @@ part 'app_router.gr.dart';
     AutoRoute(
       path: 'login',
       page: LoginPage,
+    ),
+    AutoRoute(
+      path: '/queue:id',
+      name: 'QueueRouter',
+      page: QueueDetailsWrapperPage,
+      children: [
+        AutoRoute(path: '', page: QueueDetailsPage),
+        AutoRoute(path: 'edit', page: EditableQueueDetailsPage),
+      ],
     ),
     CustomRoute(
       path: 'add_queue',
