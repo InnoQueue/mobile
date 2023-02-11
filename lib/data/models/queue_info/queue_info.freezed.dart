@@ -21,7 +21,7 @@ QueueInfo _$QueueInfoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$QueueInfo {
   int get queueId => throw _privateConstructorUsedError;
-  String get queueName => throw _privateConstructorUsedError;
+  String? get queueName => throw _privateConstructorUsedError;
   String get queueColor => throw _privateConstructorUsedError;
   String get onDutyUserName => throw _privateConstructorUsedError;
   bool get active => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $QueueInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {int queueId,
-      String queueName,
+      String? queueName,
       String queueColor,
       String onDutyUserName,
       bool active});
@@ -59,7 +59,7 @@ class _$QueueInfoCopyWithImpl<$Res, $Val extends QueueInfo>
   @override
   $Res call({
     Object? queueId = null,
-    Object? queueName = null,
+    Object? queueName = freezed,
     Object? queueColor = null,
     Object? onDutyUserName = null,
     Object? active = null,
@@ -69,10 +69,10 @@ class _$QueueInfoCopyWithImpl<$Res, $Val extends QueueInfo>
           ? _value.queueId
           : queueId // ignore: cast_nullable_to_non_nullable
               as int,
-      queueName: null == queueName
+      queueName: freezed == queueName
           ? _value.queueName
           : queueName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       queueColor: null == queueColor
           ? _value.queueColor
           : queueColor // ignore: cast_nullable_to_non_nullable
@@ -98,7 +98,7 @@ abstract class _$$_QueueInfoCopyWith<$Res> implements $QueueInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {int queueId,
-      String queueName,
+      String? queueName,
       String queueColor,
       String onDutyUserName,
       bool active});
@@ -116,7 +116,7 @@ class __$$_QueueInfoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? queueId = null,
-    Object? queueName = null,
+    Object? queueName = freezed,
     Object? queueColor = null,
     Object? onDutyUserName = null,
     Object? active = null,
@@ -126,10 +126,10 @@ class __$$_QueueInfoCopyWithImpl<$Res>
           ? _value.queueId
           : queueId // ignore: cast_nullable_to_non_nullable
               as int,
-      queueName: null == queueName
+      queueName: freezed == queueName
           ? _value.queueName
           : queueName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       queueColor: null == queueColor
           ? _value.queueColor
           : queueColor // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class _$_QueueInfo implements _QueueInfo {
   @override
   final int queueId;
   @override
-  final String queueName;
+  final String? queueName;
   @override
   final String queueColor;
   @override
@@ -212,7 +212,7 @@ class _$_QueueInfo implements _QueueInfo {
 abstract class _QueueInfo implements QueueInfo {
   const factory _QueueInfo(
       {required final int queueId,
-      required final String queueName,
+      required final String? queueName,
       required final String queueColor,
       required final String onDutyUserName,
       required final bool active}) = _$_QueueInfo;
@@ -223,7 +223,7 @@ abstract class _QueueInfo implements QueueInfo {
   @override
   int get queueId;
   @override
-  String get queueName;
+  String? get queueName;
   @override
   String get queueColor;
   @override

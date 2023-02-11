@@ -35,6 +35,26 @@ class QueuesRepository {
     );
   }
 
+  Future<QueueModel> editQueue({
+    required int queueId,
+    required String name,
+    required String color,
+    required List<int> participantIds,
+    required bool trackExpenses,
+  }) async {
+    var response = await queuesApi.editQueue(
+      queueId: queueId,
+      request: EditQueueRequest(
+        queueName: name,
+        queueColor: color,
+        trackExpenses: trackExpenses,
+        participants: participantIds,
+      ),
+    );
+
+    return QueueModel.fromJson(response.data);
+  }
+
   Future<QueueModel> getQueue(int queueId) async {
     var response = await queuesApi.getQueue(queueId);
     return QueueModel.fromJson(response.data);

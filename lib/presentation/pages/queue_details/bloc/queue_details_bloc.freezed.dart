@@ -21,6 +21,7 @@ mixin _$QueueDetailsEvent {
     required TResult Function(int queueId) fetchQueue,
     required TResult Function(double? expenses) completeTask,
     required TResult Function() skipTask,
+    required TResult Function() submitChanges,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$QueueDetailsEvent {
     TResult? Function(int queueId)? fetchQueue,
     TResult? Function(double? expenses)? completeTask,
     TResult? Function()? skipTask,
+    TResult? Function()? submitChanges,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$QueueDetailsEvent {
     TResult Function(int queueId)? fetchQueue,
     TResult Function(double? expenses)? completeTask,
     TResult Function()? skipTask,
+    TResult Function()? submitChanges,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$QueueDetailsEvent {
     required TResult Function(_FetchQueue value) fetchQueue,
     required TResult Function(_CompleteTask value) completeTask,
     required TResult Function(_SkipTask value) skipTask,
+    required TResult Function(_SubmitChanges value) submitChanges,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$QueueDetailsEvent {
     TResult? Function(_FetchQueue value)? fetchQueue,
     TResult? Function(_CompleteTask value)? completeTask,
     TResult? Function(_SkipTask value)? skipTask,
+    TResult? Function(_SubmitChanges value)? submitChanges,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$QueueDetailsEvent {
     TResult Function(_FetchQueue value)? fetchQueue,
     TResult Function(_CompleteTask value)? completeTask,
     TResult Function(_SkipTask value)? skipTask,
+    TResult Function(_SubmitChanges value)? submitChanges,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +153,7 @@ class _$_FetchQueue implements _FetchQueue {
     required TResult Function(int queueId) fetchQueue,
     required TResult Function(double? expenses) completeTask,
     required TResult Function() skipTask,
+    required TResult Function() submitChanges,
   }) {
     return fetchQueue(queueId);
   }
@@ -157,6 +164,7 @@ class _$_FetchQueue implements _FetchQueue {
     TResult? Function(int queueId)? fetchQueue,
     TResult? Function(double? expenses)? completeTask,
     TResult? Function()? skipTask,
+    TResult? Function()? submitChanges,
   }) {
     return fetchQueue?.call(queueId);
   }
@@ -167,6 +175,7 @@ class _$_FetchQueue implements _FetchQueue {
     TResult Function(int queueId)? fetchQueue,
     TResult Function(double? expenses)? completeTask,
     TResult Function()? skipTask,
+    TResult Function()? submitChanges,
     required TResult orElse(),
   }) {
     if (fetchQueue != null) {
@@ -181,6 +190,7 @@ class _$_FetchQueue implements _FetchQueue {
     required TResult Function(_FetchQueue value) fetchQueue,
     required TResult Function(_CompleteTask value) completeTask,
     required TResult Function(_SkipTask value) skipTask,
+    required TResult Function(_SubmitChanges value) submitChanges,
   }) {
     return fetchQueue(this);
   }
@@ -191,6 +201,7 @@ class _$_FetchQueue implements _FetchQueue {
     TResult? Function(_FetchQueue value)? fetchQueue,
     TResult? Function(_CompleteTask value)? completeTask,
     TResult? Function(_SkipTask value)? skipTask,
+    TResult? Function(_SubmitChanges value)? submitChanges,
   }) {
     return fetchQueue?.call(this);
   }
@@ -201,6 +212,7 @@ class _$_FetchQueue implements _FetchQueue {
     TResult Function(_FetchQueue value)? fetchQueue,
     TResult Function(_CompleteTask value)? completeTask,
     TResult Function(_SkipTask value)? skipTask,
+    TResult Function(_SubmitChanges value)? submitChanges,
     required TResult orElse(),
   }) {
     if (fetchQueue != null) {
@@ -287,6 +299,7 @@ class _$_CompleteTask implements _CompleteTask {
     required TResult Function(int queueId) fetchQueue,
     required TResult Function(double? expenses) completeTask,
     required TResult Function() skipTask,
+    required TResult Function() submitChanges,
   }) {
     return completeTask(expenses);
   }
@@ -297,6 +310,7 @@ class _$_CompleteTask implements _CompleteTask {
     TResult? Function(int queueId)? fetchQueue,
     TResult? Function(double? expenses)? completeTask,
     TResult? Function()? skipTask,
+    TResult? Function()? submitChanges,
   }) {
     return completeTask?.call(expenses);
   }
@@ -307,6 +321,7 @@ class _$_CompleteTask implements _CompleteTask {
     TResult Function(int queueId)? fetchQueue,
     TResult Function(double? expenses)? completeTask,
     TResult Function()? skipTask,
+    TResult Function()? submitChanges,
     required TResult orElse(),
   }) {
     if (completeTask != null) {
@@ -321,6 +336,7 @@ class _$_CompleteTask implements _CompleteTask {
     required TResult Function(_FetchQueue value) fetchQueue,
     required TResult Function(_CompleteTask value) completeTask,
     required TResult Function(_SkipTask value) skipTask,
+    required TResult Function(_SubmitChanges value) submitChanges,
   }) {
     return completeTask(this);
   }
@@ -331,6 +347,7 @@ class _$_CompleteTask implements _CompleteTask {
     TResult? Function(_FetchQueue value)? fetchQueue,
     TResult? Function(_CompleteTask value)? completeTask,
     TResult? Function(_SkipTask value)? skipTask,
+    TResult? Function(_SubmitChanges value)? submitChanges,
   }) {
     return completeTask?.call(this);
   }
@@ -341,6 +358,7 @@ class _$_CompleteTask implements _CompleteTask {
     TResult Function(_FetchQueue value)? fetchQueue,
     TResult Function(_CompleteTask value)? completeTask,
     TResult Function(_SkipTask value)? skipTask,
+    TResult Function(_SubmitChanges value)? submitChanges,
     required TResult orElse(),
   }) {
     if (completeTask != null) {
@@ -400,6 +418,7 @@ class _$_SkipTask implements _SkipTask {
     required TResult Function(int queueId) fetchQueue,
     required TResult Function(double? expenses) completeTask,
     required TResult Function() skipTask,
+    required TResult Function() submitChanges,
   }) {
     return skipTask();
   }
@@ -410,6 +429,7 @@ class _$_SkipTask implements _SkipTask {
     TResult? Function(int queueId)? fetchQueue,
     TResult? Function(double? expenses)? completeTask,
     TResult? Function()? skipTask,
+    TResult? Function()? submitChanges,
   }) {
     return skipTask?.call();
   }
@@ -420,6 +440,7 @@ class _$_SkipTask implements _SkipTask {
     TResult Function(int queueId)? fetchQueue,
     TResult Function(double? expenses)? completeTask,
     TResult Function()? skipTask,
+    TResult Function()? submitChanges,
     required TResult orElse(),
   }) {
     if (skipTask != null) {
@@ -434,6 +455,7 @@ class _$_SkipTask implements _SkipTask {
     required TResult Function(_FetchQueue value) fetchQueue,
     required TResult Function(_CompleteTask value) completeTask,
     required TResult Function(_SkipTask value) skipTask,
+    required TResult Function(_SubmitChanges value) submitChanges,
   }) {
     return skipTask(this);
   }
@@ -444,6 +466,7 @@ class _$_SkipTask implements _SkipTask {
     TResult? Function(_FetchQueue value)? fetchQueue,
     TResult? Function(_CompleteTask value)? completeTask,
     TResult? Function(_SkipTask value)? skipTask,
+    TResult? Function(_SubmitChanges value)? submitChanges,
   }) {
     return skipTask?.call(this);
   }
@@ -454,6 +477,7 @@ class _$_SkipTask implements _SkipTask {
     TResult Function(_FetchQueue value)? fetchQueue,
     TResult Function(_CompleteTask value)? completeTask,
     TResult Function(_SkipTask value)? skipTask,
+    TResult Function(_SubmitChanges value)? submitChanges,
     required TResult orElse(),
   }) {
     if (skipTask != null) {
@@ -465,6 +489,120 @@ class _$_SkipTask implements _SkipTask {
 
 abstract class _SkipTask implements QueueDetailsEvent {
   const factory _SkipTask() = _$_SkipTask;
+}
+
+/// @nodoc
+abstract class _$$_SubmitChangesCopyWith<$Res> {
+  factory _$$_SubmitChangesCopyWith(
+          _$_SubmitChanges value, $Res Function(_$_SubmitChanges) then) =
+      __$$_SubmitChangesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SubmitChangesCopyWithImpl<$Res>
+    extends _$QueueDetailsEventCopyWithImpl<$Res, _$_SubmitChanges>
+    implements _$$_SubmitChangesCopyWith<$Res> {
+  __$$_SubmitChangesCopyWithImpl(
+      _$_SubmitChanges _value, $Res Function(_$_SubmitChanges) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SubmitChanges implements _SubmitChanges {
+  const _$_SubmitChanges();
+
+  @override
+  String toString() {
+    return 'QueueDetailsEvent.submitChanges()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SubmitChanges);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int queueId) fetchQueue,
+    required TResult Function(double? expenses) completeTask,
+    required TResult Function() skipTask,
+    required TResult Function() submitChanges,
+  }) {
+    return submitChanges();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int queueId)? fetchQueue,
+    TResult? Function(double? expenses)? completeTask,
+    TResult? Function()? skipTask,
+    TResult? Function()? submitChanges,
+  }) {
+    return submitChanges?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int queueId)? fetchQueue,
+    TResult Function(double? expenses)? completeTask,
+    TResult Function()? skipTask,
+    TResult Function()? submitChanges,
+    required TResult orElse(),
+  }) {
+    if (submitChanges != null) {
+      return submitChanges();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchQueue value) fetchQueue,
+    required TResult Function(_CompleteTask value) completeTask,
+    required TResult Function(_SkipTask value) skipTask,
+    required TResult Function(_SubmitChanges value) submitChanges,
+  }) {
+    return submitChanges(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchQueue value)? fetchQueue,
+    TResult? Function(_CompleteTask value)? completeTask,
+    TResult? Function(_SkipTask value)? skipTask,
+    TResult? Function(_SubmitChanges value)? submitChanges,
+  }) {
+    return submitChanges?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchQueue value)? fetchQueue,
+    TResult Function(_CompleteTask value)? completeTask,
+    TResult Function(_SkipTask value)? skipTask,
+    TResult Function(_SubmitChanges value)? submitChanges,
+    required TResult orElse(),
+  }) {
+    if (submitChanges != null) {
+      return submitChanges(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubmitChanges implements QueueDetailsEvent {
+  const factory _SubmitChanges() = _$_SubmitChanges;
 }
 
 /// @nodoc

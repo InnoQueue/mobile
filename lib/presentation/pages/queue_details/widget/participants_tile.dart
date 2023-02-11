@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../presentation.dart';
 
-class ParticipantTile extends StatelessWidget {
-  const ParticipantTile({super.key});
+class ParticipantsTile extends StatelessWidget {
+  const ParticipantsTile({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -69,6 +69,11 @@ part 'app_router.gr.dart';
       children: [
         AutoRoute(path: '', page: QueueDetailsPage),
         AutoRoute(path: 'edit', page: EditableQueueDetailsPage),
+        CustomRoute(
+          path: 'choose_avatar_color',
+          page: ChooseAvatarColorPage,
+          customRouteBuilder: modalSheetBuilder,
+        ),
       ],
     ),
     CustomRoute(

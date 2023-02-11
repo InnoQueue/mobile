@@ -11,4 +11,6 @@ class QueueDetailsEvent with _$QueueDetailsEvent {
   }) = _CompleteTask;
 
   const factory QueueDetailsEvent.skipTask() = _SkipTask;
+
+  const factory QueueDetailsEvent.submitChanges() = _SubmitChanges;
 }

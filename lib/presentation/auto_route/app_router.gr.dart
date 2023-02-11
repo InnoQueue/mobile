@@ -166,6 +166,19 @@ class _$AppRouter extends RootStackRouter {
         child: const EditableQueueDetailsPage(),
       );
     },
+    ChooseAvatarColorRoute.name: (routeData) {
+      final args = routeData.argsAs<ChooseAvatarColorRouteArgs>();
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: ChooseAvatarColorPage(
+          updateColor: args.updateColor,
+          key: args.key,
+        ),
+        customRouteBuilder: modalSheetBuilder,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
   };
 
   @override
@@ -269,6 +282,11 @@ class _$AppRouter extends RootStackRouter {
             RouteConfig(
               EditableQueueDetailsRoute.name,
               path: 'edit',
+              parent: QueueRouter.name,
+            ),
+            RouteConfig(
+              ChooseAvatarColorRoute.name,
+              path: 'choose_avatar_color',
               parent: QueueRouter.name,
             ),
           ],
@@ -583,4 +601,38 @@ class EditableQueueDetailsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'EditableQueueDetailsRoute';
+}
+
+/// generated route for
+/// [ChooseAvatarColorPage]
+class ChooseAvatarColorRoute extends PageRouteInfo<ChooseAvatarColorRouteArgs> {
+  ChooseAvatarColorRoute({
+    required void Function(String) updateColor,
+    Key? key,
+  }) : super(
+          ChooseAvatarColorRoute.name,
+          path: 'choose_avatar_color',
+          args: ChooseAvatarColorRouteArgs(
+            updateColor: updateColor,
+            key: key,
+          ),
+        );
+
+  static const String name = 'ChooseAvatarColorRoute';
+}
+
+class ChooseAvatarColorRouteArgs {
+  const ChooseAvatarColorRouteArgs({
+    required this.updateColor,
+    this.key,
+  });
+
+  final void Function(String) updateColor;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ChooseAvatarColorRouteArgs{updateColor: $updateColor, key: $key}';
+  }
 }

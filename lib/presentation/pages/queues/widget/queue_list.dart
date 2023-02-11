@@ -62,7 +62,7 @@ class QueueItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _TaskName(queue.queueName),
+                _TaskName(queue.queueName ?? '...'),
                 const SizedBox(height: 2),
                 _DutyName(queue.onDutyUserName),
               ],

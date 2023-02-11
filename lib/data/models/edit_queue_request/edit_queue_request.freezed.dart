@@ -20,9 +20,8 @@ EditQueueRequest _$EditQueueRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EditQueueRequest {
-  int get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get color => throw _privateConstructorUsedError;
+  String? get queueName => throw _privateConstructorUsedError;
+  String? get queueColor => throw _privateConstructorUsedError;
   bool? get trackExpenses => throw _privateConstructorUsedError;
   List<int>? get participants => throw _privateConstructorUsedError;
 
@@ -39,9 +38,8 @@ abstract class $EditQueueRequestCopyWith<$Res> {
       _$EditQueueRequestCopyWithImpl<$Res, EditQueueRequest>;
   @useResult
   $Res call(
-      {int id,
-      String? name,
-      String? color,
+      {String? queueName,
+      String? queueColor,
       bool? trackExpenses,
       List<int>? participants});
 }
@@ -59,24 +57,19 @@ class _$EditQueueRequestCopyWithImpl<$Res, $Val extends EditQueueRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = freezed,
-    Object? color = freezed,
+    Object? queueName = freezed,
+    Object? queueColor = freezed,
     Object? trackExpenses = freezed,
     Object? participants = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      queueName: freezed == queueName
+          ? _value.queueName
+          : queueName // ignore: cast_nullable_to_non_nullable
               as String?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      queueColor: freezed == queueColor
+          ? _value.queueColor
+          : queueColor // ignore: cast_nullable_to_non_nullable
               as String?,
       trackExpenses: freezed == trackExpenses
           ? _value.trackExpenses
@@ -99,9 +92,8 @@ abstract class _$$_EditQueueRequestCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String? name,
-      String? color,
+      {String? queueName,
+      String? queueColor,
       bool? trackExpenses,
       List<int>? participants});
 }
@@ -117,24 +109,19 @@ class __$$_EditQueueRequestCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = freezed,
-    Object? color = freezed,
+    Object? queueName = freezed,
+    Object? queueColor = freezed,
     Object? trackExpenses = freezed,
     Object? participants = freezed,
   }) {
     return _then(_$_EditQueueRequest(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      queueName: freezed == queueName
+          ? _value.queueName
+          : queueName // ignore: cast_nullable_to_non_nullable
               as String?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      queueColor: freezed == queueColor
+          ? _value.queueColor
+          : queueColor // ignore: cast_nullable_to_non_nullable
               as String?,
       trackExpenses: freezed == trackExpenses
           ? _value.trackExpenses
@@ -152,9 +139,8 @@ class __$$_EditQueueRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_EditQueueRequest implements _EditQueueRequest {
   const _$_EditQueueRequest(
-      {required this.id,
-      this.name,
-      this.color,
+      {this.queueName,
+      this.queueColor,
       this.trackExpenses,
       final List<int>? participants})
       : _participants = participants;
@@ -163,11 +149,9 @@ class _$_EditQueueRequest implements _EditQueueRequest {
       _$$_EditQueueRequestFromJson(json);
 
   @override
-  final int id;
+  final String? queueName;
   @override
-  final String? name;
-  @override
-  final String? color;
+  final String? queueColor;
   @override
   final bool? trackExpenses;
   final List<int>? _participants;
@@ -182,7 +166,7 @@ class _$_EditQueueRequest implements _EditQueueRequest {
 
   @override
   String toString() {
-    return 'EditQueueRequest(id: $id, name: $name, color: $color, trackExpenses: $trackExpenses, participants: $participants)';
+    return 'EditQueueRequest(queueName: $queueName, queueColor: $queueColor, trackExpenses: $trackExpenses, participants: $participants)';
   }
 
   @override
@@ -190,9 +174,10 @@ class _$_EditQueueRequest implements _EditQueueRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EditQueueRequest &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.color, color) || other.color == color) &&
+            (identical(other.queueName, queueName) ||
+                other.queueName == queueName) &&
+            (identical(other.queueColor, queueColor) ||
+                other.queueColor == queueColor) &&
             (identical(other.trackExpenses, trackExpenses) ||
                 other.trackExpenses == trackExpenses) &&
             const DeepCollectionEquality()
@@ -201,8 +186,8 @@ class _$_EditQueueRequest implements _EditQueueRequest {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, color, trackExpenses,
-      const DeepCollectionEquality().hash(_participants));
+  int get hashCode => Object.hash(runtimeType, queueName, queueColor,
+      trackExpenses, const DeepCollectionEquality().hash(_participants));
 
   @JsonKey(ignore: true)
   @override
@@ -220,9 +205,8 @@ class _$_EditQueueRequest implements _EditQueueRequest {
 
 abstract class _EditQueueRequest implements EditQueueRequest {
   const factory _EditQueueRequest(
-      {required final int id,
-      final String? name,
-      final String? color,
+      {final String? queueName,
+      final String? queueColor,
       final bool? trackExpenses,
       final List<int>? participants}) = _$_EditQueueRequest;
 
@@ -230,11 +214,9 @@ abstract class _EditQueueRequest implements EditQueueRequest {
       _$_EditQueueRequest.fromJson;
 
   @override
-  int get id;
+  String? get queueName;
   @override
-  String? get name;
-  @override
-  String? get color;
+  String? get queueColor;
   @override
   bool? get trackExpenses;
   @override
