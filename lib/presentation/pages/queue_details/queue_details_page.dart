@@ -12,6 +12,7 @@ class QueueDetailsPage extends StatefulWidget {
 
 class _QueueDetailsPageState extends State<QueueDetailsPage> {
   bool admin = false;
+  bool initialized = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
         state.whenOrNull(queueFetched: (_) {
           setState(() {
             admin = context.read<QueueDetailsBloc>().currentQueue.admin;
+            initialized = true;
           });
         });
       },
@@ -46,10 +48,7 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
                     const EditableQueueDetailsRoute(),
                   ),
                 ),
-              IconButton(
-                icon: const Icon(Icons.more_vert),
-                onPressed: () {},
-              )
+              if (initialized) const OptionsButton(),
             ],
           ),
           backgroundColor: Colors.grey.shade100,

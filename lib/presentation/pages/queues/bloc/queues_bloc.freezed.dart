@@ -19,6 +19,7 @@ mixin _$QueuesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadData,
+    required TResult Function() emitInitial,
     required TResult Function(String name, String color, bool trackExpenses)
         createQueue,
   }) =>
@@ -26,6 +27,7 @@ mixin _$QueuesEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadData,
+    TResult? Function()? emitInitial,
     TResult? Function(String name, String color, bool trackExpenses)?
         createQueue,
   }) =>
@@ -33,6 +35,7 @@ mixin _$QueuesEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadData,
+    TResult Function()? emitInitial,
     TResult Function(String name, String color, bool trackExpenses)?
         createQueue,
     required TResult orElse(),
@@ -41,18 +44,21 @@ mixin _$QueuesEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadData value) loadData,
+    required TResult Function(_EmitInitial value) emitInitial,
     required TResult Function(_CreateQueue value) createQueue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadData value)? loadData,
+    TResult? Function(_EmitInitial value)? emitInitial,
     TResult? Function(_CreateQueue value)? createQueue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadData value)? loadData,
+    TResult Function(_EmitInitial value)? emitInitial,
     TResult Function(_CreateQueue value)? createQueue,
     required TResult orElse(),
   }) =>
@@ -116,6 +122,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadData,
+    required TResult Function() emitInitial,
     required TResult Function(String name, String color, bool trackExpenses)
         createQueue,
   }) {
@@ -126,6 +133,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadData,
+    TResult? Function()? emitInitial,
     TResult? Function(String name, String color, bool trackExpenses)?
         createQueue,
   }) {
@@ -136,6 +144,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadData,
+    TResult Function()? emitInitial,
     TResult Function(String name, String color, bool trackExpenses)?
         createQueue,
     required TResult orElse(),
@@ -150,6 +159,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadData value) loadData,
+    required TResult Function(_EmitInitial value) emitInitial,
     required TResult Function(_CreateQueue value) createQueue,
   }) {
     return loadData(this);
@@ -159,6 +169,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadData value)? loadData,
+    TResult? Function(_EmitInitial value)? emitInitial,
     TResult? Function(_CreateQueue value)? createQueue,
   }) {
     return loadData?.call(this);
@@ -168,6 +179,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadData value)? loadData,
+    TResult Function(_EmitInitial value)? emitInitial,
     TResult Function(_CreateQueue value)? createQueue,
     required TResult orElse(),
   }) {
@@ -180,6 +192,117 @@ class _$_LoadData implements _LoadData {
 
 abstract class _LoadData implements QueuesEvent {
   const factory _LoadData() = _$_LoadData;
+}
+
+/// @nodoc
+abstract class _$$_EmitInitialCopyWith<$Res> {
+  factory _$$_EmitInitialCopyWith(
+          _$_EmitInitial value, $Res Function(_$_EmitInitial) then) =
+      __$$_EmitInitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_EmitInitialCopyWithImpl<$Res>
+    extends _$QueuesEventCopyWithImpl<$Res, _$_EmitInitial>
+    implements _$$_EmitInitialCopyWith<$Res> {
+  __$$_EmitInitialCopyWithImpl(
+      _$_EmitInitial _value, $Res Function(_$_EmitInitial) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_EmitInitial implements _EmitInitial {
+  const _$_EmitInitial();
+
+  @override
+  String toString() {
+    return 'QueuesEvent.emitInitial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_EmitInitial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadData,
+    required TResult Function() emitInitial,
+    required TResult Function(String name, String color, bool trackExpenses)
+        createQueue,
+  }) {
+    return emitInitial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadData,
+    TResult? Function()? emitInitial,
+    TResult? Function(String name, String color, bool trackExpenses)?
+        createQueue,
+  }) {
+    return emitInitial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadData,
+    TResult Function()? emitInitial,
+    TResult Function(String name, String color, bool trackExpenses)?
+        createQueue,
+    required TResult orElse(),
+  }) {
+    if (emitInitial != null) {
+      return emitInitial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadData value) loadData,
+    required TResult Function(_EmitInitial value) emitInitial,
+    required TResult Function(_CreateQueue value) createQueue,
+  }) {
+    return emitInitial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadData value)? loadData,
+    TResult? Function(_EmitInitial value)? emitInitial,
+    TResult? Function(_CreateQueue value)? createQueue,
+  }) {
+    return emitInitial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadData value)? loadData,
+    TResult Function(_EmitInitial value)? emitInitial,
+    TResult Function(_CreateQueue value)? createQueue,
+    required TResult orElse(),
+  }) {
+    if (emitInitial != null) {
+      return emitInitial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmitInitial implements QueuesEvent {
+  const factory _EmitInitial() = _$_EmitInitial;
 }
 
 /// @nodoc
@@ -265,6 +388,7 @@ class _$_CreateQueue implements _CreateQueue {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadData,
+    required TResult Function() emitInitial,
     required TResult Function(String name, String color, bool trackExpenses)
         createQueue,
   }) {
@@ -275,6 +399,7 @@ class _$_CreateQueue implements _CreateQueue {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadData,
+    TResult? Function()? emitInitial,
     TResult? Function(String name, String color, bool trackExpenses)?
         createQueue,
   }) {
@@ -285,6 +410,7 @@ class _$_CreateQueue implements _CreateQueue {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadData,
+    TResult Function()? emitInitial,
     TResult Function(String name, String color, bool trackExpenses)?
         createQueue,
     required TResult orElse(),
@@ -299,6 +425,7 @@ class _$_CreateQueue implements _CreateQueue {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadData value) loadData,
+    required TResult Function(_EmitInitial value) emitInitial,
     required TResult Function(_CreateQueue value) createQueue,
   }) {
     return createQueue(this);
@@ -308,6 +435,7 @@ class _$_CreateQueue implements _CreateQueue {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadData value)? loadData,
+    TResult? Function(_EmitInitial value)? emitInitial,
     TResult? Function(_CreateQueue value)? createQueue,
   }) {
     return createQueue?.call(this);
@@ -317,6 +445,7 @@ class _$_CreateQueue implements _CreateQueue {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadData value)? loadData,
+    TResult Function(_EmitInitial value)? emitInitial,
     TResult Function(_CreateQueue value)? createQueue,
     required TResult orElse(),
   }) {

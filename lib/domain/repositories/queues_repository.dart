@@ -35,6 +35,18 @@ class QueuesRepository {
     );
   }
 
+  Future<void> deleteQueue(int queueId) async {
+    await queuesApi.deleteQueue((queueId));
+  }
+
+  Future<void> freezeQueue(int queueId) async {
+    await queuesApi.freezeQueue((queueId));
+  }
+
+  Future<void> unfreezeQueue(int queueId) async {
+    await queuesApi.unfreezeQueue((queueId));
+  }
+
   Future<QueueModel> editQueue({
     required int queueId,
     required String name,

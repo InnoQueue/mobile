@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +21,16 @@ class QueueHeading extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const SizedBox(width: 30),
+              SizedBox(
+                width: 30,
+                child: context.read<QueueDetailsBloc>().isActive
+                    ? null
+                    : const Icon(
+                        CupertinoIcons.snow,
+                        size: 16,
+                        color: Colors.grey,
+                      ),
+              ),
               _Avatar(color: colors[currentQueue.queueColor]!),
               const SizedBox(width: 20),
               _TaskName(currentQueue.queueName),
