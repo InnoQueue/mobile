@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../presentation.dart';
 
@@ -15,7 +16,8 @@ class ChooseAvatarColorPage extends StatefulWidget {
 }
 
 class _ChooseAvatarColorPageState extends State<ChooseAvatarColorPage> {
-  String color = colors.entries.first.key;
+  late var currentQueue = context.read<QueueDetailsBloc>().currentQueue;
+  late var color = currentQueue.queueColor;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class _ChooseAvatarColorPageState extends State<ChooseAvatarColorPage> {
           Center(
             child: ColorPalette(
               onUpdate: (value) => color = value,
+              initialColor: color,
             ),
           ),
           const SizedBox(height: 50),

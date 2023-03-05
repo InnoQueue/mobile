@@ -12,7 +12,7 @@ class OptionsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isActive = context.read<QueueDetailsBloc>().isActive;
+    var isActive = context.watch<QueueDetailsBloc>().isActive;
 
     return PopupMenuButton<_Option>(
       icon: const Icon(Icons.more_vert),
