@@ -19,14 +19,31 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
   NotificationsBloc() : super(const _Initial()) {
     on<_FetchNotifications>(_fetchNotifications);
+    on<_UpdateNotifications>(_updateNotifications);
   }
 
   bool _isLoading = false;
   Future<void> _fetchNotifications(
       _FetchNotifications event, Emitter<NotificationsState> emit) async {
     if (_isLoading) return;
-
     _isLoading = true;
+    await _fetchNotificationsAndEmit(emit);
+    _isLoading = false;
+  }
+
+  Future<void> _updateNotifications(
+      _UpdateNotifications event, Emitter<NotificationsState> emit) async {
+    emit(const NotificationsState.initial());
+
+    currentNotifications.clear();
+    _readNotificationIds.clear();
+    _page = 0;
+
+    await _fetchNotificationsAndEmit(emit);
+  }
+
+  Future<void> _fetchNotificationsAndEmit(
+      Emitter<NotificationsState> emit) async {
     var notificationsResponse =
         await getIt.get<NotificationsRepository>().getNotifications(
               page: _page,
@@ -40,7 +57,6 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       items: filteredNotifications.toList(),
       fetchedAll: notificationsResponse.last,
     ));
-    _isLoading = false;
   }
 
   List<NotificationModel> get filteredNotifications => currentNotifications

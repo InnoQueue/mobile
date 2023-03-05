@@ -41,7 +41,12 @@ class _QueuesPageState extends State<QueuesPage> {
               initial: () => const Center(
                 child: CircularProgressIndicator(),
               ),
-              dataLoaded: (queues) => QueueList(queues: queues),
+              dataLoaded: (queues) => RefreshIndicator(
+                onRefresh: () async {
+                  getIt.get<QueuesBloc>().add(const QueuesEvent.loadData());
+                },
+                child: QueueList(queues: queues),
+              ),
             );
           },
         ),

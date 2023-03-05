@@ -53,6 +53,7 @@ class QueueDetailsBloc extends Bloc<QueueDetailsEvent, QueueDetailsState> {
     _FetchQueue event,
     Emitter<QueueDetailsState> emit,
   ) async {
+    emit(const QueueDetailsState.initial());
     var queue = await getIt.get<QueuesRepository>().getQueue(event.queueId);
     currentQueue = queue;
 

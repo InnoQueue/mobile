@@ -343,32 +343,38 @@ mixin _$NotificationsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchNotifications,
+    required TResult Function() updateNotifications,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchNotifications,
+    TResult? Function()? updateNotifications,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchNotifications,
+    TResult Function()? updateNotifications,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchNotifications value) fetchNotifications,
+    required TResult Function(_UpdateNotifications value) updateNotifications,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchNotifications value)? fetchNotifications,
+    TResult? Function(_UpdateNotifications value)? updateNotifications,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchNotifications value)? fetchNotifications,
+    TResult Function(_UpdateNotifications value)? updateNotifications,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -431,6 +437,7 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchNotifications,
+    required TResult Function() updateNotifications,
   }) {
     return fetchNotifications();
   }
@@ -439,6 +446,7 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchNotifications,
+    TResult? Function()? updateNotifications,
   }) {
     return fetchNotifications?.call();
   }
@@ -447,6 +455,7 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchNotifications,
+    TResult Function()? updateNotifications,
     required TResult orElse(),
   }) {
     if (fetchNotifications != null) {
@@ -459,6 +468,7 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchNotifications value) fetchNotifications,
+    required TResult Function(_UpdateNotifications value) updateNotifications,
   }) {
     return fetchNotifications(this);
   }
@@ -467,6 +477,7 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchNotifications value)? fetchNotifications,
+    TResult? Function(_UpdateNotifications value)? updateNotifications,
   }) {
     return fetchNotifications?.call(this);
   }
@@ -475,6 +486,7 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchNotifications value)? fetchNotifications,
+    TResult Function(_UpdateNotifications value)? updateNotifications,
     required TResult orElse(),
   }) {
     if (fetchNotifications != null) {
@@ -486,4 +498,106 @@ class _$_FetchNotifications implements _FetchNotifications {
 
 abstract class _FetchNotifications implements NotificationsEvent {
   const factory _FetchNotifications() = _$_FetchNotifications;
+}
+
+/// @nodoc
+abstract class _$$_UpdateNotificationsCopyWith<$Res> {
+  factory _$$_UpdateNotificationsCopyWith(_$_UpdateNotifications value,
+          $Res Function(_$_UpdateNotifications) then) =
+      __$$_UpdateNotificationsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_UpdateNotificationsCopyWithImpl<$Res>
+    extends _$NotificationsEventCopyWithImpl<$Res, _$_UpdateNotifications>
+    implements _$$_UpdateNotificationsCopyWith<$Res> {
+  __$$_UpdateNotificationsCopyWithImpl(_$_UpdateNotifications _value,
+      $Res Function(_$_UpdateNotifications) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_UpdateNotifications implements _UpdateNotifications {
+  const _$_UpdateNotifications();
+
+  @override
+  String toString() {
+    return 'NotificationsEvent.updateNotifications()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_UpdateNotifications);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchNotifications,
+    required TResult Function() updateNotifications,
+  }) {
+    return updateNotifications();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchNotifications,
+    TResult? Function()? updateNotifications,
+  }) {
+    return updateNotifications?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchNotifications,
+    TResult Function()? updateNotifications,
+    required TResult orElse(),
+  }) {
+    if (updateNotifications != null) {
+      return updateNotifications();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchNotifications value) fetchNotifications,
+    required TResult Function(_UpdateNotifications value) updateNotifications,
+  }) {
+    return updateNotifications(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchNotifications value)? fetchNotifications,
+    TResult? Function(_UpdateNotifications value)? updateNotifications,
+  }) {
+    return updateNotifications?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchNotifications value)? fetchNotifications,
+    TResult Function(_UpdateNotifications value)? updateNotifications,
+    required TResult orElse(),
+  }) {
+    if (updateNotifications != null) {
+      return updateNotifications(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateNotifications implements NotificationsEvent {
+  const factory _UpdateNotifications() = _$_UpdateNotifications;
 }

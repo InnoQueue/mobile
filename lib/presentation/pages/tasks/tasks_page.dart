@@ -35,15 +35,20 @@ class _TasksPageState extends State<TasksPage> {
           centerTitle: true,
         ),
         backgroundColor: Colors.grey.shade100,
-        body: BlocBuilder<TasksBloc, TasksState>(
-          builder: (context, state) {
-            return state.when(
-              initial: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              dataLoaded: (tasks) => TaskList(tasks: tasks),
-            );
+        body: RefreshIndicator(
+          onRefresh: () async {
+            getIt.get<TasksBloc>().add(const TasksEvent.loadData());
           },
+          child: BlocBuilder<TasksBloc, TasksState>(
+            builder: (context, state) {
+              return state.when(
+                initial: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                dataLoaded: (tasks) => TaskList(tasks: tasks),
+              );
+            },
+          ),
         ),
       ),
     );
