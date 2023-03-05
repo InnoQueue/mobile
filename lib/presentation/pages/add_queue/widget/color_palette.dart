@@ -5,8 +5,10 @@ import '../../../presentation.dart';
 
 class ColorPalette extends StatefulWidget {
   final void Function(String) onUpdate;
+  final String? initialColor;
   const ColorPalette({
     required this.onUpdate,
+    this.initialColor,
     super.key,
   });
 
@@ -15,7 +17,8 @@ class ColorPalette extends StatefulWidget {
 }
 
 class _ColorPaletteState extends State<ColorPalette> {
-  String selectedColorKey = colors.entries.first.key;
+  late String selectedColorKey =
+      widget.initialColor ?? colors.entries.first.key;
 
   Offset? localPosition;
   late double width;

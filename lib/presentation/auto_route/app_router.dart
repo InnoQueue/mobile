@@ -7,6 +7,7 @@ import '../presentation.dart';
 import '../../data/data.dart';
 
 export 'auto_route_guards.dart';
+export 'auto_route_observer.dart';
 
 part 'app_router.gr.dart';
 
@@ -34,7 +35,6 @@ part 'app_router.gr.dart';
           page: EmptyRouterPage,
           children: [
             AutoRoute(path: '', page: QueuesPage),
-            AutoRoute(path: 'details', page: QueueDetailsPage),
             RedirectRoute(path: '*', redirectTo: ''),
           ],
         ),
@@ -61,6 +61,20 @@ part 'app_router.gr.dart';
     AutoRoute(
       path: 'login',
       page: LoginPage,
+    ),
+    AutoRoute(
+      path: '/queue:id',
+      name: 'QueueRouter',
+      page: QueueDetailsWrapperPage,
+      children: [
+        AutoRoute(path: '', page: QueueDetailsPage),
+        AutoRoute(path: 'edit', page: EditableQueueDetailsPage),
+        CustomRoute(
+          path: 'choose_avatar_color',
+          page: ChooseAvatarColorPage,
+          customRouteBuilder: modalSheetBuilder,
+        ),
+      ],
     ),
     CustomRoute(
       path: 'add_queue',

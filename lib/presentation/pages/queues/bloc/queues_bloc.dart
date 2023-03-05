@@ -15,6 +15,7 @@ class QueuesBloc extends Bloc<QueuesEvent, QueuesState> {
   QueuesBloc() : super(const _Initial()) {
     on<_LoadData>(_loadData);
     on<_CreateQueue>(_createQueue);
+    on<_EmitInitial>((event, emit) => emit(const _Initial()));
   }
 
   Future<void> _loadData(

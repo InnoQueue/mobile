@@ -7,7 +7,7 @@ part 'queue_info.g.dart';
 class QueueInfo with _$QueueInfo {
   const factory QueueInfo({
     required int queueId,
-    required String queueName,
+    required String? queueName,
     required String queueColor,
     required String onDutyUserName,
     required bool active,

@@ -1,44 +1,69 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/data.dart';
 import '../../presentation.dart';
 
-class QueueDetailsPage extends StatelessWidget {
-  final QueueInfo queueInfo;
-  const QueueDetailsPage({
-    required this.queueInfo,
-    super.key,
-  });
+class QueueDetailsPage extends StatefulWidget {
+  const QueueDetailsPage({super.key});
+
+  @override
+  State<QueueDetailsPage> createState() => _QueueDetailsPageState();
+}
+
+class _QueueDetailsPageState extends State<QueueDetailsPage> {
+  bool admin = false;
+  bool initialized = false;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<QueueDetailsBloc>(
-      create: (context) => QueueDetailsBloc()
-        ..add(
-          QueueDetailsEvent.fetchQueue(queueInfo.queueId),
-        ),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Text(
-            queueInfo.queueName,
-            style: const TextStyle(color: Colors.black),
+    return BlocConsumer<QueueDetailsBloc, QueueDetailsState>(
+      listener: (context, state) {
+        state.whenOrNull(queueFetched: (_) {
+          setState(() {
+            admin = context.read<QueueDetailsBloc>().currentQueue.admin;
+            initialized = true;
+          });
+        });
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+            elevation: 0,
+            title: Text(
+              context.read<QueueDetailsBloc>().queueInfo?.queueName ?? '...',
+              style: const TextStyle(color: Colors.black),
+            ),
+            centerTitle: true,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+              onPressed: () => AutoRouter.of(context).pop(),
+            ),
+            actions: [
+              if (admin)
+                IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () => context.router.push(
+                    const EditableQueueDetailsRoute(),
+                  ),
+                ),
+              if (initialized) const OptionsButton(),
+            ],
           ),
-          centerTitle: true,
-        ),
-        backgroundColor: Colors.grey.shade100,
-        body: BlocBuilder<QueueDetailsBloc, QueueDetailsState>(
-          builder: (context, state) {
-            return state.when(
-              initial: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              queueFetched: (queue) => const _MainContent(),
-            );
-          },
-        ),
-      ),
+          backgroundColor: Colors.grey.shade100,
+          body: BlocBuilder<QueueDetailsBloc, QueueDetailsState>(
+            builder: (context, state) {
+              return state.when(
+                initial: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                queueFetched: (queue) => const _MainContent(),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
@@ -77,7 +102,7 @@ class _MainContent extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        const ParticipantTile(),
+        const ParticipantsTile(),
       ],
     );
   }

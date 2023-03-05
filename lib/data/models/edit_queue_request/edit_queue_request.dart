@@ -6,9 +6,8 @@ part 'edit_queue_request.g.dart';
 @freezed
 class EditQueueRequest with _$EditQueueRequest {
   const factory EditQueueRequest({
-    required int id,
-    String? name,
-    String? color,
+    String? queueName,
+    String? queueColor,
     bool? trackExpenses,
     List<int>? participants,
   }) = _EditQueueRequest;

@@ -11,3 +11,5 @@ export 'login/login.dart';
 export 'theme_page.dart';
 export 'language_page.dart';
 export 'notification_settings_page.dart';
+export 'editable_queue_details/editable_queue_details.dart';
+export 'choose_avatar_color_page.dart';

@@ -20,7 +20,11 @@ dependencies:
   injectable: ^2.1.0
   flutter_bloc: ^8.1.1
   basic_utils: ^5.4.2
-  modal_bottom_sheet: ^2.1.2
+  modal_bottom_sheet: 
+    git: 
+      url: https://github.com/followthemoney1/modal_bottom_sheet.git
+      ref: 3e8c3682be91a4a86ee73f39606901d5eb033f0b
+      path: modal_bottom_sheet
   shared_preferences: ^2.0.17
   intl: ^0.18.0
   visibility_detector: ^0.3.3

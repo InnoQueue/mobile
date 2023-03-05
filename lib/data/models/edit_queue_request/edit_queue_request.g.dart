@@ -8,9 +8,8 @@ part of 'edit_queue_request.dart';
 
 _$_EditQueueRequest _$$_EditQueueRequestFromJson(Map<String, dynamic> json) =>
     _$_EditQueueRequest(
-      id: json['id'] as int,
-      name: json['name'] as String?,
-      color: json['color'] as String?,
+      queueName: json['queueName'] as String?,
+      queueColor: json['queueColor'] as String?,
       trackExpenses: json['trackExpenses'] as bool?,
       participants: (json['participants'] as List<dynamic>?)
           ?.map((e) => e as int)
@@ -19,9 +18,8 @@ _$_EditQueueRequest _$$_EditQueueRequestFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_EditQueueRequestToJson(_$_EditQueueRequest instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'color': instance.color,
+      'queueName': instance.queueName,
+      'queueColor': instance.queueColor,
       'trackExpenses': instance.trackExpenses,
       'participants': instance.participants,
     };

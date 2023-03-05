@@ -104,7 +104,7 @@ class _ExpandableFabState extends State<ExpandableFab>
   }
 
   void onTapQr() {
-    print('qr');
+    debugPrint('qr');
   }
 
   void onTapAdd() {

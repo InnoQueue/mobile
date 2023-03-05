@@ -11,4 +11,12 @@ class QueueDetailsEvent with _$QueueDetailsEvent {
   }) = _CompleteTask;
 
   const factory QueueDetailsEvent.skipTask() = _SkipTask;
+
+  const factory QueueDetailsEvent.submitChanges() = _SubmitChanges;
+
+  const factory QueueDetailsEvent.leaveQueue() = _LeaveQueue;
+
+  const factory QueueDetailsEvent.freezeQueue() = _FreezeQueue;
+
+  const factory QueueDetailsEvent.unfreezeQueue() = _UnfreezeQueue;
 }

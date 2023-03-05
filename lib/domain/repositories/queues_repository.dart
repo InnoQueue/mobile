@@ -26,11 +26,6 @@ class QueuesRepository {
     required String color,
     required bool trackExpenses,
   }) async {
-    print(CreateQueueRequest(
-      queueName: name,
-      queueColor: color,
-      trackExpenses: trackExpenses,
-    ).toJson());
     await queuesApi.createQueue(
       CreateQueueRequest(
         queueName: name,
@@ -38,6 +33,38 @@ class QueuesRepository {
         trackExpenses: trackExpenses,
       ),
     );
+  }
+
+  Future<void> deleteQueue(int queueId) async {
+    await queuesApi.deleteQueue((queueId));
+  }
+
+  Future<void> freezeQueue(int queueId) async {
+    await queuesApi.freezeQueue((queueId));
+  }
+
+  Future<void> unfreezeQueue(int queueId) async {
+    await queuesApi.unfreezeQueue((queueId));
+  }
+
+  Future<QueueModel> editQueue({
+    required int queueId,
+    required String name,
+    required String color,
+    required List<int> participantIds,
+    required bool trackExpenses,
+  }) async {
+    var response = await queuesApi.editQueue(
+      queueId: queueId,
+      request: EditQueueRequest(
+        queueName: name,
+        queueColor: color,
+        trackExpenses: trackExpenses,
+        participants: participantIds,
+      ),
+    );
+
+    return QueueModel.fromJson(response.data);
   }
 
   Future<QueueModel> getQueue(int queueId) async {

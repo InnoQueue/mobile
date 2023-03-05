@@ -64,12 +64,19 @@ class QueuesApi extends BaseApi {
     return await dio.post('/queues', data: request.toJson());
   }
 
-  Future<Response> editQueue(EditQueueRequest request) async =>
-      await dio.patch('/queues', data: request.toJson());
+  Future<Response> editQueue({
+    required int queueId,
+    required EditQueueRequest request,
+  }) async =>
+      await dio.patch('/queues/$queueId', data: request.toJson());
 
-  Future<Response> freezeQueue(int queueId) async =>
-      await dio.post('/queues/freeze/$queueId');
+  Future<Response> freezeQueue(int queueId) async => await dio.post(
+        '/queues/$queueId/activity',
+        data: {'active': false},
+      );
 
-  Future<Response> unfreezeQueue(int queueId) async =>
-      await dio.post('/queues/unfreeze/$queueId');
+  Future<Response> unfreezeQueue(int queueId) async => await dio.post(
+        '/queues/$queueId/activity',
+        data: {'active': true},
+      );
 }

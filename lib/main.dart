@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import 'application/application.dart';
@@ -24,7 +25,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerDelegate: _appRouter.delegate(),
+      routerDelegate: AutoRouterDelegate(
+        _appRouter,
+        navigatorObservers: () => [AppRouterObserver()],
+      ),
       routeInformationParser: _appRouter.defaultRouteParser(),
       theme: ThemeData(
         platform: TargetPlatform.iOS,

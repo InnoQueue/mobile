@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/domain.dart';
@@ -12,7 +13,17 @@ class UserInfo extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(user.userName),
+        Row(
+          children: [
+            Text(user.userName),
+            if (!user.active)
+              const Icon(
+                CupertinoIcons.snow,
+                size: 16,
+                color: Colors.grey,
+              ),
+          ],
+        ),
         const SizedBox(height: 5),
         Text(
           '${user.expenses}₽ spent',
