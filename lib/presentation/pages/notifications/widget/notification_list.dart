@@ -27,11 +27,6 @@ class NotificationList extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: NotifiationItem(
                 notification: notifications[index],
-                firstNew: index == 0 && !notifications[index].read,
-                firstRead: index == 0
-                    ? notifications[index].read
-                    : (!notifications[index - 1].read &&
-                        notifications[index].read),
               ),
             ),
       itemCount: notifications.length + (fetchedAll ? 0 : 1),
@@ -65,63 +60,47 @@ class _LoadingIndicatorState extends State<_LoadingIndicator> {
 
 class NotifiationItem extends StatelessWidget {
   final NotificationModel notification;
-  final bool firstNew;
-  final bool firstRead;
   const NotifiationItem({
     required this.notification,
-    this.firstNew = false,
-    this.firstRead = false,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (firstRead || firstNew)
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 10),
-            child: Text(
-              firstRead ? 'Read' : 'New',
-              style: const TextStyle(fontSize: 14, color: Colors.grey),
-            ),
-          ),
-        VisibilityDetector(
-          key: Key('Notification_${notification.notificationId}'),
-          onVisibilityChanged: (info) {
-            if (info.visibleFraction > 0 && !notification.read) {
-              getIt
-                  .get<NotificationsBloc>()
-                  .readNotification(notification.notificationId);
-            }
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Colors.white,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SuperText(
-                  getText(notification),
-                  style: const TextStyle(fontSize: 16),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  DateFormat('kk:mm dd.MM.yyyy')
-                      .format(notification.date.toLocal()),
-                  style: const TextStyle(fontSize: 10, color: Colors.grey),
-                ),
-              ],
-            ),
-          ),
+    return VisibilityDetector(
+      key: Key('Notification_${notification.notificationId}'),
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction > 0 && !notification.read) {
+          getIt
+              .get<NotificationsBloc>()
+              .readNotification(notification.notificationId);
+        }
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.white,
         ),
-      ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SuperText(
+              getText(notification),
+              style: const TextStyle(fontSize: 16),
+              isNew: !notification.read,
+            ),
+            const SizedBox(height: 5),
+            Text(
+              DateFormat('kk:mm dd.MM.yyyy')
+                  .format(notification.date.toLocal()),
+              style: const TextStyle(fontSize: 10, color: Colors.grey),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
