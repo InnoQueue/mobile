@@ -24,8 +24,12 @@ class QueuesBloc extends Bloc<QueuesEvent, QueuesState> {
   ) async {
     emit(const _Initial());
     var queuesInfo = await getIt.get<QueuesRepository>().getQueues();
-    var activeQueuesInfo = queuesInfo.queues;
-    emit(QueuesState.dataLoaded(activeQueuesInfo.toList()));
+    emit(QueuesState.dataLoaded(
+      activeTasks:
+          queuesInfo.queues.where((element) => element.active).toList(),
+      frozenTasks:
+          queuesInfo.queues.where((element) => !element.active).toList(),
+    ));
   }
 
   Future<void> _createQueue(
@@ -39,7 +43,11 @@ class QueuesBloc extends Bloc<QueuesEvent, QueuesState> {
           trackExpenses: event.trackExpenses,
         );
     var queuesInfo = await getIt.get<QueuesRepository>().getQueues();
-    var activeQueuesInfo = queuesInfo.queues;
-    emit(QueuesState.dataLoaded(activeQueuesInfo.toList()));
+    emit(QueuesState.dataLoaded(
+      activeTasks:
+          queuesInfo.queues.where((element) => element.active).toList(),
+      frozenTasks:
+          queuesInfo.queues.where((element) => !element.active).toList(),
+    ));
   }
 }

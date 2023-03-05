@@ -475,19 +475,23 @@ mixin _$QueuesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<QueueInfo> tasks) dataLoaded,
+    required TResult Function(
+            List<QueueInfo> activeTasks, List<QueueInfo> frozenTasks)
+        dataLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<QueueInfo> tasks)? dataLoaded,
+    TResult? Function(List<QueueInfo> activeTasks, List<QueueInfo> frozenTasks)?
+        dataLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<QueueInfo> tasks)? dataLoaded,
+    TResult Function(List<QueueInfo> activeTasks, List<QueueInfo> frozenTasks)?
+        dataLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -568,7 +572,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<QueueInfo> tasks) dataLoaded,
+    required TResult Function(
+            List<QueueInfo> activeTasks, List<QueueInfo> frozenTasks)
+        dataLoaded,
   }) {
     return initial();
   }
@@ -577,7 +583,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<QueueInfo> tasks)? dataLoaded,
+    TResult? Function(List<QueueInfo> activeTasks, List<QueueInfo> frozenTasks)?
+        dataLoaded,
   }) {
     return initial?.call();
   }
@@ -586,7 +593,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<QueueInfo> tasks)? dataLoaded,
+    TResult Function(List<QueueInfo> activeTasks, List<QueueInfo> frozenTasks)?
+        dataLoaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -637,7 +645,7 @@ abstract class _$$_DataLoadedCopyWith<$Res> {
           _$_DataLoaded value, $Res Function(_$_DataLoaded) then) =
       __$$_DataLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<QueueInfo> tasks});
+  $Res call({List<QueueInfo> activeTasks, List<QueueInfo> frozenTasks});
 }
 
 /// @nodoc
@@ -651,12 +659,17 @@ class __$$_DataLoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tasks = null,
+    Object? activeTasks = null,
+    Object? frozenTasks = null,
   }) {
     return _then(_$_DataLoaded(
-      null == tasks
-          ? _value._tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
+      activeTasks: null == activeTasks
+          ? _value._activeTasks
+          : activeTasks // ignore: cast_nullable_to_non_nullable
+              as List<QueueInfo>,
+      frozenTasks: null == frozenTasks
+          ? _value._frozenTasks
+          : frozenTasks // ignore: cast_nullable_to_non_nullable
               as List<QueueInfo>,
     ));
   }
@@ -665,19 +678,31 @@ class __$$_DataLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DataLoaded implements _DataLoaded {
-  const _$_DataLoaded(final List<QueueInfo> tasks) : _tasks = tasks;
+  const _$_DataLoaded(
+      {required final List<QueueInfo> activeTasks,
+      required final List<QueueInfo> frozenTasks})
+      : _activeTasks = activeTasks,
+        _frozenTasks = frozenTasks;
 
-  final List<QueueInfo> _tasks;
+  final List<QueueInfo> _activeTasks;
   @override
-  List<QueueInfo> get tasks {
-    if (_tasks is EqualUnmodifiableListView) return _tasks;
+  List<QueueInfo> get activeTasks {
+    if (_activeTasks is EqualUnmodifiableListView) return _activeTasks;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tasks);
+    return EqualUnmodifiableListView(_activeTasks);
+  }
+
+  final List<QueueInfo> _frozenTasks;
+  @override
+  List<QueueInfo> get frozenTasks {
+    if (_frozenTasks is EqualUnmodifiableListView) return _frozenTasks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_frozenTasks);
   }
 
   @override
   String toString() {
-    return 'QueuesState.dataLoaded(tasks: $tasks)';
+    return 'QueuesState.dataLoaded(activeTasks: $activeTasks, frozenTasks: $frozenTasks)';
   }
 
   @override
@@ -685,12 +710,17 @@ class _$_DataLoaded implements _DataLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DataLoaded &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks));
+            const DeepCollectionEquality()
+                .equals(other._activeTasks, _activeTasks) &&
+            const DeepCollectionEquality()
+                .equals(other._frozenTasks, _frozenTasks));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_tasks));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_activeTasks),
+      const DeepCollectionEquality().hash(_frozenTasks));
 
   @JsonKey(ignore: true)
   @override
@@ -702,29 +732,33 @@ class _$_DataLoaded implements _DataLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<QueueInfo> tasks) dataLoaded,
+    required TResult Function(
+            List<QueueInfo> activeTasks, List<QueueInfo> frozenTasks)
+        dataLoaded,
   }) {
-    return dataLoaded(tasks);
+    return dataLoaded(activeTasks, frozenTasks);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<QueueInfo> tasks)? dataLoaded,
+    TResult? Function(List<QueueInfo> activeTasks, List<QueueInfo> frozenTasks)?
+        dataLoaded,
   }) {
-    return dataLoaded?.call(tasks);
+    return dataLoaded?.call(activeTasks, frozenTasks);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<QueueInfo> tasks)? dataLoaded,
+    TResult Function(List<QueueInfo> activeTasks, List<QueueInfo> frozenTasks)?
+        dataLoaded,
     required TResult orElse(),
   }) {
     if (dataLoaded != null) {
-      return dataLoaded(tasks);
+      return dataLoaded(activeTasks, frozenTasks);
     }
     return orElse();
   }
@@ -762,9 +796,12 @@ class _$_DataLoaded implements _DataLoaded {
 }
 
 abstract class _DataLoaded implements QueuesState {
-  const factory _DataLoaded(final List<QueueInfo> tasks) = _$_DataLoaded;
+  const factory _DataLoaded(
+      {required final List<QueueInfo> activeTasks,
+      required final List<QueueInfo> frozenTasks}) = _$_DataLoaded;
 
-  List<QueueInfo> get tasks;
+  List<QueueInfo> get activeTasks;
+  List<QueueInfo> get frozenTasks;
   @JsonKey(ignore: true)
   _$$_DataLoadedCopyWith<_$_DataLoaded> get copyWith =>
       throw _privateConstructorUsedError;

@@ -13,6 +13,8 @@ class QueuesPage extends StatefulWidget {
 }
 
 class _QueuesPageState extends State<QueuesPage> {
+  bool _activeQueuesSeleced = true;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<QueuesBloc>(
@@ -24,9 +26,9 @@ class _QueuesPageState extends State<QueuesPage> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          title: const Text(
-            'Queues',
-            style: TextStyle(color: Colors.black),
+          title: Text(
+            _activeQueuesSeleced ? 'Queues' : 'Frozen queues',
+            style: const TextStyle(color: Colors.black),
           ),
           centerTitle: true,
           actions: const [
@@ -41,7 +43,17 @@ class _QueuesPageState extends State<QueuesPage> {
               initial: () => const Center(
                 child: CircularProgressIndicator(),
               ),
-              dataLoaded: (queues) => QueueList(queues: queues),
+              dataLoaded: (activeQueues, frozenQueues) => PageView(
+                onPageChanged: (value) {
+                  setState(
+                    () => _activeQueuesSeleced = value == 0 ? true : false,
+                  );
+                },
+                children: [
+                  QueueList(queues: activeQueues),
+                  QueueList(queues: frozenQueues),
+                ],
+              ),
             );
           },
         ),

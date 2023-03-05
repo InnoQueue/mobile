@@ -4,5 +4,8 @@ part of 'queues_bloc.dart';
 class QueuesState with _$QueuesState {
   const factory QueuesState.initial() = _Initial;
 
-  const factory QueuesState.dataLoaded(List<QueueInfo> tasks) = _DataLoaded;
+  const factory QueuesState.dataLoaded({
+    required List<QueueInfo> activeTasks,
+    required List<QueueInfo> frozenTasks,
+  }) = _DataLoaded;
 }
