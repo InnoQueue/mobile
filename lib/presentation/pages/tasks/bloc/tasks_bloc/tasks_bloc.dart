@@ -19,6 +19,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     _LoadData event,
     Emitter<TasksState> emit,
   ) async {
+    emit(const TasksState.initial());
     var tasks = await getIt.get<QueuesRepository>().getTasks();
 
     emit(TasksState.dataLoaded(tasks));

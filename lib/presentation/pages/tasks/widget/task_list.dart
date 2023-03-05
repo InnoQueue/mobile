@@ -30,6 +30,7 @@ class _TaskListState extends State<TaskList> {
         builder: (context, state) => AnimatedList(
           key: listKey,
           initialItemCount: _tasks.length,
+          physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(
             vertical: 10,
             horizontal: 10,

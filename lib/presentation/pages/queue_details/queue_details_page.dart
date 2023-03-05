@@ -58,7 +58,13 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
                 initial: () => const Center(
                   child: CircularProgressIndicator(),
                 ),
-                queueFetched: (queue) => const _MainContent(),
+                queueFetched: (queue) => RefreshIndicator(
+                    onRefresh: () async {
+                      context.read<QueueDetailsBloc>().add(
+                            QueueDetailsEvent.fetchQueue(queue.queueId),
+                          );
+                    },
+                    child: const _MainContent()),
               );
             },
           ),

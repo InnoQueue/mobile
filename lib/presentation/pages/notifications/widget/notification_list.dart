@@ -17,19 +17,26 @@ class NotificationList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(10),
-      itemBuilder: (context, index) => index == notifications.length
-          ? _LoadingIndicator(
-              key: UniqueKey(),
-            )
-          : Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: NotifiationItem(
-                notification: notifications[index],
+    return RefreshIndicator(
+      onRefresh: () async {
+        getIt.get<NotificationsBloc>().add(
+              const NotificationsEvent.updateNotifications(),
+            );
+      },
+      child: ListView.builder(
+        padding: const EdgeInsets.all(10),
+        itemBuilder: (context, index) => index == notifications.length
+            ? _LoadingIndicator(
+                key: UniqueKey(),
+              )
+            : Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: NotifiationItem(
+                  notification: notifications[index],
+                ),
               ),
-            ),
-      itemCount: notifications.length + (fetchedAll ? 0 : 1),
+        itemCount: notifications.length + (fetchedAll ? 0 : 1),
+      ),
     );
   }
 }
