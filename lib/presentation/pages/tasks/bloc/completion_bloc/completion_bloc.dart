@@ -78,7 +78,7 @@ class CompletionBloc extends Bloc<CompletionEvent, CompletionState> {
 
   Future<void> _completeTasks() async {
     for (var task in disappearingTasks) {
-      getIt.get<QueuesApi>().completeTask(task.queueId);
+      getIt.get<QueuesRepository>().completeTask(queueId: task.queueId);
     }
 
     deletedTasks = disappearingTasks.toList();

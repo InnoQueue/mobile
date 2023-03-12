@@ -120,7 +120,7 @@ class _TaskItemState extends State<TaskItem> {
             const SizedBox(width: 20),
             _TaskName(widget.task.queueName),
             const Spacer(),
-            _CompleteButton(
+            CompleteButton(
               selected: widget.selected,
               task: widget.task,
             ),
@@ -182,10 +182,11 @@ class _TaskName extends StatelessWidget {
   }
 }
 
-class _CompleteButton extends StatelessWidget {
+class CompleteButton extends StatelessWidget {
   final TaskModel task;
   final bool selected;
-  const _CompleteButton({
+  const CompleteButton({
+    super.key,
     required this.selected,
     required this.task,
   });

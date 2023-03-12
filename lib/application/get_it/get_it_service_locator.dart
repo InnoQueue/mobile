@@ -10,4 +10,7 @@ final getIt = GetIt.instance;
   preferRelativeImports: true, // default
   asExtension: false, // default
 )
-Future<void> configureDependencies() async => await $initGetIt(getIt);
+Future<void> configureDependencies([String? env]) async => await $initGetIt(
+      getIt,
+      environment: env,
+    );
