@@ -139,7 +139,7 @@ class MockQueuesRepositoryImpl implements QueuesRepository {
     if (myIdx == -1) return;
 
     _queues[queueIdx] = _queues[queueIdx].copyWith(
-      participants: _queues[queueId].participants
+      participants: _queues[queueId].participants.toList()
         ..replaceRange(myIdx, myIdx + 1, [
           _queues[queueId].participants[myIdx].copyWith(active: false),
         ]),
@@ -159,7 +159,7 @@ class MockQueuesRepositoryImpl implements QueuesRepository {
     if (myIdx == -1) return;
 
     _queues[queueIdx] = _queues[queueIdx].copyWith(
-      participants: _queues[queueId].participants
+      participants: _queues[queueId].participants.toList()
         ..replaceRange(myIdx, myIdx + 1, [
           _queues[queueId].participants[myIdx].copyWith(active: true),
         ]),
