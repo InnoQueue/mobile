@@ -38,6 +38,12 @@ class _ExpandableFabState extends State<ExpandableFab>
     );
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   Offset? localPosition;
   double qrAngle = 5 * pi / 12;
   double addAngle = pi / 12;
@@ -71,21 +77,21 @@ class _ExpandableFabState extends State<ExpandableFab>
           alignment: Alignment.bottomRight,
           clipBehavior: Clip.none,
           children: [
-            _SecondaryButton(
+            SecondaryFab(
               angle: qrAngle,
               isHovered: isOnQrButton,
               animationValue: animation.value,
               icon: Icons.qr_code,
               onTap: onTapQr,
             ),
-            _SecondaryButton(
+            SecondaryFab(
               angle: addAngle,
               isHovered: isOnAddButton,
               animationValue: animation.value,
               icon: Icons.add,
               onTap: onTapAdd,
             ),
-            _MainButton(
+            MainFab(
               onTap: () {
                 if (_controller.isCompleted) {
                   _controller.reverse();
@@ -148,13 +154,14 @@ class _ExpandableFabState extends State<ExpandableFab>
   }
 }
 
-class _SecondaryButton extends StatefulWidget {
+class SecondaryFab extends StatefulWidget {
   final double angle;
   final bool isHovered;
   final double animationValue;
   final IconData icon;
   final void Function() onTap;
-  const _SecondaryButton({
+  const SecondaryFab({
+    super.key,
     required this.angle,
     required this.isHovered,
     required this.animationValue,
@@ -163,12 +170,12 @@ class _SecondaryButton extends StatefulWidget {
   });
 
   @override
-  State<_SecondaryButton> createState() => _SecondaryButtonState();
+  State<SecondaryFab> createState() => _SecondaryFabState();
 }
 
-class _SecondaryButtonState extends State<_SecondaryButton> {
+class _SecondaryFabState extends State<SecondaryFab> {
   @override
-  void didUpdateWidget(covariant _SecondaryButton oldWidget) {
+  void didUpdateWidget(covariant SecondaryFab oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (!oldWidget.isHovered && widget.isHovered) {
@@ -212,10 +219,11 @@ class _SecondaryButtonState extends State<_SecondaryButton> {
   }
 }
 
-class _MainButton extends StatelessWidget {
+class MainFab extends StatelessWidget {
   final void Function() onTap;
   final double animationValue;
-  const _MainButton({
+  const MainFab({
+    super.key,
     required this.onTap,
     required this.animationValue,
   });

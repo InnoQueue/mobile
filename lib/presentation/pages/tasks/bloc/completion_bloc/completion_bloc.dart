@@ -85,4 +85,10 @@ class CompletionBloc extends Bloc<CompletionEvent, CompletionState> {
     disappearingTasks = [];
     add(const _UpdateState());
   }
+
+  @override
+  Future<void> close() {
+    _waitingTimer?.cancel();
+    return super.close();
+  }
 }
