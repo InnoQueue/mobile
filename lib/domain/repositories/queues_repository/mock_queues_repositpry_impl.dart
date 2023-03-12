@@ -50,6 +50,21 @@ class MockQueuesRepositoryImpl implements QueuesRepository {
   final int _myId = 0;
   final String _myName = 'Tom';
 
+  final List<UserModel> users = [
+    const UserModel(
+      userId: 0,
+      token: '1',
+      fcmToken: '1',
+      userName: 'Tom',
+    ),
+    const UserModel(
+      userId: 1,
+      token: '2',
+      fcmToken: '2',
+      userName: 'Bob',
+    ),
+  ];
+
   @override
   Future<QueueListResponse> getQueues() async {
     await Future.delayed(const Duration(milliseconds: 300));
@@ -160,6 +175,33 @@ class MockQueuesRepositoryImpl implements QueuesRepository {
     required bool trackExpenses,
   }) async {
     await Future.delayed(const Duration(milliseconds: 300));
+
+    int queueIdx = _queues.indexWhere((element) => element.queueId == queueId);
+    if (queueIdx == -1) return;
+
+    int myIdx = _queues[queueIdx]
+        .participants
+        .indexWhere((element) => element.userId == _myId);
+    if (myIdx == -1) return;
+
+    _queues[queueIdx] = _queues[queueIdx].copyWith(
+      queueId: queueId,
+      queueName: name,
+      queueColor: color,
+      trackExpenses: trackExpenses,
+      participants: users
+          .where((element) => participantIds.contains(element.userId))
+          .map(
+            (e) => ParticipantModel(
+              userId: e.userId,
+              userName: e.userName,
+              expenses: 0,
+              active: true,
+              onDuty: e.userId == _myId,
+            ),
+          )
+          .toList(),
+    );
   }
 
   @override
