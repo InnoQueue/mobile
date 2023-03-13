@@ -120,14 +120,14 @@ class QueueDetailsBloc extends Bloc<QueueDetailsEvent, QueueDetailsState> {
   void _freezeQueue(
     _FreezeQueue event,
     Emitter<QueueDetailsState> emit,
-  ) async {
+  ) {
     _changeActivity(emit, false);
   }
 
   void _unfreezeQueue(
     _UnfreezeQueue event,
     Emitter<QueueDetailsState> emit,
-  ) async {
+  ) {
     _changeActivity(emit, true);
   }
 

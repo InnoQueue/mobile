@@ -76,7 +76,7 @@ class CompletionBloc extends Bloc<CompletionEvent, CompletionState> {
     add(const _UpdateState());
   }
 
-  Future<void> _completeTasks() async {
+  void _completeTasks() {
     for (var task in disappearingTasks) {
       getIt.get<QueuesApi>().completeTask(task.queueId);
     }
