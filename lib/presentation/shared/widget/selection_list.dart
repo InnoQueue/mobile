@@ -58,7 +58,7 @@ class SelectionList extends StatelessWidget {
                   const Spacer(),
                   _SelectionButton(
                     selected: index == selectedIndex,
-                    onTap: () async {
+                    onTap: () {
                       onTap(index);
                     },
                   ),

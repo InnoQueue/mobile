@@ -12,7 +12,8 @@ class QueuesRepository {
   Future<QueueListResponse> getQueues() async {
     SortEnum? currentSort = getIt.get<SettingsRepository>().getPrefferedSort();
     return QueueListResponse.fromJson((await queuesApi.getQueues(
-            currentSort != null ? QueueListRequest(sort: currentSort) : null))
+      currentSort != null ? QueueListRequest(sort: currentSort) : null,
+    ))
         .data);
   }
 
