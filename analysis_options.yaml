@@ -7,7 +7,7 @@ analyzer:
     - 'build/**'
     - '**.g.dart'
     - '**.gr.dart'
-    - '**get_it_service_locator.config.dart'
+    - '**.config.dart'
 
 dart_code_metrics:
   metrics:
