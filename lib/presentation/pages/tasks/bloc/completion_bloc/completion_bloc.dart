@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../application/application.dart';
-import '../../../../../data/data.dart';
 import '../../../../../domain/domain.dart';
 
 part 'completion_event.dart';
