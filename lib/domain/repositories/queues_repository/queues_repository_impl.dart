@@ -17,6 +17,7 @@ class QueuesRepositoryImpl implements QueuesRepository {
     var response = await queuesApi.getQueues(
       currentSort != null ? QueueListRequest(sort: currentSort) : null,
     );
+
     return QueueListResponse.fromJson(response.data);
   }
 

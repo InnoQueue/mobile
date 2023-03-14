@@ -62,7 +62,8 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<void> updateNotificationSettings(
-      NotificationSettingsModel notificationSettings) async {
+    NotificationSettingsModel notificationSettings,
+  ) async {
     await getIt.get<UserApi>().updateNotificationSettings(notificationSettings);
   }
 }

@@ -33,7 +33,8 @@ class UserApi {
   Future<Response> getNotificationSettings() async => await dio.get('/user');
 
   Future<Response> updateNotificationSettings(
-          NotificationSettingsModel notificationSettings) async =>
+    NotificationSettingsModel notificationSettings,
+  ) async =>
       await dio.patch(
         '/user',
         data: notificationSettings.toJson(),
