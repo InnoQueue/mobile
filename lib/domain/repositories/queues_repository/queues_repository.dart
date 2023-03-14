@@ -1,5 +1,3 @@
-import 'package:injectable/injectable.dart';
-
 import '../../../data/data.dart';
 import '../../domain.dart';
 

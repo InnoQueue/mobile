@@ -22,6 +22,8 @@ class NotificationList extends StatelessWidget {
         getIt.get<NotificationsBloc>().add(
               const NotificationsEvent.updateNotifications(),
             );
+
+        return;
       },
       child: ListView.builder(
         padding: const EdgeInsets.all(10),

@@ -63,6 +63,8 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
                     context.read<QueueDetailsBloc>().add(
                           QueueDetailsEvent.fetchQueue(queue.queueId),
                         );
+
+                    return;
                   },
                   child: const _MainContent(),
                 ),

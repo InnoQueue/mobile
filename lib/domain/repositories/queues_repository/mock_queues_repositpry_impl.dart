@@ -228,7 +228,9 @@ class MockQueuesRepositoryImpl implements QueuesRepository {
 
     _queues[queueId] = _queues[queueId].copyWith(participants: [
       for (final participant in _queues[queueId].participants)
-        participant.copyWith(onDuty: participant.userId != _myId)
+        participant.copyWith(
+          onDuty: participant.userId != _myId,
+        ),
     ]);
   }
 
@@ -241,7 +243,9 @@ class MockQueuesRepositoryImpl implements QueuesRepository {
 
     _queues[queueId] = _queues[queueId].copyWith(participants: [
       for (final participant in _queues[queueId].participants)
-        participant.copyWith(onDuty: participant.userId != _myId)
+        participant.copyWith(
+          onDuty: participant.userId != _myId,
+        ),
     ]);
   }
 

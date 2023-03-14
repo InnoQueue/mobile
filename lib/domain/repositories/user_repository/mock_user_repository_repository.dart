@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../application/application.dart';
-import '../../../data/data.dart';
 import '../../domain.dart';
 
 const _userKey = 'user';
@@ -58,7 +56,8 @@ class MockUserRepositoryImpl implements UserRepository {
 
   @override
   Future<void> updateNotificationSettings(
-      NotificationSettingsModel notificationSettings) async {
+    NotificationSettingsModel notificationSettings,
+  ) async {
     throw UnimplementedError();
   }
 }

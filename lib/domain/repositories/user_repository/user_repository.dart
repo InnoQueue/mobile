@@ -21,5 +21,6 @@ abstract class UserRepository {
   Future<NotificationSettingsModel> getNotificationSettings();
 
   Future<void> updateNotificationSettings(
-      NotificationSettingsModel notificationSettings);
+    NotificationSettingsModel notificationSettings,
+  );
 }
