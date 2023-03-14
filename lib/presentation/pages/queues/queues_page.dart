@@ -44,6 +44,8 @@ class _QueuesPageState extends State<QueuesPage> {
               dataLoaded: (queues) => RefreshIndicator(
                 onRefresh: () async {
                   getIt.get<QueuesBloc>().add(const QueuesEvent.loadData());
+
+                  return;
                 },
                 child: QueueList(queues: queues),
               ),

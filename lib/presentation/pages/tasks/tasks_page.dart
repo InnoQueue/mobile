@@ -38,6 +38,8 @@ class _TasksPageState extends State<TasksPage> {
         body: RefreshIndicator(
           onRefresh: () async {
             getIt.get<TasksBloc>().add(const TasksEvent.loadData());
+
+            return;
           },
           child: BlocBuilder<TasksBloc, TasksState>(
             builder: (context, state) {

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../application/application.dart';
-import '../../../../../data/data.dart';
 import '../../../../../domain/domain.dart';
 
 part 'completion_event.dart';
@@ -78,11 +77,17 @@ class CompletionBloc extends Bloc<CompletionEvent, CompletionState> {
 
   void _completeTasks() {
     for (var task in disappearingTasks) {
-      getIt.get<QueuesApi>().completeTask(task.queueId);
+      getIt.get<QueuesRepository>().completeTask(queueId: task.queueId);
     }
 
     deletedTasks = disappearingTasks.toList();
     disappearingTasks = [];
     add(const _UpdateState());
+  }
+
+  @override
+  Future<void> close() {
+    _waitingTimer?.cancel();
+    return super.close();
   }
 }

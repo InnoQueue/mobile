@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../domain/domain.dart';
 
 String _baseUrl = 'https://innoqueue-dev.herokuapp.com/api/v1';
 
+@Singleton()
 class BaseApi {
   final UserRepository userRepository;
 

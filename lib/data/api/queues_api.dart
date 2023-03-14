@@ -2,11 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import '../data.dart';
-import 'dio.dart';
 
 @Singleton()
-class QueuesApi extends BaseApi {
-  QueuesApi(super.userRepository);
+class QueuesApi {
+  QueuesApi(this.baseApi);
+
+  final BaseApi baseApi;
+  Dio get dio => baseApi.dio;
 
   Future<Response> getQueues([QueueListRequest? request]) async =>
       await dio.get(

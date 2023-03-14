@@ -3,8 +3,11 @@ import 'package:injectable/injectable.dart';
 import 'package:innoq/data/api/dio.dart';
 
 @Singleton()
-class NotificationsApi extends BaseApi {
-  NotificationsApi(super.userRepository);
+class NotificationsApi {
+  NotificationsApi(this.baseApi);
+
+  final BaseApi baseApi;
+  Dio get dio => baseApi.dio;
 
   Future<Response> getNotifications({
     required int page,
