@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,5 +13,5 @@ final getIt = GetIt.instance;
 )
 Future<void> configureDependencies([String? env]) async => await $initGetIt(
       getIt,
-      environment: env,
+      environment: env ?? (kDebugMode ? 'dev' : 'prod'),
     );
