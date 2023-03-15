@@ -4,11 +4,6 @@
 
 [![Hits-of-Code](https://hitsofcode.com/github/InnoQueue/mobile?branch=main)](https://hitsofcode.com/github/InnoQueue/mobile/view?branch=main)
 
-<!--[![Android Workflow](https://github.com/InnoQueue/mobile/actions/workflows/android_wf.yml/badge.svg)](https://github.com/InnoQueue/mobile/actions/workflows/android_wf.yml)-->
-<!--[![Pre-release Workflow](https://github.com/InnoQueue/mobile/actions/workflows/pre_release_wf.yml/badge.svg)](https://github.com/InnoQueue/mobile/actions/workflows/pre_release_wf.yml)-->
-
-[![Main Workflow](https://github.com/InnoQueue/mobile/actions/workflows/main_wf.yml/badge.svg)](https://github.com/InnoQueue/mobile/actions/workflows/main_wf.yml)
-
 ## **Team**
 
 - [Emil Khabibullin](https://github.com/emileyray)
