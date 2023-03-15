@@ -5,8 +5,11 @@ import 'package:innoq/data/api/dio.dart';
 import '../../domain/domain.dart';
 
 @Singleton()
-class UserApi extends BaseApi {
-  UserApi(super.userRepository);
+class UserApi {
+  UserApi(this.baseApi);
+
+  final BaseApi baseApi;
+  Dio get dio => baseApi.dio;
 
   Future<Response> registerUser({
     required String name,
@@ -30,7 +33,8 @@ class UserApi extends BaseApi {
   Future<Response> getNotificationSettings() async => await dio.get('/user');
 
   Future<Response> updateNotificationSettings(
-          NotificationSettingsModel notificationSettings) async =>
+    NotificationSettingsModel notificationSettings,
+  ) async =>
       await dio.patch(
         '/user',
         data: notificationSettings.toJson(),

@@ -115,7 +115,10 @@ class AppRouter extends _$AppRouter {
 }
 
 Route<T> modalSheetBuilder<T>(
-    BuildContext context, Widget child, CustomPage<T> page) {
+  BuildContext _,
+  Widget child,
+  CustomPage<T> page,
+) {
   return mbsh.ModalBottomSheetRoute(
     expanded: false,
     settings: page,
