@@ -51,7 +51,7 @@ class _ShareQueuePageState extends State<ShareQueuePage> {
             child: SizedBox(
               width: 240,
               child: CustomButton(
-                onPressed: shareImage,
+                onPressed: invitation == null ? null : shareImage,
                 backgroundColor: Colors.green.shade300,
                 text: 'Share',
               ),
@@ -62,27 +62,25 @@ class _ShareQueuePageState extends State<ShareQueuePage> {
     );
   }
 
-  void shareImage() {
-    screenshotController
-        .captureFromWidget(
+  void shareImage() async {
+    final capturedImage = await screenshotController.captureFromWidget(
       QrExport(
         queue: widget.queue,
         invitation: invitation,
       ),
       delay: Duration.zero,
       pixelRatio: 2,
-    )
-        .then((capturedImage) {
-      Share.shareXFiles(
-        [
-          XFile.fromData(
-            capturedImage,
-            mimeType: 'jpeg',
-            name: 'innoq',
-          ),
-        ],
-        text: 'Join \'${widget.queue.queueName}\' on InnoQ!',
-      );
-    });
+    );
+
+    await Share.shareXFiles(
+      [
+        XFile.fromData(
+          capturedImage,
+          mimeType: 'jpeg',
+          name: 'innoq',
+        ),
+      ],
+      text: 'Join \'${widget.queue.queueName}\' on InnoQ!',
+    );
   }
 }
