@@ -99,4 +99,10 @@ class QueuesRepositoryImpl implements QueuesRepository {
   Future<void> shakeUser(int queueId) async {
     await queuesApi.shakeUser(queueId);
   }
+
+  @override
+  Future<InvitationModel> shareQueue(int queueId) async {
+    var response = await queuesApi.getInvitation(queueId);
+    return InvitationModel.fromJson(response.data);
+  }
 }

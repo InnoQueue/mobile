@@ -44,7 +44,13 @@ class OptionsButton extends StatelessWidget {
         _Option(
           icon: Icons.share,
           text: 'Share',
-          onTap: () {},
+          onTap: () {
+            context.router.push(
+              ShareQueueRoute(
+                queue: context.read<QueueDetailsBloc>().currentQueue,
+              ),
+            );
+          },
         ),
       ]
           .map(

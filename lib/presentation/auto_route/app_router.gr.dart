@@ -57,6 +57,19 @@ class _$AppRouter extends RootStackRouter {
         barrierDismissible: false,
       );
     },
+    ShareQueueRoute.name: (routeData) {
+      final args = routeData.argsAs<ShareQueueRouteArgs>();
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: ShareQueuePage(
+          key: args.key,
+          queue: args.queue,
+        ),
+        customRouteBuilder: dialogBuilder,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
     AddProgressRoute.name: (routeData) {
       final args = routeData.argsAs<AddProgressRouteArgs>();
       return CustomPage<dynamic>(
@@ -296,6 +309,10 @@ class _$AppRouter extends RootStackRouter {
           path: 'add_queue',
         ),
         RouteConfig(
+          ShareQueueRoute.name,
+          path: 'share_queue',
+        ),
+        RouteConfig(
           AddProgressRoute.name,
           path: 'add_progress',
         ),
@@ -395,6 +412,40 @@ class AddQueueRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AddQueueRoute';
+}
+
+/// generated route for
+/// [ShareQueuePage]
+class ShareQueueRoute extends PageRouteInfo<ShareQueueRouteArgs> {
+  ShareQueueRoute({
+    Key? key,
+    required QueueModel queue,
+  }) : super(
+          ShareQueueRoute.name,
+          path: 'share_queue',
+          args: ShareQueueRouteArgs(
+            key: key,
+            queue: queue,
+          ),
+        );
+
+  static const String name = 'ShareQueueRoute';
+}
+
+class ShareQueueRouteArgs {
+  const ShareQueueRouteArgs({
+    this.key,
+    required this.queue,
+  });
+
+  final Key? key;
+
+  final QueueModel queue;
+
+  @override
+  String toString() {
+    return 'ShareQueueRouteArgs{key: $key, queue: $queue}';
+  }
 }
 
 /// generated route for

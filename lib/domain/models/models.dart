@@ -5,3 +5,4 @@ export 'sort_enum/sort_enum.dart';
 export 'notification_model/notification_model.dart';
 export 'user_model/user_model.dart';
 export 'notification_settings_model/notification_settings_model.dart';
+export 'invitation_model/invitation_model.dart';

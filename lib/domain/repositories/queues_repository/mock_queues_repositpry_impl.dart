@@ -253,4 +253,12 @@ class MockQueuesRepositoryImpl implements QueuesRepository {
   Future<void> shakeUser(int queueId) async {
     await Future.delayed(const Duration(milliseconds: 300));
   }
+
+  @override
+  Future<InvitationModel> shareQueue(int queueId) async {
+    return const InvitationModel(
+      pinCode: '123456',
+      qrCode: 'kek',
+    );
+  }
 }

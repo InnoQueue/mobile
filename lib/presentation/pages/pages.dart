@@ -13,3 +13,4 @@ export 'language_page.dart';
 export 'notification_settings_page.dart';
 export 'editable_queue_details/editable_queue_details.dart';
 export 'choose_avatar_color_page.dart';
+export 'share_queue/share_queue.dart';

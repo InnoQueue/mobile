@@ -46,7 +46,7 @@ class QueuesApi {
       });
 
   Future<Response> getInvitation(int queueId) async =>
-      await dio.get('/queues/ivite/$queueId');
+      await dio.post('/queues/$queueId/invitation');
 
   Future<Response> joinQueue({
     String? pinCode,

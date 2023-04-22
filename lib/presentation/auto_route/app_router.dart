@@ -1,13 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart' as mbsh;
 
 import '../presentation.dart';
 import '../../data/data.dart';
+import '../../domain/domain.dart';
 
 export 'auto_route_guards.dart';
 export 'auto_route_observer.dart';
+export 'route_builder.dart';
 
 part 'app_router.gr.dart';
 
@@ -82,6 +83,11 @@ part 'app_router.gr.dart';
       customRouteBuilder: modalSheetBuilder,
     ),
     CustomRoute(
+      path: 'share_queue',
+      page: ShareQueuePage,
+      customRouteBuilder: dialogBuilder,
+    ),
+    CustomRoute(
       path: 'add_progress',
       page: AddProgressPage,
       customRouteBuilder: modalSheetBuilder,
@@ -112,52 +118,4 @@ class AppRouter extends _$AppRouter {
   AppRouter({
     required super.loginGuard,
   });
-}
-
-Route<T> modalSheetBuilder<T>(
-  BuildContext _,
-  Widget child,
-  CustomPage<T> page,
-) {
-  return mbsh.ModalBottomSheetRoute(
-    expanded: false,
-    settings: page,
-    builder: (context) => Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Column(
-        children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: () => context.router.pop(),
-            ),
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Center(
-                child: Container(
-                  height: 4,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade900,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: child,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
 }
