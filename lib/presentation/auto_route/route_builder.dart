@@ -60,7 +60,12 @@ Route<T> dialogBuilder<T>(
   return RawDialogRoute(
     settings: page,
     pageBuilder: (context, animation, secondaryAnimation) {
-      return Center(child: child);
+      return Column(
+        children: [
+          Expanded(child: Center(child: child)),
+          SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
+        ],
+      );
     },
     transitionBuilder: (_, anim, __, child) => BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 2 * anim.value, sigmaY: 2 * anim.value),

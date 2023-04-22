@@ -105,4 +105,18 @@ class QueuesRepositoryImpl implements QueuesRepository {
     var response = await queuesApi.getInvitation(queueId);
     return InvitationModel.fromJson(response.data);
   }
+
+  @override
+  Future<QueueModel?> joinQueue({String? pinCode, String? qrCode}) async {
+    try {
+      var response = await queuesApi.joinQueue(
+        pinCode: pinCode,
+        qrCode: qrCode,
+      );
+
+      return QueueModel.fromJson(response.data);
+    } catch (e) {
+      return null;
+    }
+  }
 }

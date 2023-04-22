@@ -44,4 +44,9 @@ abstract class QueuesRepository {
   Future<void> shakeUser(int queueId);
 
   Future<InvitationModel> shareQueue(int queueId);
+
+  Future<QueueModel?> joinQueue({
+    String? pinCode,
+    String? qrCode,
+  });
 }

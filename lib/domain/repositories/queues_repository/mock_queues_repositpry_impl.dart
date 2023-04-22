@@ -261,4 +261,10 @@ class MockQueuesRepositoryImpl implements QueuesRepository {
       qrCode: 'kek',
     );
   }
+
+  @override
+  Future<QueueModel?> joinQueue({String? pinCode, String? qrCode}) {
+    // TODO: implement joinQueue
+    throw UnimplementedError();
+  }
 }

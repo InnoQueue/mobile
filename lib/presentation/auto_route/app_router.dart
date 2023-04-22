@@ -88,6 +88,11 @@ part 'app_router.gr.dart';
       customRouteBuilder: dialogBuilder,
     ),
     CustomRoute(
+      path: 'join_queue',
+      page: JoinQueuePage,
+      customRouteBuilder: dialogBuilder,
+    ),
+    CustomRoute(
       path: 'add_progress',
       page: AddProgressPage,
       customRouteBuilder: modalSheetBuilder,

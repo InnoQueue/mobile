@@ -70,6 +70,15 @@ class _$AppRouter extends RootStackRouter {
         barrierDismissible: false,
       );
     },
+    JoinQueueRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: const JoinQueuePage(),
+        customRouteBuilder: dialogBuilder,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
     AddProgressRoute.name: (routeData) {
       final args = routeData.argsAs<AddProgressRouteArgs>();
       return CustomPage<dynamic>(
@@ -313,6 +322,10 @@ class _$AppRouter extends RootStackRouter {
           path: 'share_queue',
         ),
         RouteConfig(
+          JoinQueueRoute.name,
+          path: 'join_queue',
+        ),
+        RouteConfig(
           AddProgressRoute.name,
           path: 'add_progress',
         ),
@@ -446,6 +459,18 @@ class ShareQueueRouteArgs {
   String toString() {
     return 'ShareQueueRouteArgs{key: $key, queue: $queue}';
   }
+}
+
+/// generated route for
+/// [JoinQueuePage]
+class JoinQueueRoute extends PageRouteInfo<void> {
+  const JoinQueueRoute()
+      : super(
+          JoinQueueRoute.name,
+          path: 'join_queue',
+        );
+
+  static const String name = 'JoinQueueRoute';
 }
 
 /// generated route for
