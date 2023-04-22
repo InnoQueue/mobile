@@ -64,7 +64,7 @@ part 'app_router.gr.dart';
       page: LoginPage,
     ),
     AutoRoute(
-      path: '/queue:id',
+      path: '/queue/:id',
       name: 'QueueRouter',
       page: QueueDetailsWrapperPage,
       children: [
@@ -83,14 +83,18 @@ part 'app_router.gr.dart';
       customRouteBuilder: modalSheetBuilder,
     ),
     CustomRoute(
-      path: 'share_queue',
+      path: 'share_dialog',
       page: ShareQueuePage,
       customRouteBuilder: dialogBuilder,
     ),
     CustomRoute(
-      path: 'join_queue',
+      path: 'join_dialog',
       page: JoinQueuePage,
       customRouteBuilder: dialogBuilder,
+    ),
+    CustomRoute(
+      path: 'join/:qrCode',
+      page: JoinInProressPage,
     ),
     CustomRoute(
       path: 'add_progress',

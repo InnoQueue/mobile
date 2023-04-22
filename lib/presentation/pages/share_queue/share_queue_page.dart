@@ -80,7 +80,9 @@ class _ShareQueuePageState extends State<ShareQueuePage> {
           name: 'innoq',
         ),
       ],
-      text: 'Join \'${widget.queue.queueName}\' on InnoQ!',
+      text: 'Join "${widget.queue.queueName}" on InnoQ!\n\n'
+          'Temporary PIN: ${invitation!.pinCode}\n'
+          'Temporary link: http://innoq.ru/join/${invitation!.qrCode}',
     );
   }
 }

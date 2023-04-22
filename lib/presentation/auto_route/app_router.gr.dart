@@ -79,6 +79,21 @@ class _$AppRouter extends RootStackRouter {
         barrierDismissible: false,
       );
     },
+    JoinInProressRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<JoinInProressRouteArgs>(
+          orElse: () =>
+              JoinInProressRouteArgs(qrCode: pathParams.getString('qrCode')));
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: JoinInProressPage(
+          key: args.key,
+          qrCode: args.qrCode,
+        ),
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
     AddProgressRoute.name: (routeData) {
       final args = routeData.argsAs<AddProgressRouteArgs>();
       return CustomPage<dynamic>(
@@ -294,7 +309,7 @@ class _$AppRouter extends RootStackRouter {
         ),
         RouteConfig(
           QueueRouter.name,
-          path: '/queue:id',
+          path: '/queue/:id',
           children: [
             RouteConfig(
               QueueDetailsRoute.name,
@@ -319,11 +334,15 @@ class _$AppRouter extends RootStackRouter {
         ),
         RouteConfig(
           ShareQueueRoute.name,
-          path: 'share_queue',
+          path: 'share_dialog',
         ),
         RouteConfig(
           JoinQueueRoute.name,
-          path: 'join_queue',
+          path: 'join_dialog',
+        ),
+        RouteConfig(
+          JoinInProressRoute.name,
+          path: 'join/:qrCode',
         ),
         RouteConfig(
           AddProgressRoute.name,
@@ -383,7 +402,7 @@ class QueueRouter extends PageRouteInfo<QueueRouterArgs> {
     List<PageRouteInfo>? children,
   }) : super(
           QueueRouter.name,
-          path: '/queue:id',
+          path: '/queue/:id',
           args: QueueRouterArgs(
             id: id,
             queueInfo: queueInfo,
@@ -435,7 +454,7 @@ class ShareQueueRoute extends PageRouteInfo<ShareQueueRouteArgs> {
     required QueueModel queue,
   }) : super(
           ShareQueueRoute.name,
-          path: 'share_queue',
+          path: 'share_dialog',
           args: ShareQueueRouteArgs(
             key: key,
             queue: queue,
@@ -467,10 +486,45 @@ class JoinQueueRoute extends PageRouteInfo<void> {
   const JoinQueueRoute()
       : super(
           JoinQueueRoute.name,
-          path: 'join_queue',
+          path: 'join_dialog',
         );
 
   static const String name = 'JoinQueueRoute';
+}
+
+/// generated route for
+/// [JoinInProressPage]
+class JoinInProressRoute extends PageRouteInfo<JoinInProressRouteArgs> {
+  JoinInProressRoute({
+    Key? key,
+    required String qrCode,
+  }) : super(
+          JoinInProressRoute.name,
+          path: 'join/:qrCode',
+          args: JoinInProressRouteArgs(
+            key: key,
+            qrCode: qrCode,
+          ),
+          rawPathParams: {'qrCode': qrCode},
+        );
+
+  static const String name = 'JoinInProressRoute';
+}
+
+class JoinInProressRouteArgs {
+  const JoinInProressRouteArgs({
+    this.key,
+    required this.qrCode,
+  });
+
+  final Key? key;
+
+  final String qrCode;
+
+  @override
+  String toString() {
+    return 'JoinInProressRouteArgs{key: $key, qrCode: $qrCode}';
+  }
 }
 
 /// generated route for

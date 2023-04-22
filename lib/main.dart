@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:uni_links/uni_links.dart';
 
 import 'application/application.dart';
 import 'presentation/presentation.dart';
@@ -21,6 +25,26 @@ class _MyAppState extends State<MyApp> {
   final _appRouter = AppRouter(
     loginGuard: LoginGuard(),
   );
+
+  @override
+  void initState() {
+    super.initState();
+    handleIncomingDeepLinks();
+    handleInitialDeepLink();
+  }
+
+  void handleIncomingDeepLinks() {
+    linkStream.listen((link) {
+      print(link);
+    });
+  }
+
+  Future<void> handleInitialDeepLink() async {
+    final link = await getInitialLink();
+    if (link != null) {
+      print(link);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
