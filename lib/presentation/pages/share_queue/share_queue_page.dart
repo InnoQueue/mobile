@@ -43,6 +43,7 @@ class _ShareQueuePageState extends State<ShareQueuePage> {
           QrWidget(
             queue: widget.queue,
             invitation: invitation,
+            addCopyButton: true,
           ),
           const SizedBox(height: 20),
           AnimatedOpacity(

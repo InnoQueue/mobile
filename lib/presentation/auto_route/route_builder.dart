@@ -60,11 +60,22 @@ Route<T> dialogBuilder<T>(
   return RawDialogRoute(
     settings: page,
     pageBuilder: (context, animation, secondaryAnimation) {
-      return Column(
-        children: [
-          Expanded(child: Center(child: child)),
-          SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
-        ],
+      return ScaffoldMessenger(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => Navigator.of(context).pop(),
+            child: GestureDetector(
+              child: Column(
+                children: [
+                  Expanded(child: Center(child: child)),
+                  SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
+                ],
+              ),
+            ),
+          ),
+        ),
       );
     },
     transitionBuilder: (_, anim, __, child) => BackdropFilter(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_color/flutter_color.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
@@ -11,10 +12,12 @@ class QrWidget extends StatelessWidget {
     super.key,
     required this.invitation,
     required this.queue,
+    this.addCopyButton = false,
   });
 
   final InvitationModel? invitation;
   final QueueModel queue;
+  final bool addCopyButton;
 
   @override
   Widget build(BuildContext context) {
@@ -69,13 +72,23 @@ class QrWidget extends StatelessWidget {
                   ),
                 const SizedBox(height: 10),
                 if (invitation != null)
-                  Text(
-                    invitation!.pinCode,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        invitation!.pinCode,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () => _copyCode(context),
+                        child: const Icon(Icons.copy),
+                      ),
+                    ],
                   )
                 else
                   Shimmer(
@@ -117,4 +130,21 @@ class QrWidget extends StatelessWidget {
   }
 
   Color get queueColor => colors[queue.queueColor]!;
+
+  void _copyCode(BuildContext context) {
+    Clipboard.setData(
+      ClipboardData(
+        text:
+            'Join "${queue.queueName}" on InnoQ using this code: ${invitation!.pinCode}!',
+      ),
+    ).then((_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Invitation code copied to clipboard",
+          ),
+        ),
+      );
+    });
+  }
 }

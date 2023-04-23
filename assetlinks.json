@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "innoq_app",
+            "package_name": "com.innoq.innoq",
+            "sha256_cert_fingerprints": [
+                "CC:34:8E:F0:4C:A3:8B:DE:7F:BD:53:05:42:E5:C2:B5:9E:43:9E:75:8A:6D:DC:0B:5F:FF:12:72:54:02:30:2F"
+            ]
+        }
+    }
+]
