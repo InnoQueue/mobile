@@ -66,14 +66,7 @@ Route<T> dialogBuilder<T>(
           body: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () => Navigator.of(context).pop(),
-            child: GestureDetector(
-              child: Column(
-                children: [
-                  Expanded(child: Center(child: child)),
-                  SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
-                ],
-              ),
-            ),
+            child: GestureDetector(child: Center(child: child)),
           ),
         ),
       );
