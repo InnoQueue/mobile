@@ -44,6 +44,7 @@ class _ShareQueuePageState extends State<ShareQueuePage> {
             queue: widget.queue,
             invitation: invitation,
             addCopyButton: true,
+            animate: true,
           ),
           const SizedBox(height: 20),
           AnimatedOpacity(
