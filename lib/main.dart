@@ -1,14 +1,17 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_links/uni_links.dart';
 
 import 'application/application.dart';
+import 'firebase_options.dart';
 import 'presentation/presentation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await configureDependencies();
   runApp(const MyApp());
 }
