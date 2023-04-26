@@ -29,10 +29,11 @@ class _JoinInProressPageState extends State<JoinInProressPage>
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      width: 50,
+      height: 70,
+      width: 70,
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(16),
         color: Colors.white,
       ),
       child: const Center(

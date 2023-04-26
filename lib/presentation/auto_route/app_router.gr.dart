@@ -90,6 +90,7 @@ class _$AppRouter extends RootStackRouter {
           key: args.key,
           qrCode: args.qrCode,
         ),
+        customRouteBuilder: dialogBuilder,
         opaque: true,
         barrierDismissible: false,
       );
@@ -342,7 +343,7 @@ class _$AppRouter extends RootStackRouter {
         ),
         RouteConfig(
           JoinInProressRoute.name,
-          path: 'join/:qrCode',
+          path: '/join/:qrCode',
         ),
         RouteConfig(
           AddProgressRoute.name,
@@ -500,7 +501,7 @@ class JoinInProressRoute extends PageRouteInfo<JoinInProressRouteArgs> {
     required String qrCode,
   }) : super(
           JoinInProressRoute.name,
-          path: 'join/:qrCode',
+          path: '/join/:qrCode',
           args: JoinInProressRouteArgs(
             key: key,
             qrCode: qrCode,

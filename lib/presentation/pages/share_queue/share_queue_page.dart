@@ -83,7 +83,7 @@ class _ShareQueuePageState extends State<ShareQueuePage> {
       ],
       text: 'Join "${widget.queue.queueName}" on InnoQ!\n\n'
           'Temporary PIN: ${invitation!.pinCode}\n'
-          'Temporary link: http://innoq.ru/join/${invitation!.qrCode}',
+          'Temporary link: https://innoqueue-dev.herokuapp.com/join/${invitation!.qrCode}',
     );
   }
 }

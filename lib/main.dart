@@ -33,12 +33,18 @@ class _MyAppState extends State<MyApp> {
   }
 
   void handleIncomingDeepLinks() {
-    linkStream.listen((link) {});
+    uriLinkStream.listen((link) {
+      if (link != null) {
+        _handleJoinLink(link);
+      }
+    });
   }
 
   Future<void> handleInitialDeepLink() async {
-    final link = await getInitialLink();
-    if (link != null) {}
+    final link = await getInitialUri();
+    if (link != null) {
+      _handleJoinLink(link);
+    }
   }
 
   @override
@@ -53,5 +59,13 @@ class _MyAppState extends State<MyApp> {
         platform: TargetPlatform.iOS,
       ),
     );
+  }
+
+  void _handleJoinLink(Uri link) {
+    if (link.pathSegments[0] == 'join') {
+      _appRouter.push(
+        JoinInProressRoute(qrCode: link.pathSegments[1]),
+      );
+    }
   }
 }
