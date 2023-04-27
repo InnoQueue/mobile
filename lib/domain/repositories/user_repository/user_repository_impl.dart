@@ -33,9 +33,12 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<UserModel> registerUser(String name) async {
-    var rawResponse = await getIt.get<UserApi>().registerUser(name: name);
-    var signupResponse = SignupResponse.fromJson(rawResponse.data);
     String? fcmToken = await FirebaseMessaging.instance.getToken();
+    var rawResponse = await getIt.get<UserApi>().registerUser(
+          name: name,
+          fcmToken: fcmToken ?? '',
+        );
+    var signupResponse = SignupResponse.fromJson(rawResponse.data);
 
     var user = UserModel(
       userId: signupResponse.userId,

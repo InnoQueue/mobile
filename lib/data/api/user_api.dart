@@ -13,13 +13,13 @@ class UserApi {
 
   Future<Response> registerUser({
     required String name,
-    //required String fcmToken,
+    required String fcmToken,
   }) async =>
       await dio.post(
         '/user/signup',
         data: {
           'userName': name,
-          'fcmToken': 'trassh',
+          'fcmToken': fcmToken,
         },
       );
 

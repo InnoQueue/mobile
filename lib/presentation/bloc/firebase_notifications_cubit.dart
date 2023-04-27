@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +12,8 @@ class FirebaseNotifcationsCubit extends Cubit<String?> {
   }
 
   final FirebaseMessaging fcm = FirebaseMessaging.instance;
+  StreamSubscription? openedAppMessageStream;
+  StreamSubscription? messageStream;
 
   void _initPushNotifications() async {
     await fcm.requestPermission();
@@ -21,6 +25,21 @@ class FirebaseNotifcationsCubit extends Cubit<String?> {
     }
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    openedAppMessageStream = FirebaseMessaging.onMessageOpenedApp.listen(
+      (event) {
+        print('opened app');
+        print(event.data);
+        print('');
+      },
+    );
+
+    messageStream = FirebaseMessaging.onMessage.listen(
+      (event) {
+        print('regualar message');
+        print(event.data);
+        print('');
+      },
+    );
   }
 }
 
