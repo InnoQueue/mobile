@@ -123,11 +123,13 @@ class _QrWidgetState extends State<QrWidget>
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      GestureDetector(
-                        onTap: () => _copyCode(context),
-                        child: const Icon(Icons.copy),
-                      ),
+                      if (widget.addCopyButton) ...[
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: () => _copyCode(context),
+                          child: const Icon(Icons.copy),
+                        ),
+                      ],
                     ],
                   )
                 else
