@@ -21,6 +21,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   NotificationsBloc() : super(const _Initial()) {
     on<_FetchNotifications>(_fetchNotifications);
     on<_UpdateNotifications>(_updateNotifications);
+    on<_RemoveNotification>(_removeNotification);
   }
 
   bool _isLoading = false;
@@ -39,6 +40,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     Emitter<NotificationsState> emit,
   ) async {
     if (event.showLoading) {
+      await readDisplayedNotifications();
       emit(const NotificationsState.initial());
     }
 
@@ -49,6 +51,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     await _fetchNotificationsAndEmit(emit);
   }
 
+  bool _fetchedAll = false;
+
   Future<void> _fetchNotificationsAndEmit(
     Emitter<NotificationsState> emit,
   ) async {
@@ -58,12 +62,29 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
               size: _size,
             );
 
+    _fetchedAll = notificationsResponse.last;
     currentNotifications.addAll(notificationsResponse.content);
     _page++;
 
     emit(NotificationsState.itemsFetched(
       items: filteredNotifications.toList(),
-      fetchedAll: notificationsResponse.last,
+      fetchedAll: _fetchedAll,
+    ));
+  }
+
+  void _removeNotification(
+    _RemoveNotification event,
+    Emitter<NotificationsState> emit,
+  ) {
+    currentNotifications.removeWhere(
+      (element) => element.notificationId == event.notificationId,
+    );
+    getIt
+        .get<NotificationsRepository>()
+        .removeNotification(event.notificationId);
+    emit(NotificationsState.itemsFetched(
+      items: filteredNotifications.toList(),
+      fetchedAll: _fetchedAll,
     ));
   }
 

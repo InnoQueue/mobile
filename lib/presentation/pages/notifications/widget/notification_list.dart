@@ -35,8 +35,26 @@ class NotificationList extends StatelessWidget {
               )
             : Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                child: NotifiationItem(
-                  notification: notifications[index],
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: CustomDismissible(
+                    key: Key(
+                      'dissmisible_notification_${notifications[index].hashCode.toString()}',
+                    ),
+                    dismissibleKey: Key(
+                      'notification_${notifications[index].hashCode.toString()}',
+                    ),
+                    onDismissed: () {
+                      getIt.get<NotificationsBloc>().add(
+                            NotificationsEvent.removeNotification(
+                              notifications[index].notificationId,
+                            ),
+                          );
+                    },
+                    child: NotifiationItem(
+                      notification: notifications[index],
+                    ),
+                  ),
                 ),
               ),
         itemCount: notifications.length + (fetchedAll ? 0 : 1),
@@ -88,10 +106,19 @@ class NotifiationItem extends StatelessWidget {
         }
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        padding: const EdgeInsets.only(
+          left: 20,
+          top: 14,
+          bottom: 14,
+          right: 40,
+        ),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: Colors.white,
+            width: 0,
+          ),
           color: Colors.white,
         ),
         child: Column(
