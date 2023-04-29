@@ -95,6 +95,7 @@ part 'app_router.gr.dart';
     CustomRoute(
       path: 'join/:qrCode',
       page: JoinInProressPage,
+      customRouteBuilder: dialogBuilder,
     ),
     CustomRoute(
       path: 'add_progress',

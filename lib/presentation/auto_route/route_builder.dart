@@ -66,7 +66,10 @@ Route<T> dialogBuilder<T>(
           body: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () => Navigator.of(context).pop(),
-            child: GestureDetector(child: Center(child: child)),
+            child: GestureDetector(
+              onTap: () {},
+              child: Center(child: child),
+            ),
           ),
         ),
       );
