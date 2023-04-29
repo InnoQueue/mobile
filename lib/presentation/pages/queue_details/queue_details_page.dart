@@ -32,7 +32,12 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
             foregroundColor: Colors.black,
             elevation: 0,
             title: Text(
-              context.read<QueueDetailsBloc>().queueInfo?.queueName ?? '...',
+              state.when(
+                initial: () =>
+                    context.read<QueueDetailsBloc>().queueInfo?.queueName ??
+                    '...',
+                queueFetched: (queue) => queue.queueName,
+              ),
               style: const TextStyle(color: Colors.black),
             ),
             centerTitle: true,

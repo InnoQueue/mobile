@@ -5,6 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../application/application.dart';
+import '../../data/data.dart';
+import '../presentation.dart';
+
 @Singleton()
 class FirebaseNotifcationsCubit extends Cubit<RemoteMessage?> {
   FirebaseNotifcationsCubit() : super(null) {
@@ -27,20 +31,19 @@ class FirebaseNotifcationsCubit extends Cubit<RemoteMessage?> {
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-    openedAppMessageStream = FirebaseMessaging.onMessageOpenedApp.listen(
-      (event) {
-        //WHEN WE OPEN APP FROM NOTIFICATION
-
-        emit(event);
-      },
-    );
+    openedAppMessageStream =
+        FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      if (event.data['queue_id'] != null) {
+        getIt.get<AppRouter>().push(
+              QueueRouter(
+                id: int.parse(event.data['queue_id']),
+              ),
+            );
+      }
+    });
 
     messageStream = FirebaseMessaging.onMessage.listen(
-      (event) {
-        //SHOULD DISPLAY NOTIFICATION
-
-        emit(event);
-      },
+      emit,
     );
   }
 
@@ -50,6 +53,10 @@ class FirebaseNotifcationsCubit extends Cubit<RemoteMessage?> {
     if (message != null) {
       emit(message);
     }
+  }
+
+  void emitNoNotification() {
+    emit(null);
   }
 }
 

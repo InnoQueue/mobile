@@ -27,13 +27,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _appRouter = AppRouter(
-    loginGuard: LoginGuard(),
-  );
-
   @override
   void initState() {
     super.initState();
+    getIt.registerSingleton(AppRouter(
+      loginGuard: LoginGuard(),
+    ));
     handleIncomingDeepLinks();
     handleInitialDeepLink();
   }
@@ -61,10 +60,10 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp.router(
         routerDelegate: AutoRouterDelegate(
-          _appRouter,
+          getIt.get<AppRouter>(),
           navigatorObservers: () => [AppRouterObserver()],
         ),
-        routeInformationParser: _appRouter.defaultRouteParser(),
+        routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
         theme: ThemeData(
           platform: TargetPlatform.iOS,
         ),
@@ -74,9 +73,9 @@ class _MyAppState extends State<MyApp> {
 
   void _handleJoinLink(Uri link) {
     if (link.pathSegments[0] == 'join') {
-      _appRouter.push(
-        JoinInProressRoute(qrCode: link.pathSegments[1]),
-      );
+      getIt.get<AppRouter>().push(
+            JoinInProressRoute(qrCode: link.pathSegments[1]),
+          );
     }
   }
 }
