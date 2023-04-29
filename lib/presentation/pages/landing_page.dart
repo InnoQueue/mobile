@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:innoq/presentation/auto_route/app_router.dart';
 import 'package:innoq/presentation/bloc/bloc.dart';
 
+import '../../application/application.dart';
+
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
 
@@ -23,6 +25,14 @@ class _LandingPageState extends State<LandingPage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _checkInitialNotification();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: routes,
@@ -33,6 +43,18 @@ class _LandingPageState extends State<LandingPage> {
         );
       },
     );
+  }
+
+  void _checkInitialNotification() {
+    RemoteMessage? initialMessage =
+        getIt.get<FirebaseNotifcationsCubit>().initialMessage;
+    if (initialMessage != null) {
+      context.router.push(
+        QueueRouter(
+          id: int.parse(initialMessage.data['queue_id']),
+        ),
+      );
+    }
   }
 }
 

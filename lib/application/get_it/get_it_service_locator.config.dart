@@ -53,7 +53,13 @@ Future<_i1.GetIt> $initGetIt(
     environmentFilter,
   );
   final registerModule = _$RegisterModule();
-  gh.singleton<_i3.FirebaseNotifcationsCubit>(_i3.FirebaseNotifcationsCubit());
+  await gh.singletonAsync<_i3.FirebaseNotifcationsCubit>(
+    () {
+      final i = _i3.FirebaseNotifcationsCubit();
+      return i.initPushNotifications().then((_) => i);
+    },
+    preResolve: true,
+  );
   gh.singleton<_i4.NotificationsBloc>(_i4.NotificationsBloc());
   gh.singleton<_i5.QueuesBloc>(_i5.QueuesBloc());
   gh.singleton<_i6.QueuesRepository>(
