@@ -121,7 +121,7 @@ class _BellIconState extends State<_BellIcon>
   void initState() {
     super.initState();
     controller = AnimationController(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 600),
       vsync: this,
     )..addListener(() {
         setState(() {});
