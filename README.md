@@ -34,7 +34,7 @@
 
 ## ☎️ iOS
 
-- For iOS, you can download this GitHub [project](https://github.com/InnoQueue/mobile) and build it by yourself. 
+- For iOS, you can download this GitHub [project](https://github.com/InnoQueue/mobile) and build it by yourself.
 
 ## 🛠 How to build
 

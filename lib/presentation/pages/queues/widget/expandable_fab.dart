@@ -110,7 +110,8 @@ class _ExpandableFabState extends State<ExpandableFab>
   }
 
   void onTapQr() {
-    debugPrint('qr');
+    context.router.push(const JoinQueueRoute());
+    _controller.reverse();
   }
 
   void onTapAdd() {
