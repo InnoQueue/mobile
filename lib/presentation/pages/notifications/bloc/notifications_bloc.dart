@@ -15,6 +15,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   int _page = 0;
 
   List<NotificationModel> currentNotifications = [];
+  final List<int> _displayedNotificationIds = [];
   final List<int> _readNotificationIds = [];
 
   NotificationsBloc() : super(const _Initial()) {
@@ -37,7 +38,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     _UpdateNotifications event,
     Emitter<NotificationsState> emit,
   ) async {
-    emit(const NotificationsState.initial());
+    if (event.showLoading) {
+      emit(const NotificationsState.initial());
+    }
 
     currentNotifications.clear();
     _readNotificationIds.clear();
@@ -72,10 +75,18 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       )
       .toList();
 
-  void readNotification(int id) async {
-    if (!_readNotificationIds.contains(id)) {
-      await getIt.get<NotificationsRepository>().readNotification(id);
-      _readNotificationIds.add(id);
+  void markNotificationAsDisplayed(int id) {
+    if (!_displayedNotificationIds.contains(id)) {
+      _displayedNotificationIds.add(id);
     }
+  }
+
+  Future<void> readDisplayedNotifications() async {
+    await Future.wait(
+      _displayedNotificationIds.map(
+        (id) => getIt.get<NotificationsRepository>().readNotification(id),
+      ),
+    );
+    _displayedNotificationIds.clear();
   }
 }

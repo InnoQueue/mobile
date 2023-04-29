@@ -6,9 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton()
-class FirebaseNotifcationsCubit extends Cubit<String?> {
+class FirebaseNotifcationsCubit extends Cubit<RemoteMessage?> {
   FirebaseNotifcationsCubit() : super(null) {
     _initPushNotifications();
+    _checkInitialNotification();
   }
 
   final FirebaseMessaging fcm = FirebaseMessaging.instance;
@@ -25,27 +26,37 @@ class FirebaseNotifcationsCubit extends Cubit<String?> {
     }
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
     openedAppMessageStream = FirebaseMessaging.onMessageOpenedApp.listen(
       (event) {
-        print('opened app');
-        print(event.data);
-        print('');
+        //WHEN WE OPEN APP FROM NOTIFICATION
+
+        emit(event);
       },
     );
 
     messageStream = FirebaseMessaging.onMessage.listen(
       (event) {
-        print('regualar message');
-        print(event.data);
-        print('');
+        //SHOULD DISPLAY NOTIFICATION
+
+        emit(event);
       },
     );
+  }
+
+  void _checkInitialNotification() async {
+    RemoteMessage? message =
+        await FirebaseMessaging.instance.getInitialMessage();
+    if (message != null) {
+      emit(message);
+    }
   }
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) =>
     Future.delayed(Duration.zero, () {
       if (kDebugMode) {
+        //WHEN APP IS HIDDEN
         print("Handling a background message: ${message}");
       }
     });

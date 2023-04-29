@@ -343,19 +343,19 @@ mixin _$NotificationsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchNotifications,
-    required TResult Function() updateNotifications,
+    required TResult Function(bool showLoading) updateNotifications,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchNotifications,
-    TResult? Function()? updateNotifications,
+    TResult? Function(bool showLoading)? updateNotifications,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchNotifications,
-    TResult Function()? updateNotifications,
+    TResult Function(bool showLoading)? updateNotifications,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -437,7 +437,7 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchNotifications,
-    required TResult Function() updateNotifications,
+    required TResult Function(bool showLoading) updateNotifications,
   }) {
     return fetchNotifications();
   }
@@ -446,7 +446,7 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchNotifications,
-    TResult? Function()? updateNotifications,
+    TResult? Function(bool showLoading)? updateNotifications,
   }) {
     return fetchNotifications?.call();
   }
@@ -455,7 +455,7 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchNotifications,
-    TResult Function()? updateNotifications,
+    TResult Function(bool showLoading)? updateNotifications,
     required TResult orElse(),
   }) {
     if (fetchNotifications != null) {
@@ -505,6 +505,8 @@ abstract class _$$_UpdateNotificationsCopyWith<$Res> {
   factory _$$_UpdateNotificationsCopyWith(_$_UpdateNotifications value,
           $Res Function(_$_UpdateNotifications) then) =
       __$$_UpdateNotificationsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool showLoading});
 }
 
 /// @nodoc
@@ -514,54 +516,80 @@ class __$$_UpdateNotificationsCopyWithImpl<$Res>
   __$$_UpdateNotificationsCopyWithImpl(_$_UpdateNotifications _value,
       $Res Function(_$_UpdateNotifications) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? showLoading = null,
+  }) {
+    return _then(_$_UpdateNotifications(
+      showLoading: null == showLoading
+          ? _value.showLoading
+          : showLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_UpdateNotifications implements _UpdateNotifications {
-  const _$_UpdateNotifications();
+  const _$_UpdateNotifications({required this.showLoading});
+
+  @override
+  final bool showLoading;
 
   @override
   String toString() {
-    return 'NotificationsEvent.updateNotifications()';
+    return 'NotificationsEvent.updateNotifications(showLoading: $showLoading)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UpdateNotifications);
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateNotifications &&
+            (identical(other.showLoading, showLoading) ||
+                other.showLoading == showLoading));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, showLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UpdateNotificationsCopyWith<_$_UpdateNotifications> get copyWith =>
+      __$$_UpdateNotificationsCopyWithImpl<_$_UpdateNotifications>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchNotifications,
-    required TResult Function() updateNotifications,
+    required TResult Function(bool showLoading) updateNotifications,
   }) {
-    return updateNotifications();
+    return updateNotifications(showLoading);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchNotifications,
-    TResult? Function()? updateNotifications,
+    TResult? Function(bool showLoading)? updateNotifications,
   }) {
-    return updateNotifications?.call();
+    return updateNotifications?.call(showLoading);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchNotifications,
-    TResult Function()? updateNotifications,
+    TResult Function(bool showLoading)? updateNotifications,
     required TResult orElse(),
   }) {
     if (updateNotifications != null) {
-      return updateNotifications();
+      return updateNotifications(showLoading);
     }
     return orElse();
   }
@@ -599,5 +627,11 @@ class _$_UpdateNotifications implements _UpdateNotifications {
 }
 
 abstract class _UpdateNotifications implements NotificationsEvent {
-  const factory _UpdateNotifications() = _$_UpdateNotifications;
+  const factory _UpdateNotifications({required final bool showLoading}) =
+      _$_UpdateNotifications;
+
+  bool get showLoading;
+  @JsonKey(ignore: true)
+  _$$_UpdateNotificationsCopyWith<_$_UpdateNotifications> get copyWith =>
+      throw _privateConstructorUsedError;
 }

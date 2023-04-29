@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,29 +20,40 @@ class _NotificationsPageState extends State<NotificationsPage> {
         ..add(
           const NotificationsEvent.fetchNotifications(),
         ),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: const Text(
-            'Notifications',
-            style: TextStyle(color: Colors.black),
+      child: BlocListener<FirebaseNotifcationsCubit, RemoteMessage?>(
+        listener: (context, state) {
+          if (state != null) {
+            context
+                .read<NotificationsBloc>()
+                .add(const NotificationsEvent.updateNotifications(
+                  showLoading: false,
+                ));
+          }
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            title: const Text(
+              'Notifications',
+              style: TextStyle(color: Colors.black),
+            ),
+            centerTitle: true,
           ),
-          centerTitle: true,
-        ),
-        backgroundColor: Colors.grey.shade100,
-        body: BlocBuilder<NotificationsBloc, NotificationsState>(
-          builder: (context, state) {
-            return state.when(
-              initial: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              itemsFetched: (items, fetchedAll) => NotificationList(
-                notifications: items,
-                fetchedAll: fetchedAll,
-              ),
-            );
-          },
+          backgroundColor: Colors.grey.shade100,
+          body: BlocBuilder<NotificationsBloc, NotificationsState>(
+            builder: (context, state) {
+              return state.when(
+                initial: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                itemsFetched: (items, fetchedAll) => NotificationList(
+                  notifications: items,
+                  fetchedAll: fetchedAll,
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

@@ -16,7 +16,7 @@ class AppRouterObserver extends AutoRouterObserver {
   @override
   void didInitTabRoute(TabPageRoute route, TabPageRoute? previousRoute) {
     if (notificationsOpen && route.name != NotificationsRouter.name) {
-      updateNotifications();
+      markNotificationsAsRead();
     }
     notificationsOpen = route.name == NotificationsRouter.name;
     debugPrint('Tab route visited: ${route.name}');
@@ -25,15 +25,16 @@ class AppRouterObserver extends AutoRouterObserver {
   @override
   void didChangeTabRoute(TabPageRoute route, TabPageRoute previousRoute) {
     if (notificationsOpen && route.name != NotificationsRouter.name) {
-      updateNotifications();
+      markNotificationsAsRead();
     }
     notificationsOpen = route.name == NotificationsRouter.name;
     debugPrint('Tab route re-visited: ${route.name}');
   }
 
-  void updateNotifications() {
-    getIt
-        .get<NotificationsBloc>()
-        .add(const NotificationsEvent.fetchNotifications());
+  void markNotificationsAsRead() async {
+    await getIt.get<NotificationsBloc>().readDisplayedNotifications();
+    getIt.get<NotificationsBloc>().add(
+          const NotificationsEvent.updateNotifications(showLoading: false),
+        );
   }
 }

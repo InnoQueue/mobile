@@ -20,7 +20,9 @@ class NotificationList extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: () async {
         getIt.get<NotificationsBloc>().add(
-              const NotificationsEvent.updateNotifications(),
+              const NotificationsEvent.updateNotifications(
+                showLoading: true,
+              ),
             );
 
         return;
@@ -82,7 +84,7 @@ class NotifiationItem extends StatelessWidget {
         if (info.visibleFraction > 0 && !notification.read) {
           getIt
               .get<NotificationsBloc>()
-              .readNotification(notification.notificationId);
+              .markNotificationAsDisplayed(notification.notificationId);
         }
       },
       child: Container(
