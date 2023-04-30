@@ -15,4 +15,5 @@ runs:
         path: /opt/hostedtoolcache/flutter
         key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
     - name: Install packages
+      shell: bash
       run: flutter pub get
