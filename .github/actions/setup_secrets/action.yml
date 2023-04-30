@@ -19,4 +19,3 @@ runs:
         path: 'android/app'
         file: 'google-services.json'
         content: ${{ inputs.google_services}}
-   s

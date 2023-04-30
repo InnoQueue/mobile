@@ -2,8 +2,8 @@ runs:
   using: "composite"
   steps:
     - uses: actions/setup-java@v1
-        with:
-          java-version: "12.x"
+      with:
+        java-version: "12.x"
     - name: Setup Flutter
       uses: subosito/flutter-action@v1
       with:
