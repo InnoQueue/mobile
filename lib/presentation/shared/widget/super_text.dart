@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../presentation.dart';
+
 class SuperText extends StatelessWidget {
   final String text;
   final TextStyle style;
@@ -37,9 +39,14 @@ class SuperText extends StatelessWidget {
             textParts.length,
             (i) => TextSpan(
               text: textParts[i],
-              style: TextStyle(
-                fontWeight: i.isEven ? FontWeight.normal : FontWeight.bold,
-              ),
+              style: QueueTitle(
+                queueName: textParts[i],
+                fontSize: 16,
+              ).textStyle.copyWith(
+                    fontWeight: i.isEven|| ['RED', '1989'].contains(textParts[i])
+                        ? FontWeight.normal
+                        : FontWeight.bold,
+                  ),
             ),
           ),
         ],
