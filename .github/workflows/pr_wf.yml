@@ -8,10 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: setup secret files
-          uses: ./.github/actions/setup_secrets
-          with:
-            firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
-            google_services: ${{ secrets.GOOGLE_SERVICES}}
+        uses: ./.github/actions/setup_secrets
+        with:
+          firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
+          google_services: ${{ secrets.GOOGLE_SERVICES}}
       - name: setup flutter
         uses: ./.github/actions/setup_flutter
       - name: Linter
@@ -27,10 +27,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: setup secret files
-          uses: ./.github/actions/setup_secrets
-          with:
-            firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
-            google_services: ${{ secrets.GOOGLE_SERVICES}}
+        uses: ./.github/actions/setup_secrets
+        with:
+          firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
+          google_services: ${{ secrets.GOOGLE_SERVICES}}
       - name: setup flutter
         uses: ./.github/actions/setup_flutter
       - name: Tester
@@ -42,10 +42,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: setup secret files
-          uses: ./.github/actions/setup_secrets
-          with:
-            firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
-            google_services: ${{ secrets.GOOGLE_SERVICES}}
+        uses: ./.github/actions/setup_secrets
+        with:
+          firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
+          google_services: ${{ secrets.GOOGLE_SERVICES}}
       - name: setup flutter
         uses: ./.github/actions/setup_flutter
       - name: Build APK
