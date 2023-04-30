@@ -13,21 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-java@v1
-        with:
-          java-version: "12.x"
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '3.7.1'
-          channel: "stable"
-      - name: Cache Flutter dependencies
-        uses: actions/cache@v1
-        with:
-          path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
-      - name: Install packages
-        run: flutter pub get
+      - name: setup secret files
+          uses: ./.github/actions/setup_secrets
+          with:
+            firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
+            google_services: ${{ secrets.GOOGLE_SERVICES}}
+      - name: setup flutter
+        uses: ./.github/actions/setup_flutter
       - name: Build APK
         continue-on-error: true
         run: flutter build apk
