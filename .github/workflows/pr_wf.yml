@@ -6,7 +6,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      s- uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: setup secret files
           uses: ./.github/actions/setup_secrets
           with:
