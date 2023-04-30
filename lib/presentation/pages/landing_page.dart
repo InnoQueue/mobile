@@ -131,6 +131,7 @@ class _BellIconState extends State<_BellIcon>
   @override
   Widget build(BuildContext context) {
     return BlocListener<FirebaseNotifcationsCubit, RemoteMessage?>(
+      bloc: getIt.get<FirebaseNotifcationsCubit>(),
       listener: (context, state) {
         if (state != null && !hasNotifications) {
           controller
