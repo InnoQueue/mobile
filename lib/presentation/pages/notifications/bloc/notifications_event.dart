@@ -4,5 +4,10 @@ part of 'notifications_bloc.dart';
 class NotificationsEvent with _$NotificationsEvent {
   const factory NotificationsEvent.fetchNotifications() = _FetchNotifications;
 
-  const factory NotificationsEvent.updateNotifications() = _UpdateNotifications;
+  const factory NotificationsEvent.removeNotification(int notificationId) =
+      _RemoveNotification;
+
+  const factory NotificationsEvent.updateNotifications({
+    required bool showLoading,
+  }) = _UpdateNotifications;
 }

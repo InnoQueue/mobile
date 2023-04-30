@@ -1,0 +1,19 @@
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-java@v1
+      with:
+        java-version: "12.x"
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '3.7.1'
+        channel: "stable"
+    - name: Cache Flutter dependencies
+      uses: actions/cache@v1
+      with:
+        path: /opt/hostedtoolcache/flutter
+        key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+    - name: Install packages
+      shell: bash
+      run: flutter pub get

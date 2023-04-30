@@ -20,7 +20,9 @@ class NotificationsRepository {
     );
   }
 
-  Future<void> readNotification(int id) async {
-    await notificationsApi.readNotification(id);
-  }
+  Future<void> readNotification(int id) =>
+      notificationsApi.readNotification(id);
+
+  Future<void> removeNotification(int id) =>
+      notificationsApi.removeNotification(id);
 }

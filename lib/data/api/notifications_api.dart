@@ -12,8 +12,8 @@ class NotificationsApi {
   Future<Response> getNotifications({
     required int page,
     required int size,
-  }) async =>
-      await dio.get(
+  }) =>
+      dio.get(
         '/notifications',
         queryParameters: {
           'page': page,
@@ -21,8 +21,11 @@ class NotificationsApi {
         },
       );
 
-  Future<Response> readNotification(int id) async =>
-      await dio.post('/notifications', data: {
+  Future<Response> readNotification(int id) =>
+      dio.post('/notifications', data: {
         'notificationIds': [id],
       });
+
+  Future<Response> removeNotification(int id) =>
+      dio.delete('/notifications/$id');
 }

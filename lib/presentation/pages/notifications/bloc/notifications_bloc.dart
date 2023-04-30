@@ -15,11 +15,13 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   int _page = 0;
 
   List<NotificationModel> currentNotifications = [];
+  final List<int> _displayedNotificationIds = [];
   final List<int> _readNotificationIds = [];
 
   NotificationsBloc() : super(const _Initial()) {
     on<_FetchNotifications>(_fetchNotifications);
     on<_UpdateNotifications>(_updateNotifications);
+    on<_RemoveNotification>(_removeNotification);
   }
 
   bool _isLoading = false;
@@ -37,7 +39,10 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     _UpdateNotifications event,
     Emitter<NotificationsState> emit,
   ) async {
-    emit(const NotificationsState.initial());
+    if (event.showLoading) {
+      await readDisplayedNotifications();
+      emit(const NotificationsState.initial());
+    }
 
     currentNotifications.clear();
     _readNotificationIds.clear();
@@ -45,6 +50,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
     await _fetchNotificationsAndEmit(emit);
   }
+
+  bool _fetchedAll = false;
 
   Future<void> _fetchNotificationsAndEmit(
     Emitter<NotificationsState> emit,
@@ -55,12 +62,29 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
               size: _size,
             );
 
+    _fetchedAll = notificationsResponse.last;
     currentNotifications.addAll(notificationsResponse.content);
     _page++;
 
     emit(NotificationsState.itemsFetched(
       items: filteredNotifications.toList(),
-      fetchedAll: notificationsResponse.last,
+      fetchedAll: _fetchedAll,
+    ));
+  }
+
+  void _removeNotification(
+    _RemoveNotification event,
+    Emitter<NotificationsState> emit,
+  ) {
+    currentNotifications.removeWhere(
+      (element) => element.notificationId == event.notificationId,
+    );
+    getIt
+        .get<NotificationsRepository>()
+        .removeNotification(event.notificationId);
+    emit(NotificationsState.itemsFetched(
+      items: filteredNotifications.toList(),
+      fetchedAll: _fetchedAll,
     ));
   }
 
@@ -72,10 +96,18 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       )
       .toList();
 
-  void readNotification(int id) async {
-    if (!_readNotificationIds.contains(id)) {
-      await getIt.get<NotificationsRepository>().readNotification(id);
-      _readNotificationIds.add(id);
+  void markNotificationAsDisplayed(int id) {
+    if (!_displayedNotificationIds.contains(id)) {
+      _displayedNotificationIds.add(id);
     }
+  }
+
+  Future<void> readDisplayedNotifications() async {
+    await Future.wait(
+      _displayedNotificationIds.map(
+        (id) => getIt.get<NotificationsRepository>().readNotification(id),
+      ),
+    );
+    _displayedNotificationIds.clear();
   }
 }

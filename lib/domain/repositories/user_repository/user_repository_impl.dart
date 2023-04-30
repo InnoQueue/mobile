@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,13 +33,17 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<UserModel> registerUser(String name) async {
-    var rawResponse = await getIt.get<UserApi>().registerUser(name: name);
+    String? fcmToken = await FirebaseMessaging.instance.getToken();
+    var rawResponse = await getIt.get<UserApi>().registerUser(
+          name: name,
+          fcmToken: fcmToken ?? '',
+        );
     var signupResponse = SignupResponse.fromJson(rawResponse.data);
 
     var user = UserModel(
       userId: signupResponse.userId,
       token: signupResponse.token,
-      fcmToken: '1',
+      fcmToken: fcmToken ?? '',
       userName: name,
     );
 

@@ -15,25 +15,30 @@ class AppRouterObserver extends AutoRouterObserver {
   // only override to observer tab routes
   @override
   void didInitTabRoute(TabPageRoute route, TabPageRoute? previousRoute) {
-    if (notificationsOpen && route.name != NotificationsRouter.name) {
-      updateNotifications();
-    }
-    notificationsOpen = route.name == NotificationsRouter.name;
+    handleRouteChange(route);
     debugPrint('Tab route visited: ${route.name}');
   }
 
   @override
   void didChangeTabRoute(TabPageRoute route, TabPageRoute previousRoute) {
-    if (notificationsOpen && route.name != NotificationsRouter.name) {
-      updateNotifications();
-    }
-    notificationsOpen = route.name == NotificationsRouter.name;
+    handleRouteChange(route);
     debugPrint('Tab route re-visited: ${route.name}');
   }
 
-  void updateNotifications() {
-    getIt
-        .get<NotificationsBloc>()
-        .add(const NotificationsEvent.fetchNotifications());
+  void markNotificationsAsRead() async {
+    await getIt.get<NotificationsBloc>().readDisplayedNotifications();
+    getIt.get<NotificationsBloc>().add(
+          const NotificationsEvent.updateNotifications(showLoading: false),
+        );
+  }
+
+  void handleRouteChange(TabPageRoute route) {
+    if (notificationsOpen && route.name != NotificationsRouter.name) {
+      markNotificationsAsRead();
+      getIt.get<FirebaseNotifcationsCubit>().emitNoNotification();
+    } else if (!notificationsOpen && route.name == NotificationsRouter.name) {
+      getIt.get<FirebaseNotifcationsCubit>().emitNoNotification();
+    }
+    notificationsOpen = route.name == NotificationsRouter.name;
   }
 }

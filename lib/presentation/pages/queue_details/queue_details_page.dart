@@ -31,9 +31,11 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
             backgroundColor: Colors.white,
             foregroundColor: Colors.black,
             elevation: 0,
-            title: Text(
-              context.read<QueueDetailsBloc>().queueInfo?.queueName ?? '...',
-              style: const TextStyle(color: Colors.black),
+            title: QueueTitle(
+              queueName:
+                  context.read<QueueDetailsBloc>().queueInfo?.queueName ??
+                      '...',
+              fontSize: 20,
             ),
             centerTitle: true,
             leading: IconButton(

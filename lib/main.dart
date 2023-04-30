@@ -1,14 +1,20 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uni_links/uni_links.dart';
 
 import 'application/application.dart';
+import 'firebase_options.dart';
 import 'presentation/presentation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await configureDependencies();
   runApp(const MyApp());
 }
@@ -21,13 +27,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _appRouter = AppRouter(
-    loginGuard: LoginGuard(),
-  );
-
   @override
   void initState() {
     super.initState();
+    getIt.registerSingleton(AppRouter(
+      loginGuard: LoginGuard(),
+    ));
     handleIncomingDeepLinks();
     handleInitialDeepLink();
   }
@@ -49,23 +54,28 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerDelegate: AutoRouterDelegate(
-        _appRouter,
-        navigatorObservers: () => [AppRouterObserver()],
-      ),
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      theme: ThemeData(
-        platform: TargetPlatform.iOS,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(value: getIt.get<FirebaseNotifcationsCubit>()),
+      ],
+      child: MaterialApp.router(
+        routerDelegate: AutoRouterDelegate(
+          getIt.get<AppRouter>(),
+          navigatorObservers: () => [AppRouterObserver()],
+        ),
+        routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
+        theme: ThemeData(
+          platform: TargetPlatform.iOS,
+        ),
       ),
     );
   }
 
   void _handleJoinLink(Uri link) {
     if (link.pathSegments[0] == 'join') {
-      _appRouter.push(
-        JoinInProressRoute(qrCode: link.pathSegments[1]),
-      );
+      getIt.get<AppRouter>().push(
+            JoinInProressRoute(qrCode: link.pathSegments[1]),
+          );
     }
   }
 }
