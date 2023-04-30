@@ -57,6 +57,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) =>
     Future.delayed(Duration.zero, () {
       if (kDebugMode) {
         //WHEN APP IS HIDDEN
-        print("Handling a background message: ${message}");
+        print("Handling a background message: $message");
       }
     });
