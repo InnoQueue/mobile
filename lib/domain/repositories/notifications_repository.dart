@@ -25,4 +25,7 @@ class NotificationsRepository {
 
   Future<void> removeNotification(int id) =>
       notificationsApi.removeNotification(id);
+
+  Future<void> removeNotifications(List<int> ids) =>
+      notificationsApi.removeNotifications(ids);
 }

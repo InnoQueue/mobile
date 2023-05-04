@@ -19,21 +19,24 @@ mixin _$NotificationsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<NotificationModel> items, bool fetchedAll)
+    required TResult Function(List<NotificationModel> items, bool fetchedAll,
+            NotificationModel? removedBySwipe)
         itemsFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<NotificationModel> items, bool fetchedAll)?
+    TResult? Function(List<NotificationModel> items, bool fetchedAll,
+            NotificationModel? removedBySwipe)?
         itemsFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<NotificationModel> items, bool fetchedAll)?
+    TResult Function(List<NotificationModel> items, bool fetchedAll,
+            NotificationModel? removedBySwipe)?
         itemsFetched,
     required TResult orElse(),
   }) =>
@@ -115,7 +118,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<NotificationModel> items, bool fetchedAll)
+    required TResult Function(List<NotificationModel> items, bool fetchedAll,
+            NotificationModel? removedBySwipe)
         itemsFetched,
   }) {
     return initial();
@@ -125,7 +129,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<NotificationModel> items, bool fetchedAll)?
+    TResult? Function(List<NotificationModel> items, bool fetchedAll,
+            NotificationModel? removedBySwipe)?
         itemsFetched,
   }) {
     return initial?.call();
@@ -135,7 +140,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<NotificationModel> items, bool fetchedAll)?
+    TResult Function(List<NotificationModel> items, bool fetchedAll,
+            NotificationModel? removedBySwipe)?
         itemsFetched,
     required TResult orElse(),
   }) {
@@ -187,7 +193,12 @@ abstract class _$$_ItemsFetchedCopyWith<$Res> {
           _$_ItemsFetched value, $Res Function(_$_ItemsFetched) then) =
       __$$_ItemsFetchedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<NotificationModel> items, bool fetchedAll});
+  $Res call(
+      {List<NotificationModel> items,
+      bool fetchedAll,
+      NotificationModel? removedBySwipe});
+
+  $NotificationModelCopyWith<$Res>? get removedBySwipe;
 }
 
 /// @nodoc
@@ -203,6 +214,7 @@ class __$$_ItemsFetchedCopyWithImpl<$Res>
   $Res call({
     Object? items = null,
     Object? fetchedAll = null,
+    Object? removedBySwipe = freezed,
   }) {
     return _then(_$_ItemsFetched(
       items: null == items
@@ -213,7 +225,23 @@ class __$$_ItemsFetchedCopyWithImpl<$Res>
           ? _value.fetchedAll
           : fetchedAll // ignore: cast_nullable_to_non_nullable
               as bool,
+      removedBySwipe: freezed == removedBySwipe
+          ? _value.removedBySwipe
+          : removedBySwipe // ignore: cast_nullable_to_non_nullable
+              as NotificationModel?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NotificationModelCopyWith<$Res>? get removedBySwipe {
+    if (_value.removedBySwipe == null) {
+      return null;
+    }
+
+    return $NotificationModelCopyWith<$Res>(_value.removedBySwipe!, (value) {
+      return _then(_value.copyWith(removedBySwipe: value));
+    });
   }
 }
 
@@ -221,7 +249,9 @@ class __$$_ItemsFetchedCopyWithImpl<$Res>
 
 class _$_ItemsFetched implements _ItemsFetched {
   const _$_ItemsFetched(
-      {required final List<NotificationModel> items, required this.fetchedAll})
+      {required final List<NotificationModel> items,
+      required this.fetchedAll,
+      required this.removedBySwipe})
       : _items = items;
 
   final List<NotificationModel> _items;
@@ -234,10 +264,12 @@ class _$_ItemsFetched implements _ItemsFetched {
 
   @override
   final bool fetchedAll;
+  @override
+  final NotificationModel? removedBySwipe;
 
   @override
   String toString() {
-    return 'NotificationsState.itemsFetched(items: $items, fetchedAll: $fetchedAll)';
+    return 'NotificationsState.itemsFetched(items: $items, fetchedAll: $fetchedAll, removedBySwipe: $removedBySwipe)';
   }
 
   @override
@@ -247,12 +279,14 @@ class _$_ItemsFetched implements _ItemsFetched {
             other is _$_ItemsFetched &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.fetchedAll, fetchedAll) ||
-                other.fetchedAll == fetchedAll));
+                other.fetchedAll == fetchedAll) &&
+            (identical(other.removedBySwipe, removedBySwipe) ||
+                other.removedBySwipe == removedBySwipe));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_items), fetchedAll);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_items), fetchedAll, removedBySwipe);
 
   @JsonKey(ignore: true)
   @override
@@ -264,32 +298,35 @@ class _$_ItemsFetched implements _ItemsFetched {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<NotificationModel> items, bool fetchedAll)
+    required TResult Function(List<NotificationModel> items, bool fetchedAll,
+            NotificationModel? removedBySwipe)
         itemsFetched,
   }) {
-    return itemsFetched(items, fetchedAll);
+    return itemsFetched(items, fetchedAll, removedBySwipe);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<NotificationModel> items, bool fetchedAll)?
+    TResult? Function(List<NotificationModel> items, bool fetchedAll,
+            NotificationModel? removedBySwipe)?
         itemsFetched,
   }) {
-    return itemsFetched?.call(items, fetchedAll);
+    return itemsFetched?.call(items, fetchedAll, removedBySwipe);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<NotificationModel> items, bool fetchedAll)?
+    TResult Function(List<NotificationModel> items, bool fetchedAll,
+            NotificationModel? removedBySwipe)?
         itemsFetched,
     required TResult orElse(),
   }) {
     if (itemsFetched != null) {
-      return itemsFetched(items, fetchedAll);
+      return itemsFetched(items, fetchedAll, removedBySwipe);
     }
     return orElse();
   }
@@ -329,10 +366,12 @@ class _$_ItemsFetched implements _ItemsFetched {
 abstract class _ItemsFetched implements NotificationsState {
   const factory _ItemsFetched(
       {required final List<NotificationModel> items,
-      required final bool fetchedAll}) = _$_ItemsFetched;
+      required final bool fetchedAll,
+      required final NotificationModel? removedBySwipe}) = _$_ItemsFetched;
 
   List<NotificationModel> get items;
   bool get fetchedAll;
+  NotificationModel? get removedBySwipe;
   @JsonKey(ignore: true)
   _$$_ItemsFetchedCopyWith<_$_ItemsFetched> get copyWith =>
       throw _privateConstructorUsedError;
@@ -343,21 +382,27 @@ mixin _$NotificationsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchNotifications,
-    required TResult Function(int notificationId) removeNotification,
+    required TResult Function(int notificationId) removeBySwipe,
+    required TResult Function(List<int> notificationIds) removeNotifications,
+    required TResult Function() removeAllNotifications,
     required TResult Function(bool showLoading) updateNotifications,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchNotifications,
-    TResult? Function(int notificationId)? removeNotification,
+    TResult? Function(int notificationId)? removeBySwipe,
+    TResult? Function(List<int> notificationIds)? removeNotifications,
+    TResult? Function()? removeAllNotifications,
     TResult? Function(bool showLoading)? updateNotifications,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchNotifications,
-    TResult Function(int notificationId)? removeNotification,
+    TResult Function(int notificationId)? removeBySwipe,
+    TResult Function(List<int> notificationIds)? removeNotifications,
+    TResult Function()? removeAllNotifications,
     TResult Function(bool showLoading)? updateNotifications,
     required TResult orElse(),
   }) =>
@@ -365,21 +410,28 @@ mixin _$NotificationsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchNotifications value) fetchNotifications,
-    required TResult Function(_RemoveNotification value) removeNotification,
+    required TResult Function(_RemoveBySwipe value) removeBySwipe,
+    required TResult Function(_RemoveNotifications value) removeNotifications,
+    required TResult Function(_RemoveAllNotifications value)
+        removeAllNotifications,
     required TResult Function(_UpdateNotifications value) updateNotifications,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchNotifications value)? fetchNotifications,
-    TResult? Function(_RemoveNotification value)? removeNotification,
+    TResult? Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult? Function(_RemoveNotifications value)? removeNotifications,
+    TResult? Function(_RemoveAllNotifications value)? removeAllNotifications,
     TResult? Function(_UpdateNotifications value)? updateNotifications,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchNotifications value)? fetchNotifications,
-    TResult Function(_RemoveNotification value)? removeNotification,
+    TResult Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult Function(_RemoveNotifications value)? removeNotifications,
+    TResult Function(_RemoveAllNotifications value)? removeAllNotifications,
     TResult Function(_UpdateNotifications value)? updateNotifications,
     required TResult orElse(),
   }) =>
@@ -443,7 +495,9 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchNotifications,
-    required TResult Function(int notificationId) removeNotification,
+    required TResult Function(int notificationId) removeBySwipe,
+    required TResult Function(List<int> notificationIds) removeNotifications,
+    required TResult Function() removeAllNotifications,
     required TResult Function(bool showLoading) updateNotifications,
   }) {
     return fetchNotifications();
@@ -453,7 +507,9 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchNotifications,
-    TResult? Function(int notificationId)? removeNotification,
+    TResult? Function(int notificationId)? removeBySwipe,
+    TResult? Function(List<int> notificationIds)? removeNotifications,
+    TResult? Function()? removeAllNotifications,
     TResult? Function(bool showLoading)? updateNotifications,
   }) {
     return fetchNotifications?.call();
@@ -463,7 +519,9 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchNotifications,
-    TResult Function(int notificationId)? removeNotification,
+    TResult Function(int notificationId)? removeBySwipe,
+    TResult Function(List<int> notificationIds)? removeNotifications,
+    TResult Function()? removeAllNotifications,
     TResult Function(bool showLoading)? updateNotifications,
     required TResult orElse(),
   }) {
@@ -477,7 +535,10 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchNotifications value) fetchNotifications,
-    required TResult Function(_RemoveNotification value) removeNotification,
+    required TResult Function(_RemoveBySwipe value) removeBySwipe,
+    required TResult Function(_RemoveNotifications value) removeNotifications,
+    required TResult Function(_RemoveAllNotifications value)
+        removeAllNotifications,
     required TResult Function(_UpdateNotifications value) updateNotifications,
   }) {
     return fetchNotifications(this);
@@ -487,7 +548,9 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchNotifications value)? fetchNotifications,
-    TResult? Function(_RemoveNotification value)? removeNotification,
+    TResult? Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult? Function(_RemoveNotifications value)? removeNotifications,
+    TResult? Function(_RemoveAllNotifications value)? removeAllNotifications,
     TResult? Function(_UpdateNotifications value)? updateNotifications,
   }) {
     return fetchNotifications?.call(this);
@@ -497,7 +560,9 @@ class _$_FetchNotifications implements _FetchNotifications {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchNotifications value)? fetchNotifications,
-    TResult Function(_RemoveNotification value)? removeNotification,
+    TResult Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult Function(_RemoveNotifications value)? removeNotifications,
+    TResult Function(_RemoveAllNotifications value)? removeAllNotifications,
     TResult Function(_UpdateNotifications value)? updateNotifications,
     required TResult orElse(),
   }) {
@@ -513,20 +578,20 @@ abstract class _FetchNotifications implements NotificationsEvent {
 }
 
 /// @nodoc
-abstract class _$$_RemoveNotificationCopyWith<$Res> {
-  factory _$$_RemoveNotificationCopyWith(_$_RemoveNotification value,
-          $Res Function(_$_RemoveNotification) then) =
-      __$$_RemoveNotificationCopyWithImpl<$Res>;
+abstract class _$$_RemoveBySwipeCopyWith<$Res> {
+  factory _$$_RemoveBySwipeCopyWith(
+          _$_RemoveBySwipe value, $Res Function(_$_RemoveBySwipe) then) =
+      __$$_RemoveBySwipeCopyWithImpl<$Res>;
   @useResult
   $Res call({int notificationId});
 }
 
 /// @nodoc
-class __$$_RemoveNotificationCopyWithImpl<$Res>
-    extends _$NotificationsEventCopyWithImpl<$Res, _$_RemoveNotification>
-    implements _$$_RemoveNotificationCopyWith<$Res> {
-  __$$_RemoveNotificationCopyWithImpl(
-      _$_RemoveNotification _value, $Res Function(_$_RemoveNotification) _then)
+class __$$_RemoveBySwipeCopyWithImpl<$Res>
+    extends _$NotificationsEventCopyWithImpl<$Res, _$_RemoveBySwipe>
+    implements _$$_RemoveBySwipeCopyWith<$Res> {
+  __$$_RemoveBySwipeCopyWithImpl(
+      _$_RemoveBySwipe _value, $Res Function(_$_RemoveBySwipe) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -534,7 +599,7 @@ class __$$_RemoveNotificationCopyWithImpl<$Res>
   $Res call({
     Object? notificationId = null,
   }) {
-    return _then(_$_RemoveNotification(
+    return _then(_$_RemoveBySwipe(
       null == notificationId
           ? _value.notificationId
           : notificationId // ignore: cast_nullable_to_non_nullable
@@ -545,22 +610,22 @@ class __$$_RemoveNotificationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RemoveNotification implements _RemoveNotification {
-  const _$_RemoveNotification(this.notificationId);
+class _$_RemoveBySwipe implements _RemoveBySwipe {
+  const _$_RemoveBySwipe(this.notificationId);
 
   @override
   final int notificationId;
 
   @override
   String toString() {
-    return 'NotificationsEvent.removeNotification(notificationId: $notificationId)';
+    return 'NotificationsEvent.removeBySwipe(notificationId: $notificationId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RemoveNotification &&
+            other is _$_RemoveBySwipe &&
             (identical(other.notificationId, notificationId) ||
                 other.notificationId == notificationId));
   }
@@ -571,40 +636,45 @@ class _$_RemoveNotification implements _RemoveNotification {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RemoveNotificationCopyWith<_$_RemoveNotification> get copyWith =>
-      __$$_RemoveNotificationCopyWithImpl<_$_RemoveNotification>(
-          this, _$identity);
+  _$$_RemoveBySwipeCopyWith<_$_RemoveBySwipe> get copyWith =>
+      __$$_RemoveBySwipeCopyWithImpl<_$_RemoveBySwipe>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchNotifications,
-    required TResult Function(int notificationId) removeNotification,
+    required TResult Function(int notificationId) removeBySwipe,
+    required TResult Function(List<int> notificationIds) removeNotifications,
+    required TResult Function() removeAllNotifications,
     required TResult Function(bool showLoading) updateNotifications,
   }) {
-    return removeNotification(notificationId);
+    return removeBySwipe(notificationId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchNotifications,
-    TResult? Function(int notificationId)? removeNotification,
+    TResult? Function(int notificationId)? removeBySwipe,
+    TResult? Function(List<int> notificationIds)? removeNotifications,
+    TResult? Function()? removeAllNotifications,
     TResult? Function(bool showLoading)? updateNotifications,
   }) {
-    return removeNotification?.call(notificationId);
+    return removeBySwipe?.call(notificationId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchNotifications,
-    TResult Function(int notificationId)? removeNotification,
+    TResult Function(int notificationId)? removeBySwipe,
+    TResult Function(List<int> notificationIds)? removeNotifications,
+    TResult Function()? removeAllNotifications,
     TResult Function(bool showLoading)? updateNotifications,
     required TResult orElse(),
   }) {
-    if (removeNotification != null) {
-      return removeNotification(notificationId);
+    if (removeBySwipe != null) {
+      return removeBySwipe(notificationId);
     }
     return orElse();
   }
@@ -613,45 +683,335 @@ class _$_RemoveNotification implements _RemoveNotification {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchNotifications value) fetchNotifications,
-    required TResult Function(_RemoveNotification value) removeNotification,
+    required TResult Function(_RemoveBySwipe value) removeBySwipe,
+    required TResult Function(_RemoveNotifications value) removeNotifications,
+    required TResult Function(_RemoveAllNotifications value)
+        removeAllNotifications,
     required TResult Function(_UpdateNotifications value) updateNotifications,
   }) {
-    return removeNotification(this);
+    return removeBySwipe(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchNotifications value)? fetchNotifications,
-    TResult? Function(_RemoveNotification value)? removeNotification,
+    TResult? Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult? Function(_RemoveNotifications value)? removeNotifications,
+    TResult? Function(_RemoveAllNotifications value)? removeAllNotifications,
     TResult? Function(_UpdateNotifications value)? updateNotifications,
   }) {
-    return removeNotification?.call(this);
+    return removeBySwipe?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchNotifications value)? fetchNotifications,
-    TResult Function(_RemoveNotification value)? removeNotification,
+    TResult Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult Function(_RemoveNotifications value)? removeNotifications,
+    TResult Function(_RemoveAllNotifications value)? removeAllNotifications,
     TResult Function(_UpdateNotifications value)? updateNotifications,
     required TResult orElse(),
   }) {
-    if (removeNotification != null) {
-      return removeNotification(this);
+    if (removeBySwipe != null) {
+      return removeBySwipe(this);
     }
     return orElse();
   }
 }
 
-abstract class _RemoveNotification implements NotificationsEvent {
-  const factory _RemoveNotification(final int notificationId) =
-      _$_RemoveNotification;
+abstract class _RemoveBySwipe implements NotificationsEvent {
+  const factory _RemoveBySwipe(final int notificationId) = _$_RemoveBySwipe;
 
   int get notificationId;
   @JsonKey(ignore: true)
-  _$$_RemoveNotificationCopyWith<_$_RemoveNotification> get copyWith =>
+  _$$_RemoveBySwipeCopyWith<_$_RemoveBySwipe> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RemoveNotificationsCopyWith<$Res> {
+  factory _$$_RemoveNotificationsCopyWith(_$_RemoveNotifications value,
+          $Res Function(_$_RemoveNotifications) then) =
+      __$$_RemoveNotificationsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<int> notificationIds});
+}
+
+/// @nodoc
+class __$$_RemoveNotificationsCopyWithImpl<$Res>
+    extends _$NotificationsEventCopyWithImpl<$Res, _$_RemoveNotifications>
+    implements _$$_RemoveNotificationsCopyWith<$Res> {
+  __$$_RemoveNotificationsCopyWithImpl(_$_RemoveNotifications _value,
+      $Res Function(_$_RemoveNotifications) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? notificationIds = null,
+  }) {
+    return _then(_$_RemoveNotifications(
+      null == notificationIds
+          ? _value._notificationIds
+          : notificationIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RemoveNotifications implements _RemoveNotifications {
+  const _$_RemoveNotifications(final List<int> notificationIds)
+      : _notificationIds = notificationIds;
+
+  final List<int> _notificationIds;
+  @override
+  List<int> get notificationIds {
+    if (_notificationIds is EqualUnmodifiableListView) return _notificationIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_notificationIds);
+  }
+
+  @override
+  String toString() {
+    return 'NotificationsEvent.removeNotifications(notificationIds: $notificationIds)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveNotifications &&
+            const DeepCollectionEquality()
+                .equals(other._notificationIds, _notificationIds));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_notificationIds));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RemoveNotificationsCopyWith<_$_RemoveNotifications> get copyWith =>
+      __$$_RemoveNotificationsCopyWithImpl<_$_RemoveNotifications>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchNotifications,
+    required TResult Function(int notificationId) removeBySwipe,
+    required TResult Function(List<int> notificationIds) removeNotifications,
+    required TResult Function() removeAllNotifications,
+    required TResult Function(bool showLoading) updateNotifications,
+  }) {
+    return removeNotifications(notificationIds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchNotifications,
+    TResult? Function(int notificationId)? removeBySwipe,
+    TResult? Function(List<int> notificationIds)? removeNotifications,
+    TResult? Function()? removeAllNotifications,
+    TResult? Function(bool showLoading)? updateNotifications,
+  }) {
+    return removeNotifications?.call(notificationIds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchNotifications,
+    TResult Function(int notificationId)? removeBySwipe,
+    TResult Function(List<int> notificationIds)? removeNotifications,
+    TResult Function()? removeAllNotifications,
+    TResult Function(bool showLoading)? updateNotifications,
+    required TResult orElse(),
+  }) {
+    if (removeNotifications != null) {
+      return removeNotifications(notificationIds);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchNotifications value) fetchNotifications,
+    required TResult Function(_RemoveBySwipe value) removeBySwipe,
+    required TResult Function(_RemoveNotifications value) removeNotifications,
+    required TResult Function(_RemoveAllNotifications value)
+        removeAllNotifications,
+    required TResult Function(_UpdateNotifications value) updateNotifications,
+  }) {
+    return removeNotifications(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchNotifications value)? fetchNotifications,
+    TResult? Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult? Function(_RemoveNotifications value)? removeNotifications,
+    TResult? Function(_RemoveAllNotifications value)? removeAllNotifications,
+    TResult? Function(_UpdateNotifications value)? updateNotifications,
+  }) {
+    return removeNotifications?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchNotifications value)? fetchNotifications,
+    TResult Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult Function(_RemoveNotifications value)? removeNotifications,
+    TResult Function(_RemoveAllNotifications value)? removeAllNotifications,
+    TResult Function(_UpdateNotifications value)? updateNotifications,
+    required TResult orElse(),
+  }) {
+    if (removeNotifications != null) {
+      return removeNotifications(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveNotifications implements NotificationsEvent {
+  const factory _RemoveNotifications(final List<int> notificationIds) =
+      _$_RemoveNotifications;
+
+  List<int> get notificationIds;
+  @JsonKey(ignore: true)
+  _$$_RemoveNotificationsCopyWith<_$_RemoveNotifications> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RemoveAllNotificationsCopyWith<$Res> {
+  factory _$$_RemoveAllNotificationsCopyWith(_$_RemoveAllNotifications value,
+          $Res Function(_$_RemoveAllNotifications) then) =
+      __$$_RemoveAllNotificationsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_RemoveAllNotificationsCopyWithImpl<$Res>
+    extends _$NotificationsEventCopyWithImpl<$Res, _$_RemoveAllNotifications>
+    implements _$$_RemoveAllNotificationsCopyWith<$Res> {
+  __$$_RemoveAllNotificationsCopyWithImpl(_$_RemoveAllNotifications _value,
+      $Res Function(_$_RemoveAllNotifications) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_RemoveAllNotifications implements _RemoveAllNotifications {
+  const _$_RemoveAllNotifications();
+
+  @override
+  String toString() {
+    return 'NotificationsEvent.removeAllNotifications()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveAllNotifications);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchNotifications,
+    required TResult Function(int notificationId) removeBySwipe,
+    required TResult Function(List<int> notificationIds) removeNotifications,
+    required TResult Function() removeAllNotifications,
+    required TResult Function(bool showLoading) updateNotifications,
+  }) {
+    return removeAllNotifications();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchNotifications,
+    TResult? Function(int notificationId)? removeBySwipe,
+    TResult? Function(List<int> notificationIds)? removeNotifications,
+    TResult? Function()? removeAllNotifications,
+    TResult? Function(bool showLoading)? updateNotifications,
+  }) {
+    return removeAllNotifications?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchNotifications,
+    TResult Function(int notificationId)? removeBySwipe,
+    TResult Function(List<int> notificationIds)? removeNotifications,
+    TResult Function()? removeAllNotifications,
+    TResult Function(bool showLoading)? updateNotifications,
+    required TResult orElse(),
+  }) {
+    if (removeAllNotifications != null) {
+      return removeAllNotifications();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchNotifications value) fetchNotifications,
+    required TResult Function(_RemoveBySwipe value) removeBySwipe,
+    required TResult Function(_RemoveNotifications value) removeNotifications,
+    required TResult Function(_RemoveAllNotifications value)
+        removeAllNotifications,
+    required TResult Function(_UpdateNotifications value) updateNotifications,
+  }) {
+    return removeAllNotifications(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchNotifications value)? fetchNotifications,
+    TResult? Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult? Function(_RemoveNotifications value)? removeNotifications,
+    TResult? Function(_RemoveAllNotifications value)? removeAllNotifications,
+    TResult? Function(_UpdateNotifications value)? updateNotifications,
+  }) {
+    return removeAllNotifications?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchNotifications value)? fetchNotifications,
+    TResult Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult Function(_RemoveNotifications value)? removeNotifications,
+    TResult Function(_RemoveAllNotifications value)? removeAllNotifications,
+    TResult Function(_UpdateNotifications value)? updateNotifications,
+    required TResult orElse(),
+  }) {
+    if (removeAllNotifications != null) {
+      return removeAllNotifications(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveAllNotifications implements NotificationsEvent {
+  const factory _RemoveAllNotifications() = _$_RemoveAllNotifications;
 }
 
 /// @nodoc
@@ -721,7 +1081,9 @@ class _$_UpdateNotifications implements _UpdateNotifications {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchNotifications,
-    required TResult Function(int notificationId) removeNotification,
+    required TResult Function(int notificationId) removeBySwipe,
+    required TResult Function(List<int> notificationIds) removeNotifications,
+    required TResult Function() removeAllNotifications,
     required TResult Function(bool showLoading) updateNotifications,
   }) {
     return updateNotifications(showLoading);
@@ -731,7 +1093,9 @@ class _$_UpdateNotifications implements _UpdateNotifications {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchNotifications,
-    TResult? Function(int notificationId)? removeNotification,
+    TResult? Function(int notificationId)? removeBySwipe,
+    TResult? Function(List<int> notificationIds)? removeNotifications,
+    TResult? Function()? removeAllNotifications,
     TResult? Function(bool showLoading)? updateNotifications,
   }) {
     return updateNotifications?.call(showLoading);
@@ -741,7 +1105,9 @@ class _$_UpdateNotifications implements _UpdateNotifications {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchNotifications,
-    TResult Function(int notificationId)? removeNotification,
+    TResult Function(int notificationId)? removeBySwipe,
+    TResult Function(List<int> notificationIds)? removeNotifications,
+    TResult Function()? removeAllNotifications,
     TResult Function(bool showLoading)? updateNotifications,
     required TResult orElse(),
   }) {
@@ -755,7 +1121,10 @@ class _$_UpdateNotifications implements _UpdateNotifications {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchNotifications value) fetchNotifications,
-    required TResult Function(_RemoveNotification value) removeNotification,
+    required TResult Function(_RemoveBySwipe value) removeBySwipe,
+    required TResult Function(_RemoveNotifications value) removeNotifications,
+    required TResult Function(_RemoveAllNotifications value)
+        removeAllNotifications,
     required TResult Function(_UpdateNotifications value) updateNotifications,
   }) {
     return updateNotifications(this);
@@ -765,7 +1134,9 @@ class _$_UpdateNotifications implements _UpdateNotifications {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchNotifications value)? fetchNotifications,
-    TResult? Function(_RemoveNotification value)? removeNotification,
+    TResult? Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult? Function(_RemoveNotifications value)? removeNotifications,
+    TResult? Function(_RemoveAllNotifications value)? removeAllNotifications,
     TResult? Function(_UpdateNotifications value)? updateNotifications,
   }) {
     return updateNotifications?.call(this);
@@ -775,7 +1146,9 @@ class _$_UpdateNotifications implements _UpdateNotifications {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchNotifications value)? fetchNotifications,
-    TResult Function(_RemoveNotification value)? removeNotification,
+    TResult Function(_RemoveBySwipe value)? removeBySwipe,
+    TResult Function(_RemoveNotifications value)? removeNotifications,
+    TResult Function(_RemoveAllNotifications value)? removeAllNotifications,
     TResult Function(_UpdateNotifications value)? updateNotifications,
     required TResult orElse(),
   }) {

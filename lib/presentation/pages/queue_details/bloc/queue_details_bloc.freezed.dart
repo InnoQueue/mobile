@@ -19,7 +19,7 @@ mixin _$QueueDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
-    required TResult Function(double? expenses) completeTask,
+    required TResult Function(int? expenses) completeTask,
     required TResult Function() skipTask,
     required TResult Function() submitChanges,
     required TResult Function() leaveQueue,
@@ -30,7 +30,7 @@ mixin _$QueueDetailsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
-    TResult? Function(double? expenses)? completeTask,
+    TResult? Function(int? expenses)? completeTask,
     TResult? Function()? skipTask,
     TResult? Function()? submitChanges,
     TResult? Function()? leaveQueue,
@@ -41,7 +41,7 @@ mixin _$QueueDetailsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
-    TResult Function(double? expenses)? completeTask,
+    TResult Function(int? expenses)? completeTask,
     TResult Function()? skipTask,
     TResult Function()? submitChanges,
     TResult Function()? leaveQueue,
@@ -169,7 +169,7 @@ class _$_FetchQueue implements _FetchQueue {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
-    required TResult Function(double? expenses) completeTask,
+    required TResult Function(int? expenses) completeTask,
     required TResult Function() skipTask,
     required TResult Function() submitChanges,
     required TResult Function() leaveQueue,
@@ -183,7 +183,7 @@ class _$_FetchQueue implements _FetchQueue {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
-    TResult? Function(double? expenses)? completeTask,
+    TResult? Function(int? expenses)? completeTask,
     TResult? Function()? skipTask,
     TResult? Function()? submitChanges,
     TResult? Function()? leaveQueue,
@@ -197,7 +197,7 @@ class _$_FetchQueue implements _FetchQueue {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
-    TResult Function(double? expenses)? completeTask,
+    TResult Function(int? expenses)? completeTask,
     TResult Function()? skipTask,
     TResult Function()? submitChanges,
     TResult Function()? leaveQueue,
@@ -273,7 +273,7 @@ abstract class _$$_CompleteTaskCopyWith<$Res> {
           _$_CompleteTask value, $Res Function(_$_CompleteTask) then) =
       __$$_CompleteTaskCopyWithImpl<$Res>;
   @useResult
-  $Res call({double? expenses});
+  $Res call({int? expenses});
 }
 
 /// @nodoc
@@ -293,7 +293,7 @@ class __$$_CompleteTaskCopyWithImpl<$Res>
       expenses: freezed == expenses
           ? _value.expenses
           : expenses // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
     ));
   }
 }
@@ -304,7 +304,7 @@ class _$_CompleteTask implements _CompleteTask {
   const _$_CompleteTask({this.expenses});
 
   @override
-  final double? expenses;
+  final int? expenses;
 
   @override
   String toString() {
@@ -333,7 +333,7 @@ class _$_CompleteTask implements _CompleteTask {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
-    required TResult Function(double? expenses) completeTask,
+    required TResult Function(int? expenses) completeTask,
     required TResult Function() skipTask,
     required TResult Function() submitChanges,
     required TResult Function() leaveQueue,
@@ -347,7 +347,7 @@ class _$_CompleteTask implements _CompleteTask {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
-    TResult? Function(double? expenses)? completeTask,
+    TResult? Function(int? expenses)? completeTask,
     TResult? Function()? skipTask,
     TResult? Function()? submitChanges,
     TResult? Function()? leaveQueue,
@@ -361,7 +361,7 @@ class _$_CompleteTask implements _CompleteTask {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
-    TResult Function(double? expenses)? completeTask,
+    TResult Function(int? expenses)? completeTask,
     TResult Function()? skipTask,
     TResult Function()? submitChanges,
     TResult Function()? leaveQueue,
@@ -423,9 +423,9 @@ class _$_CompleteTask implements _CompleteTask {
 }
 
 abstract class _CompleteTask implements QueueDetailsEvent {
-  const factory _CompleteTask({final double? expenses}) = _$_CompleteTask;
+  const factory _CompleteTask({final int? expenses}) = _$_CompleteTask;
 
-  double? get expenses;
+  int? get expenses;
   @JsonKey(ignore: true)
   _$$_CompleteTaskCopyWith<_$_CompleteTask> get copyWith =>
       throw _privateConstructorUsedError;
@@ -470,7 +470,7 @@ class _$_SkipTask implements _SkipTask {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
-    required TResult Function(double? expenses) completeTask,
+    required TResult Function(int? expenses) completeTask,
     required TResult Function() skipTask,
     required TResult Function() submitChanges,
     required TResult Function() leaveQueue,
@@ -484,7 +484,7 @@ class _$_SkipTask implements _SkipTask {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
-    TResult? Function(double? expenses)? completeTask,
+    TResult? Function(int? expenses)? completeTask,
     TResult? Function()? skipTask,
     TResult? Function()? submitChanges,
     TResult? Function()? leaveQueue,
@@ -498,7 +498,7 @@ class _$_SkipTask implements _SkipTask {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
-    TResult Function(double? expenses)? completeTask,
+    TResult Function(int? expenses)? completeTask,
     TResult Function()? skipTask,
     TResult Function()? submitChanges,
     TResult Function()? leaveQueue,
@@ -602,7 +602,7 @@ class _$_SubmitChanges implements _SubmitChanges {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
-    required TResult Function(double? expenses) completeTask,
+    required TResult Function(int? expenses) completeTask,
     required TResult Function() skipTask,
     required TResult Function() submitChanges,
     required TResult Function() leaveQueue,
@@ -616,7 +616,7 @@ class _$_SubmitChanges implements _SubmitChanges {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
-    TResult? Function(double? expenses)? completeTask,
+    TResult? Function(int? expenses)? completeTask,
     TResult? Function()? skipTask,
     TResult? Function()? submitChanges,
     TResult? Function()? leaveQueue,
@@ -630,7 +630,7 @@ class _$_SubmitChanges implements _SubmitChanges {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
-    TResult Function(double? expenses)? completeTask,
+    TResult Function(int? expenses)? completeTask,
     TResult Function()? skipTask,
     TResult Function()? submitChanges,
     TResult Function()? leaveQueue,
@@ -734,7 +734,7 @@ class _$_LeaveQueue implements _LeaveQueue {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
-    required TResult Function(double? expenses) completeTask,
+    required TResult Function(int? expenses) completeTask,
     required TResult Function() skipTask,
     required TResult Function() submitChanges,
     required TResult Function() leaveQueue,
@@ -748,7 +748,7 @@ class _$_LeaveQueue implements _LeaveQueue {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
-    TResult? Function(double? expenses)? completeTask,
+    TResult? Function(int? expenses)? completeTask,
     TResult? Function()? skipTask,
     TResult? Function()? submitChanges,
     TResult? Function()? leaveQueue,
@@ -762,7 +762,7 @@ class _$_LeaveQueue implements _LeaveQueue {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
-    TResult Function(double? expenses)? completeTask,
+    TResult Function(int? expenses)? completeTask,
     TResult Function()? skipTask,
     TResult Function()? submitChanges,
     TResult Function()? leaveQueue,
@@ -866,7 +866,7 @@ class _$_FreezeQueue implements _FreezeQueue {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
-    required TResult Function(double? expenses) completeTask,
+    required TResult Function(int? expenses) completeTask,
     required TResult Function() skipTask,
     required TResult Function() submitChanges,
     required TResult Function() leaveQueue,
@@ -880,7 +880,7 @@ class _$_FreezeQueue implements _FreezeQueue {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
-    TResult? Function(double? expenses)? completeTask,
+    TResult? Function(int? expenses)? completeTask,
     TResult? Function()? skipTask,
     TResult? Function()? submitChanges,
     TResult? Function()? leaveQueue,
@@ -894,7 +894,7 @@ class _$_FreezeQueue implements _FreezeQueue {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
-    TResult Function(double? expenses)? completeTask,
+    TResult Function(int? expenses)? completeTask,
     TResult Function()? skipTask,
     TResult Function()? submitChanges,
     TResult Function()? leaveQueue,
@@ -998,7 +998,7 @@ class _$_UnfreezeQueue implements _UnfreezeQueue {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int queueId) fetchQueue,
-    required TResult Function(double? expenses) completeTask,
+    required TResult Function(int? expenses) completeTask,
     required TResult Function() skipTask,
     required TResult Function() submitChanges,
     required TResult Function() leaveQueue,
@@ -1012,7 +1012,7 @@ class _$_UnfreezeQueue implements _UnfreezeQueue {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int queueId)? fetchQueue,
-    TResult? Function(double? expenses)? completeTask,
+    TResult? Function(int? expenses)? completeTask,
     TResult? Function()? skipTask,
     TResult? Function()? submitChanges,
     TResult? Function()? leaveQueue,
@@ -1026,7 +1026,7 @@ class _$_UnfreezeQueue implements _UnfreezeQueue {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int queueId)? fetchQueue,
-    TResult Function(double? expenses)? completeTask,
+    TResult Function(int? expenses)? completeTask,
     TResult Function()? skipTask,
     TResult Function()? submitChanges,
     TResult Function()? leaveQueue,

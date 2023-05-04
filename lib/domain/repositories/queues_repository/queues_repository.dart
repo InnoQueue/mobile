@@ -36,7 +36,7 @@ abstract class QueuesRepository {
 
   Future<void> completeTask({
     required int queueId,
-    double? expenses,
+    int? expenses,
   });
 
   Future<void> skipTask(int queueId);

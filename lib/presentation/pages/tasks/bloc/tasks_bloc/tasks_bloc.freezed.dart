@@ -19,32 +19,38 @@ mixin _$TasksEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadData,
+    required TResult Function(List<int> ids) skipTasks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadData,
+    TResult? Function(List<int> ids)? skipTasks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadData,
+    TResult Function(List<int> ids)? skipTasks,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadData value) loadData,
+    required TResult Function(_SkipTasks value) skipTasks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadData value)? loadData,
+    TResult? Function(_SkipTasks value)? skipTasks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadData value)? loadData,
+    TResult Function(_SkipTasks value)? skipTasks,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadData,
+    required TResult Function(List<int> ids) skipTasks,
   }) {
     return loadData();
   }
@@ -115,6 +122,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadData,
+    TResult? Function(List<int> ids)? skipTasks,
   }) {
     return loadData?.call();
   }
@@ -123,6 +131,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadData,
+    TResult Function(List<int> ids)? skipTasks,
     required TResult orElse(),
   }) {
     if (loadData != null) {
@@ -135,6 +144,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadData value) loadData,
+    required TResult Function(_SkipTasks value) skipTasks,
   }) {
     return loadData(this);
   }
@@ -143,6 +153,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadData value)? loadData,
+    TResult? Function(_SkipTasks value)? skipTasks,
   }) {
     return loadData?.call(this);
   }
@@ -151,6 +162,7 @@ class _$_LoadData implements _LoadData {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadData value)? loadData,
+    TResult Function(_SkipTasks value)? skipTasks,
     required TResult orElse(),
   }) {
     if (loadData != null) {
@@ -162,6 +174,145 @@ class _$_LoadData implements _LoadData {
 
 abstract class _LoadData implements TasksEvent {
   const factory _LoadData() = _$_LoadData;
+}
+
+/// @nodoc
+abstract class _$$_SkipTasksCopyWith<$Res> {
+  factory _$$_SkipTasksCopyWith(
+          _$_SkipTasks value, $Res Function(_$_SkipTasks) then) =
+      __$$_SkipTasksCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<int> ids});
+}
+
+/// @nodoc
+class __$$_SkipTasksCopyWithImpl<$Res>
+    extends _$TasksEventCopyWithImpl<$Res, _$_SkipTasks>
+    implements _$$_SkipTasksCopyWith<$Res> {
+  __$$_SkipTasksCopyWithImpl(
+      _$_SkipTasks _value, $Res Function(_$_SkipTasks) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ids = null,
+  }) {
+    return _then(_$_SkipTasks(
+      null == ids
+          ? _value._ids
+          : ids // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SkipTasks implements _SkipTasks {
+  const _$_SkipTasks(final List<int> ids) : _ids = ids;
+
+  final List<int> _ids;
+  @override
+  List<int> get ids {
+    if (_ids is EqualUnmodifiableListView) return _ids;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ids);
+  }
+
+  @override
+  String toString() {
+    return 'TasksEvent.skipTasks(ids: $ids)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SkipTasks &&
+            const DeepCollectionEquality().equals(other._ids, _ids));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_ids));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SkipTasksCopyWith<_$_SkipTasks> get copyWith =>
+      __$$_SkipTasksCopyWithImpl<_$_SkipTasks>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadData,
+    required TResult Function(List<int> ids) skipTasks,
+  }) {
+    return skipTasks(ids);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadData,
+    TResult? Function(List<int> ids)? skipTasks,
+  }) {
+    return skipTasks?.call(ids);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadData,
+    TResult Function(List<int> ids)? skipTasks,
+    required TResult orElse(),
+  }) {
+    if (skipTasks != null) {
+      return skipTasks(ids);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadData value) loadData,
+    required TResult Function(_SkipTasks value) skipTasks,
+  }) {
+    return skipTasks(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadData value)? loadData,
+    TResult? Function(_SkipTasks value)? skipTasks,
+  }) {
+    return skipTasks?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadData value)? loadData,
+    TResult Function(_SkipTasks value)? skipTasks,
+    required TResult orElse(),
+  }) {
+    if (skipTasks != null) {
+      return skipTasks(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SkipTasks implements TasksEvent {
+  const factory _SkipTasks(final List<int> ids) = _$_SkipTasks;
+
+  List<int> get ids;
+  @JsonKey(ignore: true)
+  _$$_SkipTasksCopyWith<_$_SkipTasks> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

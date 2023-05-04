@@ -7,7 +7,7 @@ class QueueDetailsEvent with _$QueueDetailsEvent {
   ) = _FetchQueue;
 
   const factory QueueDetailsEvent.completeTask({
-    double? expenses,
+    int? expenses,
   }) = _CompleteTask;
 
   const factory QueueDetailsEvent.skipTask() = _SkipTask;

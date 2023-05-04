@@ -28,4 +28,9 @@ class NotificationsApi {
 
   Future<Response> removeNotification(int id) =>
       dio.delete('/notifications/$id');
+
+  Future<Response> removeNotifications(List<int> ids) =>
+      dio.post('/notifications/delete', data: {
+        'notificationIds': ids,
+      });
 }
