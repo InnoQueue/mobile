@@ -44,7 +44,7 @@ jobs:
 
   releaseArtifacts:
     runs-on: "ubuntu-latest"
-    needs: [ lint, test, buildAndRelease ]
+    needs: [ buildForRelease ]
     steps:
       - uses: actions/download-artifact@v3
         with:
