@@ -1,4 +1,4 @@
-name: Run MD Linter
+name: MD Linter
 on:
   pull_request:
 jobs:
