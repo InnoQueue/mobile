@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../application/application.dart';
@@ -55,7 +56,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                 ),
                 const SizedBox(height: 8),
                 NotificationTile(
-                  name: 'completed',
+                  name: 'Notify when someone completes a task',
                   value: notificationSettings!.completed,
                   onChanged: (value) => setState(() {
                     notificationSettings =
@@ -63,7 +64,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   }),
                 ),
                 NotificationTile(
-                  name: 'skipped',
+                  name: 'Notify when someone skips a task',
                   value: notificationSettings!.skipped,
                   onChanged: (value) => setState(() {
                     notificationSettings =
@@ -71,7 +72,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   }),
                 ),
                 NotificationTile(
-                  name: 'joinedQueue',
+                  name: 'Notify when someone joins a queue',
                   value: notificationSettings!.joinedQueue,
                   onChanged: (value) => setState(() {
                     notificationSettings =
@@ -79,7 +80,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   }),
                 ),
                 NotificationTile(
-                  name: 'freeze',
+                  name: 'Notify when someone freezes a queue',
                   value: notificationSettings!.freeze,
                   onChanged: (value) => setState(() {
                     notificationSettings =
@@ -87,7 +88,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   }),
                 ),
                 NotificationTile(
-                  name: 'leftQueue',
+                  name: 'Notify when someone leaves a queue',
                   value: notificationSettings!.leftQueue,
                   onChanged: (value) => setState(() {
                     notificationSettings =
@@ -95,7 +96,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   }),
                 ),
                 NotificationTile(
-                  name: 'yourTurn',
+                  name: 'Notify when it\'s your turn',
                   value: notificationSettings!.yourTurn,
                   onChanged: (value) => setState(() {
                     notificationSettings =
@@ -138,9 +139,12 @@ class NotificationTile extends StatelessWidget {
         children: [
           Text(name),
           const Spacer(),
-          Switch(
+          CupertinoSwitch(
             value: value,
             onChanged: onChanged,
+            activeColor: Colors.green.shade300,
+            // inactiveTrackColor: Colors.red.shade100,
+            // inactiveThumbColor: Colors.red.shade300,
           ),
         ],
       ),
