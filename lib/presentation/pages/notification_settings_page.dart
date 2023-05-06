@@ -139,12 +139,12 @@ class NotificationTile extends StatelessWidget {
         children: [
           Text(name),
           const Spacer(),
-          CupertinoSwitch(
+          Switch(
             value: value,
             onChanged: onChanged,
             activeColor: Colors.green.shade300,
-            // inactiveTrackColor: Colors.red.shade100,
-            // inactiveThumbColor: Colors.red.shade300,
+            inactiveTrackColor: Colors.red.shade100,
+            inactiveThumbColor: Colors.red.shade300,
           ),
         ],
       ),
