@@ -38,10 +38,12 @@ class SelectableAppBarState extends State<SelectableAppBar> {
                 duration: const Duration(milliseconds: 300),
                 scale: isAnythingSelected ? 1 : 0,
                 curve: Curves.easeInOutBack,
-                child: const Icon(
-                  Icons.close,
-                  color: Colors.black,
-                ),
+                child: isAnythingSelected
+                    ? const Icon(
+                        Icons.close,
+                        color: Colors.black,
+                      )
+                    : const SizedBox(),
               ),
               const SizedBox(width: 16),
               AnimatedScale(
