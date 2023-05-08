@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
@@ -7,6 +8,8 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextAlign? textAlign;
   final TextInputType? keyBoardType;
+  final List<TextInputFormatter>? inputFormatters;
+
   const CustomTextField({
     required this.onChanged,
     required this.hintText,
@@ -14,6 +17,7 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.textAlign,
     this.keyBoardType,
+    this.inputFormatters,
     super.key,
   });
 
@@ -38,6 +42,7 @@ class CustomTextField extends StatelessWidget {
       ),
       onChanged: onChanged,
       onSubmitted: onSubmitted,
+      inputFormatters: inputFormatters,
     );
   }
 }

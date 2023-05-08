@@ -26,7 +26,7 @@ class UserInfo extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         Text(
-          '${user.expenses}₽ spent',
+          '${(user.expenses / 100).toStringAsFixed(2)}₽ spent',
           style: const TextStyle(
             fontSize: 12,
             color: Colors.grey,
