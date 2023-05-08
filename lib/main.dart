@@ -54,6 +54,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    Colors.grey[50];
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(value: getIt.get<FirebaseNotifcationsCubit>()),

@@ -14,6 +14,7 @@ class AddQueuePage extends StatefulWidget {
 class _AddQueuePageState extends State<AddQueuePage> {
   String name = '';
   String color = colors.entries.first.key;
+  bool trackExpenses = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +50,26 @@ class _AddQueuePageState extends State<AddQueuePage> {
             ),
           ),
           const SizedBox(height: 50),
+          Row(
+            children: [
+              const Text(
+                'Track Expenses',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              const Spacer(),
+              Switch(
+                value: trackExpenses,
+                onChanged: (value) {
+                  setState(() {
+                    trackExpenses = value;
+                  });
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
           _SubmitButton(
             onPressed: name.isEmpty
                 ? null
@@ -57,7 +78,7 @@ class _AddQueuePageState extends State<AddQueuePage> {
                           QueuesEvent.createQueue(
                             name: name,
                             color: color,
-                            trackExpenses: false,
+                            trackExpenses: trackExpenses,
                           ),
                         );
                     context.router.pop();
