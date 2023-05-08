@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../presentation.dart';
 
@@ -39,6 +40,18 @@ class _AddProgressPageState extends State<AddProgressPage> {
           CustomTextField(
             hintText: 'input expenses',
             onChanged: (value) => setState(() => expenses = value),
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r"[0-9.,]")),
+              TextInputFormatter.withFunction((oldValue, newValue) {
+                try {
+                  final text = newValue.text.replaceAll(',', '.');
+                  if (text.isNotEmpty) double.parse(text);
+                  return newValue;
+                } catch (e) {
+                  return oldValue;
+                }
+              }),
+            ],
           ),
           const SizedBox(height: 50),
           _SubmitButton(
