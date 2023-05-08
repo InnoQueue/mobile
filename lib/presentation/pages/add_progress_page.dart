@@ -58,7 +58,7 @@ class _AddProgressPageState extends State<AddProgressPage> {
             onPressed: !isValueValid
                 ? null
                 : () {
-                    widget.submitExpenses(double.parse(expenses));
+                    widget.submitExpenses(double.parse(expenses) * 100);
                     context.router.pop();
                   },
           ),
