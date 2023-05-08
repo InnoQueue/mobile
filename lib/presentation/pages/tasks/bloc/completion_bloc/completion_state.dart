@@ -6,5 +6,6 @@ class CompletionState with _$CompletionState {
     required List<TaskModel> selectedTasks,
     required List<TaskModel> disappearingTasks,
     required List<TaskModel> deletedTasks,
+    required TaskModel? skippedTask,
   }) = _CompletionState;
 }

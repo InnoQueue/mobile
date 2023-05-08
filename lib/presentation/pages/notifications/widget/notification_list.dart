@@ -7,14 +7,62 @@ import '../../../../application/application.dart';
 import '../../../../domain/domain.dart';
 import '../../../presentation.dart';
 
-class NotificationList extends StatelessWidget {
+class NotificationList extends StatefulWidget {
   final List<NotificationModel> notifications;
+  final NotificationModel? removedBySwipe;
   final bool fetchedAll;
   const NotificationList({
     required this.notifications,
     required this.fetchedAll,
+    required this.removedBySwipe,
     super.key,
   });
+
+  @override
+  State<NotificationList> createState() => _NotificationListState();
+}
+
+class _NotificationListState extends State<NotificationList> {
+  final GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();
+  late final List<NotificationModel> _notifications =
+      widget.notifications.toList();
+
+  @override
+  void didUpdateWidget(covariant NotificationList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    _removeWithNoAnimation(widget.removedBySwipe);
+
+    final List<NotificationModel> removedNotifications = _notifications
+        .toSet()
+        .difference(widget.notifications.toSet())
+        .toList();
+
+    _removeNotifications(removedNotifications);
+
+    final List<NotificationModel> newNotifications = widget.notifications
+        .toSet()
+        .difference(oldWidget.notifications.toSet())
+        .toList();
+
+    final List<NotificationModel> notificationsToAdd =
+        newNotifications.toSet().difference(_notifications.toSet()).toList();
+
+    int lengthBeforeAdding = _notifications.length;
+    _notifications.addAll(notificationsToAdd);
+
+    for (int i = 0; i < notificationsToAdd.length; i++) {
+      listKey.currentState?.insertItem(lengthBeforeAdding + i);
+    }
+
+    if (!oldWidget.fetchedAll && widget.fetchedAll) {
+      listKey.currentState?.removeItem(
+        _notifications.length,
+        (context, animation) => const SizedBox(),
+        duration: Duration.zero,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,39 +76,63 @@ class NotificationList extends StatelessWidget {
 
         return;
       },
-      child: ListView.builder(
-        padding: const EdgeInsets.all(10),
-        itemBuilder: (context, index) => index == notifications.length
-            ? _LoadingIndicator(
-                key: UniqueKey(),
-              )
-            : Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: CustomDismissible(
-                    key: Key(
-                      'dissmisible_notification_${notifications[index].hashCode.toString()}',
-                    ),
-                    dismissibleKey: Key(
-                      'notification_${notifications[index].hashCode.toString()}',
-                    ),
-                    onDismissed: () {
-                      getIt.get<NotificationsBloc>().add(
-                            NotificationsEvent.removeNotification(
-                              notifications[index].notificationId,
-                            ),
-                          );
-                    },
-                    child: NotifiationItem(
-                      notification: notifications[index],
-                    ),
+      child: AnimatedList(
+        key: listKey,
+        padding: const EdgeInsets.symmetric(
+          vertical: 10,
+        ),
+        physics: const AlwaysScrollableScrollPhysics(),
+        itemBuilder: (context, index, animation) =>
+            index == _notifications.length
+                ? _LoadingIndicator(
+                    key: UniqueKey(),
+                  )
+                : NotifiationItem(
+                    notification: _notifications[index],
                   ),
-                ),
-              ),
-        itemCount: notifications.length + (fetchedAll ? 0 : 1),
+        initialItemCount:
+            widget.notifications.length + (widget.fetchedAll ? 0 : 1),
       ),
     );
+  }
+
+  void _removeNotification(NotificationModel notification) {
+    var index = _notifications.indexOf(notification);
+
+    if (index != -1) {
+      listKey.currentState?.removeItem(
+        _notifications.indexOf(notification),
+        (_, animation) => SizeTransition(
+          axis: Axis.vertical,
+          sizeFactor: animation,
+          child: const SizedBox(height: 65),
+        ),
+        duration: const Duration(milliseconds: 200),
+      );
+    }
+
+    _notifications.remove(notification);
+  }
+
+  void _removeWithNoAnimation(NotificationModel? notification) {
+    if (notification == null) return;
+    var index = _notifications.indexOf(notification);
+
+    if (index != -1) {
+      listKey.currentState?.removeItem(
+        _notifications.indexOf(notification),
+        (_, animation) => const SizedBox(),
+        duration: Duration.zero,
+      );
+    }
+
+    _notifications.remove(notification);
+  }
+
+  void _removeNotifications(List<NotificationModel> notifications) {
+    for (final notification in notifications) {
+      _removeNotification(notification);
+    }
   }
 }
 
@@ -97,6 +169,9 @@ class NotifiationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SelectionBloc selectionBloc = context.watch<SelectionBloc>();
+    bool isAnythingSelected = selectionBloc.selectedIds.isNotEmpty;
+
     return VisibilityDetector(
       key: Key('Notification_${notification.notificationId}'),
       onVisibilityChanged: (info) {
@@ -106,6 +181,7 @@ class NotifiationItem extends StatelessWidget {
               .markNotificationAsDisplayed(notification.notificationId);
         }
       },
+<<<<<<< HEAD
       child: Container(
         padding: const EdgeInsets.only(
           left: 20,
@@ -130,14 +206,53 @@ class NotifiationItem extends StatelessWidget {
               getText(notification),
               style: const TextStyle(fontSize: 16),
               isNew: !notification.read,
+=======
+      child: SelectableItemBackground(
+        id: notification.notificationId,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: CustomDismissible(
+            key: Key(
+              'dissmisible_notification_${notification.hashCode.toString()}',
+>>>>>>> 6a8f470 (Add selection (#58))
             ),
-            const SizedBox(height: 5),
-            Text(
-              DateFormat('kk:mm dd.MM.yyyy')
-                  .format(notification.date.toLocal()),
-              style: const TextStyle(fontSize: 10, color: Colors.grey),
+            dismissibleKey: Key(
+              'notification_${notification.hashCode.toString()}',
             ),
-          ],
+            onDismissed: () {
+              getIt.get<NotificationsBloc>().add(
+                    NotificationsEvent.removeBySwipe(
+                      notification.notificationId,
+                    ),
+                  );
+            },
+            backgroundColor: Colors.red.shade300,
+            icon: Icons.delete_outline,
+            isSelectionEnabled: isAnythingSelected,
+            child: SelectableItemContent(
+              id: notification.notificationId,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SuperText(
+                      getText(notification),
+                      style: const TextStyle(fontSize: 16),
+                      isNew: !notification.read,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      DateFormat('kk:mm dd.MM.yyyy')
+                          .format(notification.date.toLocal()),
+                      style: const TextStyle(fontSize: 10, color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );

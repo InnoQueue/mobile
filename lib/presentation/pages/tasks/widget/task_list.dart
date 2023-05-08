@@ -20,12 +20,36 @@ class _TaskListState extends State<TaskList> {
   late final List<TaskModel> _tasks = widget.tasks.toList();
 
   @override
+  void didUpdateWidget(covariant TaskList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    final List<TaskModel> removedTasks =
+        _tasks.toSet().difference(widget.tasks.toSet()).toList();
+
+    _completeTasks(removedTasks);
+
+    final List<TaskModel> newTasks =
+        widget.tasks.toSet().difference(oldWidget.tasks.toSet()).toList();
+
+    final List<TaskModel> tasksToAdd =
+        newTasks.toSet().difference(_tasks.toSet()).toList();
+
+    int lengthBeforeAdding = _tasks.length;
+    _tasks.addAll(tasksToAdd);
+
+    for (int i = 0; i < tasksToAdd.length; i++) {
+      listKey.currentState?.insertItem(lengthBeforeAdding + i);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider<CompletionBloc>(
+    return BlocProvider(
       create: (context) => CompletionBloc(),
       child: BlocConsumer<CompletionBloc, CompletionState>(
         listener: (context, state) {
-          _removeTasks(state.deletedTasks);
+          _completeTasks(state.deletedTasks);
+          _skipTask(state.skippedTask);
         },
         builder: (context, state) => AnimatedList(
           key: listKey,
@@ -33,28 +57,24 @@ class _TaskListState extends State<TaskList> {
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(
             vertical: 10,
-            horizontal: 10,
           ),
-          itemBuilder: (context, index, animation) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: TaskItem(
-              task: _tasks[index],
-              selected: state.selectedTasks.contains(_tasks[index]),
-              disappearing: state.disappearingTasks.contains(_tasks[index]),
-            ),
+          itemBuilder: (context, index, animation) => TaskItem(
+            task: _tasks[index],
+            isTappedToComplete: state.selectedTasks.contains(_tasks[index]),
+            disappearing: state.disappearingTasks.contains(_tasks[index]),
           ),
         ),
       ),
     );
   }
 
-  void _removeTasks(List<TaskModel> tasks) {
+  void _completeTasks(List<TaskModel> tasks) {
     for (final task in tasks) {
-      _removeTask(task);
+      _completeTask(task);
     }
   }
 
-  void _removeTask(TaskModel task) {
+  void _completeTask(TaskModel task) {
     var index = _tasks.indexOf(task);
 
     if (index != -1) {
@@ -71,15 +91,31 @@ class _TaskListState extends State<TaskList> {
 
     _tasks.remove(task);
   }
+
+  void _skipTask(TaskModel? task) {
+    if (task == null) return;
+    var index = _tasks.indexOf(task);
+
+    if (index != -1) {
+      listKey.currentState?.removeItem(
+        _tasks.indexOf(task),
+        (_, animation) => const SizedBox(),
+        duration: Duration.zero,
+      );
+    }
+
+    _tasks.remove(task);
+  }
 }
 
 class TaskItem extends StatefulWidget {
   final TaskModel task;
-  final bool selected;
+  final bool isTappedToComplete;
   final bool disappearing;
+
   const TaskItem({
     required this.task,
-    required this.selected,
+    required this.isTappedToComplete,
     required this.disappearing,
     super.key,
   });
@@ -98,11 +134,15 @@ class _TaskItemState extends State<TaskItem> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isAnythingSelected =
+        context.watch<SelectionBloc>().selectedIds.isNotEmpty;
+
     return AnimatedOpacity(
       opacity: widget.disappearing ? 0 : 1,
       duration: widget.disappearing
           ? context.read<CompletionBloc>().disappearingDuration
           : Duration.zero,
+<<<<<<< HEAD
       child: Container(
         height: 65,
         decoration: BoxDecoration(
@@ -115,17 +155,50 @@ class _TaskItemState extends State<TaskItem> {
               width: 50,
               child:
                   widget.task.important ? const _ImportanceIndicator() : null,
+=======
+      child: SelectableItemBackground(
+        id: widget.task.queueId,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: CustomDismissible(
+            key: Key(
+              'dissmisible_task_${widget.task.hashCode.toString()}',
+>>>>>>> 6a8f470 (Add selection (#58))
             ),
-            _Avatar(color: colors[widget.task.queueColor]!),
-            const SizedBox(width: 20),
-            _TaskName(widget.task.queueName),
-            const Spacer(),
-            CompleteButton(
-              selected: widget.selected,
-              task: widget.task,
+            dismissibleKey: Key(
+              'task_${widget.task.hashCode.toString()}',
             ),
-            const SizedBox(width: 20),
-          ],
+            onDismissed: () {
+              context
+                  .read<CompletionBloc>()
+                  .add(CompletionEvent.skipTask(widget.task));
+            },
+            backgroundColor: Colors.deepOrange.shade300,
+            icon: Icons.autorenew,
+            isSelectionEnabled: isAnythingSelected,
+            child: SelectableItemContent(
+              id: widget.task.queueId,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                    child: widget.task.important
+                        ? const _ImportanceIndicator()
+                        : null,
+                  ),
+                  _Avatar(color: colors[widget.task.queueColor]!),
+                  const SizedBox(width: 20),
+                  _TaskName(widget.task.queueName),
+                  const Spacer(),
+                  CompleteButton(
+                    isTappedToComplete: widget.isTappedToComplete,
+                    task: widget.task,
+                  ),
+                  const SizedBox(width: 20),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -182,49 +255,58 @@ class _TaskName extends StatelessWidget {
 
 class CompleteButton extends StatelessWidget {
   final TaskModel task;
-  final bool selected;
+  final bool isTappedToComplete;
   const CompleteButton({
     super.key,
-    required this.selected,
+    required this.isTappedToComplete,
     required this.task,
   });
 
   @override
   Widget build(BuildContext context) {
+    final bool isAnythingSelected =
+        context.watch<SelectionBloc>().selectedIds.isNotEmpty;
+
     return GestureDetector(
       onTap: () {
+        if (isAnythingSelected) return;
+
         context.read<CompletionBloc>().add(
-              selected
+              isTappedToComplete
                   ? CompletionEvent.uncompleteTask(task)
                   : CompletionEvent.completeTask(task),
             );
       },
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            height: 23,
-            width: 23,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                color: selected
-                    ? Colors.orangeAccent.shade400
-                    : Colors.grey.shade300,
-                width: 2,
-              ),
-            ),
-          ),
-          if (selected)
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 300),
+        opacity: isAnythingSelected ? 0 : 1,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
             Container(
-              height: 15,
-              width: 15,
+              height: 23,
+              width: 23,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                color: Colors.orangeAccent.shade400,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: isTappedToComplete
+                      ? Colors.orangeAccent.shade400
+                      : Colors.grey.shade300,
+                  width: 2,
+                ),
               ),
             ),
-        ],
+            if (isTappedToComplete)
+              Container(
+                height: 15,
+                width: 15,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: Colors.orangeAccent.shade400,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

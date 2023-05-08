@@ -37,10 +37,14 @@ class QueuesApi {
 
   Future<Response> shakeUser(int queueId) => dio.post('/queues/$queueId/shake');
 
-  Future<Response> completeTask(int queueId, {double? expenses}) =>
-      dio.post('/queues/$queueId/complete', data: {
-        'expenses': expenses,
-      });
+  Future<Response> completeTask(int queueId, {int? expenses}) => dio.post(
+        '/queues/$queueId/complete',
+        data: expenses != null
+            ? {
+                'expenses': expenses,
+              }
+            : null,
+      );
 
   Future<Response> getInvitation(int queueId) =>
       dio.post('/queues/$queueId/invitation');

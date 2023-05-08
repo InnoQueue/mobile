@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../application/get_it/get_it_service_locator.dart';
+import '../../data/analytics/fb_analytics.dart';
 import '../presentation.dart';
 
 class AddProgressPage extends StatefulWidget {
-  final void Function(double) submitExpenses;
+  final void Function(int) submitExpenses;
 
   const AddProgressPage({required this.submitExpenses, super.key});
 
@@ -58,7 +60,11 @@ class _AddProgressPageState extends State<AddProgressPage> {
             onPressed: !isValueValid
                 ? null
                 : () {
-                    widget.submitExpenses(double.parse(expenses) * 100);
+                    widget
+                        .submitExpenses((double.parse(expenses) * 100).toInt());
+                    getIt.get<FBAnalytics>().logExpensesSubmitted(
+                          expenses: double.parse(expenses),
+                        );
                     context.router.pop();
                   },
           ),

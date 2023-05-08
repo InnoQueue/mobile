@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:innoq/data/analytics/fb_analytics.dart';
 
 import '../../application/application.dart';
 import '../../domain/domain.dart';
@@ -16,6 +17,15 @@ class NotificationSettingsPage extends StatefulWidget {
 
 class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
   NotificationSettingsModel? notificationSettings;
+
+  var settings = [
+    "Notify when someone completes a task",
+    "Notify when someone skips a task",
+    "Notify when someone joins a queue",
+    "Notify when someone freezes a queue",
+    "Notify when someone leaves a queue",
+    "Notify when it's your turn",
+  ]; // todo : fix this
 
   @override
   void initState() {
@@ -55,52 +65,77 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   ),
                 ),
                 const SizedBox(height: 8),
+                // todo: maybe use a listview.builder (onChanged we can define in the setting[i] object)
                 NotificationTile(
-                  name: 'Notify when someone completes a task',
+                  name: settings[0],
                   value: notificationSettings!.completed,
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(completed: value);
+                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                          setting: settings[0],
+                          newValue: value,
+                        );
                   }),
                 ),
                 NotificationTile(
-                  name: 'Notify when someone skips a task',
+                  name: settings[1],
                   value: notificationSettings!.skipped,
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(skipped: value);
+                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                          setting: settings[1],
+                          newValue: value,
+                        );
                   }),
                 ),
                 NotificationTile(
-                  name: 'Notify when someone joins a queue',
+                  name: settings[2],
                   value: notificationSettings!.joinedQueue,
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(joinedQueue: value);
+                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                          setting: settings[2],
+                          newValue: value,
+                        );
                   }),
                 ),
                 NotificationTile(
-                  name: 'Notify when someone freezes a queue',
+                  name: settings[3],
                   value: notificationSettings!.freeze,
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(freeze: value);
+                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                          setting: settings[3],
+                          newValue: value,
+                        );
                   }),
                 ),
                 NotificationTile(
-                  name: 'Notify when someone leaves a queue',
+                  name: settings[4],
                   value: notificationSettings!.leftQueue,
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(leftQueue: value);
+                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                          setting: settings[4],
+                          newValue: value,
+                        );
                   }),
                 ),
                 NotificationTile(
-                  name: 'Notify when it\'s your turn',
+                  name: settings[5],
                   value: notificationSettings!.yourTurn,
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(yourTurn: value);
+                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                          setting: settings[5],
+                          newValue: value,
+                        );
                   }),
                 ),
                 const SizedBox(height: 10),
@@ -109,6 +144,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                     getIt.get<UserRepository>().updateNotificationSettings(
                           notificationSettings!,
                         );
+                    getIt.get<FBAnalytics>().logNotificationSettingsSaved();
                     context.router.pop();
                   },
                   backgroundColor: Colors.grey.shade900,

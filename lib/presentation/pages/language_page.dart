@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../application/get_it/get_it_service_locator.dart';
+import '../../data/analytics/fb_analytics.dart';
 import '../presentation.dart';
 
 class LanguagePage extends StatefulWidget {
@@ -21,6 +23,9 @@ class _LanguagePageState extends State<LanguagePage> {
       nameBuilder: (index) => themes[index],
       onTap: (index) {
         currentTheme = themes[index];
+        getIt.get<FBAnalytics>().logLanguageSettingsUpdated(
+              preferredLanguage: currentTheme,
+            );
         setState(() {});
       },
       length: themes.length,

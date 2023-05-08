@@ -85,7 +85,7 @@ class QueuesRepositoryImpl implements QueuesRepository {
   @override
   Future<void> completeTask({
     required int queueId,
-    double? expenses,
+    int? expenses,
   }) async {
     await queuesApi.completeTask(queueId, expenses: expenses);
   }

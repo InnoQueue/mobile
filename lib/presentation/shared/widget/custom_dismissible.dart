@@ -9,11 +9,17 @@ class CustomDismissible extends StatefulWidget {
     required this.child,
     required this.dismissibleKey,
     required this.onDismissed,
+    required this.isSelectionEnabled,
+    required this.backgroundColor,
+    required this.icon,
   });
 
   final Widget child;
   final Key dismissibleKey;
   final void Function() onDismissed;
+  final bool isSelectionEnabled;
+  final Color backgroundColor;
+  final IconData icon;
 
   @override
   State<CustomDismissible> createState() => _CustomDismissibleState();
@@ -21,6 +27,17 @@ class CustomDismissible extends StatefulWidget {
 
 class _CustomDismissibleState extends State<CustomDismissible> {
   double _ratio = 0;
+  SlidableController? currentSlidable;
+
+  @override
+  void didUpdateWidget(covariant CustomDismissible oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!oldWidget.isSelectionEnabled && widget.isSelectionEnabled) {
+      currentSlidable?.close(
+        duration: const Duration(milliseconds: 300),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +53,7 @@ class _CustomDismissibleState extends State<CustomDismissible> {
 
         return Slidable(
           key: widget.dismissibleKey,
+          enabled: !widget.isSelectionEnabled,
           endActionPane: ActionPane(
             extentRatio: 100 / constraints.maxWidth,
             motion: const BehindMotion(),
@@ -47,26 +65,10 @@ class _CustomDismissibleState extends State<CustomDismissible> {
             ),
             children: [
               CustomSlidableAction(
-                onPressed: (context) {
-                  Slidable.of(context)
-                      ?.dismiss(
-                        ResizeRequest(
-                          const Duration(milliseconds: 250),
-                          () {},
-                        ),
-                        curve: Curves.decelerate,
-                      )
-                      .then(
-                        (value) => Future.delayed(
-                          const Duration(milliseconds: 250),
-                          widget.onDismissed,
-                        ),
-                      );
-                },
+                onPressed: _onPressed,
                 autoClose: false,
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.only(right: 20, left: 20),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -77,7 +79,7 @@ class _CustomDismissibleState extends State<CustomDismissible> {
                         width: 50,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.red.shade400,
+                          color: widget.backgroundColor,
                         ),
                       ),
                     ),
@@ -90,8 +92,8 @@ class _CustomDismissibleState extends State<CustomDismissible> {
                             opacity: Curves.easeInCubic.transform(
                               extentPercentage.clamp(0, 1),
                             ),
-                            child: const Icon(
-                              Icons.delete_outline,
+                            child: Icon(
+                              widget.icon,
                               color: Colors.white,
                             ),
                           ),
@@ -120,6 +122,8 @@ class _CustomDismissibleState extends State<CustomDismissible> {
 
   bool _listenerAdded = false;
   void _addListener(BuildContext context) {
+    currentSlidable ??= Slidable.of(context);
+
     if (!_listenerAdded) {
       Slidable.of(context)?.animation.addListener(() {
         if (_ratio != Slidable.of(context)?.ratio) {
@@ -130,5 +134,22 @@ class _CustomDismissibleState extends State<CustomDismissible> {
       });
       _listenerAdded = true;
     }
+  }
+
+  void _onPressed(BuildContext _) {
+    currentSlidable
+        ?.dismiss(
+          ResizeRequest(
+            const Duration(milliseconds: 250),
+            () {},
+          ),
+          curve: Curves.decelerate,
+        )
+        .then(
+          (value) => Future.delayed(
+            const Duration(milliseconds: 250),
+            widget.onDismissed,
+          ),
+        );
   }
 }
