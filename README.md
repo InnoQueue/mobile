@@ -3,6 +3,7 @@
 > Semester 8, 4th study-year, Innopolis University.
 
 [![Hits-of-Code](https://hitsofcode.com/github/InnoQueue/mobile?branch=main)](https://hitsofcode.com/github/InnoQueue/mobile/view?branch=main)
+[![codecov](https://codecov.io/gh/InnoQueue/mobile/branch/main/graph/badge.svg?token=CsXJoUf8BV)](https://codecov.io/gh/InnoQueue/mobile)
 
 ## **Team**
 
