@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../application/get_it/get_it_service_locator.dart';
+import '../../data/analytics/fb_analytics.dart';
 import '../presentation.dart';
 
 class ThemePage extends StatefulWidget {
@@ -21,6 +23,9 @@ class _ThemePageState extends State<ThemePage> {
       nameBuilder: (index) => themes[index],
       onTap: (index) {
         currentTheme = themes[index];
+        getIt.get<FBAnalytics>().logThemeSettingsUpdated(
+              preferredTheme: currentTheme,
+            );
         setState(() {});
       },
       length: themes.length,

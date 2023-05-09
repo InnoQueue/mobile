@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../application/application.dart';
+import '../../../../data/analytics/fb_analytics.dart';
 import '../../../../domain/domain.dart';
 
 part 'notifications_state.dart';
@@ -49,6 +50,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     _page = 0;
 
     await _fetchNotificationsAndEmit(emit);
+    getIt.get<FBAnalytics>().logNotificationsUpdated();
   }
 
   bool _fetchedAll = false;
@@ -86,6 +88,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       items: filteredNotifications.toList(),
       fetchedAll: _fetchedAll,
     ));
+    getIt.get<FBAnalytics>().logNotificationRemoved();
   }
 
   List<NotificationModel> get filteredNotifications => currentNotifications
@@ -109,5 +112,6 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       ),
     );
     _displayedNotificationIds.clear();
+    getIt.get<FBAnalytics>().logNotificationsRead();
   }
 }

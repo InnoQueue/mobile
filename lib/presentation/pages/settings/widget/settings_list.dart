@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:innoq/application/application.dart';
+import 'package:innoq/data/analytics/fb_analytics.dart';
 import 'package:innoq/presentation/presentation.dart';
 
 class _SettingDTO {
@@ -28,6 +30,7 @@ class _SettingsListState extends State<SettingsList> {
       name: 'Notification Settings',
       icon: Icons.notifications_outlined,
       onTap: () {
+        getIt.get<FBAnalytics>().logNotificationSettingsOpened();
         context.router.push(const NotificationSettingsRoute());
       },
     ),
@@ -36,6 +39,7 @@ class _SettingsListState extends State<SettingsList> {
       icon: Icons.lightbulb_outline,
       onTap: () {
         if (context.mounted) {
+          getIt.get<FBAnalytics>().logThemeSettingsOpened();
           context.router.push(const ThemeRoute());
         }
       },
@@ -45,6 +49,7 @@ class _SettingsListState extends State<SettingsList> {
       icon: CupertinoIcons.globe,
       onTap: () {
         if (context.mounted) {
+          getIt.get<FBAnalytics>().logLanguageSettingsOpened();
           context.router.push(const LanguageRoute());
         }
       },
@@ -52,7 +57,11 @@ class _SettingsListState extends State<SettingsList> {
     _SettingDTO(
       name: 'Leave feedback',
       icon: Icons.mail_outline,
-      onTap: () {},
+      onTap: () {
+        if (context.mounted) {
+          getIt.get<FBAnalytics>().logLeaveFeedbackOpened();
+        }
+      },
     ),
   ];
 

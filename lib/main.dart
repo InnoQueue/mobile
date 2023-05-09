@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:innoq/data/analytics/fb_analytics.dart';
 import 'package:uni_links/uni_links.dart';
 
 import 'application/application.dart';
@@ -16,6 +17,14 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await configureDependencies();
+
+  getIt.registerSingleton(AppRouter(
+    loginGuard: LoginGuard(),
+  ));
+
+  getIt.registerSingleton(FBAnalytics());
+  getIt.get<FBAnalytics>().logAppOpen();
+
   runApp(const MyApp());
 }
 
@@ -30,9 +39,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    getIt.registerSingleton(AppRouter(
-      loginGuard: LoginGuard(),
-    ));
     handleIncomingDeepLinks();
     handleInitialDeepLink();
   }
@@ -62,7 +68,9 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp.router(
         routerDelegate: AutoRouterDelegate(
           getIt.get<AppRouter>(),
-          navigatorObservers: () => [AppRouterObserver()],
+          navigatorObservers: () => [
+            AppRouterObserver(),
+          ],
         ),
         routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
         theme: ThemeData(
@@ -77,6 +85,7 @@ class _MyAppState extends State<MyApp> {
       getIt.get<AppRouter>().push(
             JoinInProressRoute(qrCode: link.pathSegments[1]),
           );
+      getIt.get<FBAnalytics>().logDeeplinkOpen(link);
     }
   }
 }

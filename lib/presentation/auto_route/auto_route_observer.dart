@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:innoq/data/analytics/fb_analytics.dart';
 
 import '../../application/application.dart';
 import '../presentation.dart';
@@ -40,5 +41,7 @@ class AppRouterObserver extends AutoRouterObserver {
       getIt.get<FirebaseNotifcationsCubit>().emitNoNotification();
     }
     notificationsOpen = route.name == NotificationsRouter.name;
+
+    getIt.get<FBAnalytics>().logPageOpen(route.name);
   }
 }
