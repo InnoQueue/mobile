@@ -2,7 +2,10 @@ import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart' as mbsh;
+
+import '../presentation.dart';
 
 Route<T> modalSheetBuilder<T>(
   BuildContext _,
@@ -29,7 +32,7 @@ Route<T> modalSheetBuilder<T>(
                   height: 4,
                   width: 50,
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade900,
+                    color: context.watch<AppThemeCubit>().state.labelPrimary,
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),

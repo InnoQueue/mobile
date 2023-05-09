@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -116,10 +117,10 @@ class NotifiationItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: Colors.white,
+            color: context.watch<AppThemeCubit>().state.cardColor,
             width: 0,
           ),
-          color: Colors.white,
+          color: context.watch<AppThemeCubit>().state.cardColor,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

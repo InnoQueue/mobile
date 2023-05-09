@@ -107,7 +107,7 @@ class _TaskItemState extends State<TaskItem> {
         height: 65,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: Colors.white,
+          color: context.watch<AppThemeCubit>().state.themeData.cardColor,
         ),
         child: Row(
           children: [

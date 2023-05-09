@@ -33,7 +33,7 @@ class AddProgressButton extends StatelessWidget {
                   .add(const QueueDetailsEvent.completeTask());
             }
           },
-          backgroundColor: Colors.green.shade300,
+          backgroundColor: Colors.green.shade400,
           text: 'Add Progress',
         );
       },

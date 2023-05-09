@@ -28,8 +28,6 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
             elevation: 0,
             title: QueueTitle(
               queueName:
@@ -39,7 +37,7 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
             ),
             centerTitle: true,
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+              icon: const Icon(Icons.arrow_back_ios),
               onPressed: () => AutoRouter.of(context).pop(),
             ),
             actions: [
@@ -53,7 +51,6 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
               if (initialized) const OptionsButton(),
             ],
           ),
-          backgroundColor: Colors.grey.shade100,
           body: BlocBuilder<QueueDetailsBloc, QueueDetailsState>(
             builder: (context, state) {
               return state.when(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../presentation.dart';
 
@@ -13,7 +14,7 @@ class JoinQueuePage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
+          color: context.watch<AppThemeCubit>().state.themeData.cardColor,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

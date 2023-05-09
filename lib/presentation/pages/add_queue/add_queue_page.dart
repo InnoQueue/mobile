@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/application.dart';
 import '../../presentation.dart';
@@ -14,7 +15,6 @@ class AddQueuePage extends StatefulWidget {
 class _AddQueuePageState extends State<AddQueuePage> {
   String name = '';
   String color = colors.entries.first.key;
-  bool trackExpenses = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _AddQueuePageState extends State<AddQueuePage> {
               vertical: 10,
             ),
           ),
-      color: Colors.white,
+      color: context.watch<AppThemeCubit>().state.themeData.cardColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,26 +50,6 @@ class _AddQueuePageState extends State<AddQueuePage> {
             ),
           ),
           const SizedBox(height: 50),
-          Row(
-            children: [
-              const Text(
-                'Track Expenses',
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-              const Spacer(),
-              Switch(
-                value: trackExpenses,
-                onChanged: (value) {
-                  setState(() {
-                    trackExpenses = value;
-                  });
-                },
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
           _SubmitButton(
             onPressed: name.isEmpty
                 ? null
@@ -78,7 +58,7 @@ class _AddQueuePageState extends State<AddQueuePage> {
                           QueuesEvent.createQueue(
                             name: name,
                             color: color,
-                            trackExpenses: trackExpenses,
+                            trackExpenses: false,
                           ),
                         );
                     context.router.pop();

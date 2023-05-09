@@ -15,7 +15,7 @@ class ParticipantsTile extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: Colors.white,
+            color: context.read<AppThemeCubit>().state.cardColor,
           ),
           child: ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
@@ -31,9 +31,8 @@ class ParticipantsTile extends StatelessWidget {
                 ],
               ),
             ),
-            separatorBuilder: (context, index) => Container(
+            separatorBuilder: (context, index) => const Divider(
               height: 1,
-              color: Colors.grey.shade200,
             ),
             itemCount: participants.length,
           ),

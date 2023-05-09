@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../presentation.dart';
 
@@ -30,7 +31,7 @@ class SelectionList extends StatelessWidget {
               vertical: 15,
             ),
           ),
-      color: Colors.white,
+      color: context.watch<AppThemeCubit>().state.themeData.cardColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,

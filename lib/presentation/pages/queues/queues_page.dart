@@ -22,18 +22,13 @@ class _QueuesPageState extends State<QueuesPage> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
           elevation: 0,
-          title: const Text(
-            'Queues',
-            style: TextStyle(color: Colors.black),
-          ),
+          title: const Text('Queues'),
           centerTitle: true,
           actions: const [
             _FilterButtom(),
           ],
         ),
-        backgroundColor: Colors.grey.shade100,
         floatingActionButton: const ExpandableFab(),
         body: BlocBuilder<QueuesBloc, QueuesState>(
           builder: (context, state) {
@@ -64,7 +59,6 @@ class _FilterButtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.sort_rounded),
-      color: Colors.black,
       onPressed: () {
         context.router.push(const FiltersRoute());
       },

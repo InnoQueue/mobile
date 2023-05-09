@@ -32,15 +32,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.white,
             elevation: 0,
-            title: const Text(
-              'Notifications',
-              style: TextStyle(color: Colors.black),
-            ),
+            title: const Text('Notifications'),
             centerTitle: true,
           ),
-          backgroundColor: Colors.grey.shade100,
           body: BlocBuilder<NotificationsBloc, NotificationsState>(
             builder: (context, state) {
               return state.when(

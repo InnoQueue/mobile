@@ -54,7 +54,7 @@ class _ShareQueuePageState extends State<ShareQueuePage> {
               width: 240,
               child: CustomButton(
                 onPressed: invitation == null ? null : shareImage,
-                backgroundColor: Colors.green.shade300,
+                backgroundColor: Colors.green.shade400,
                 text: 'Share',
               ),
             ),

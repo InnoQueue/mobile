@@ -77,7 +77,7 @@ class _CustomDismissibleState extends State<CustomDismissible> {
                         width: 50,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.red.shade300,
+                          color: Colors.red.shade400,
                         ),
                       ),
                     ),

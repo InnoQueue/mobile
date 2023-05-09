@@ -21,15 +21,12 @@ class _TasksPageState extends State<TasksPage> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
           elevation: 0,
           title: const Text(
             'Tasks',
-            style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
         ),
-        backgroundColor: Colors.grey.shade100,
         body: RefreshIndicator(
           onRefresh: () async {
             getIt.get<TasksBloc>().add(const TasksEvent.loadData());

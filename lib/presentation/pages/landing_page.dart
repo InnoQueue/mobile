@@ -75,9 +75,9 @@ class _BottomNavigationBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       selectedFontSize: 14.0,
       unselectedFontSize: 14.0,
-      selectedItemColor: Colors.black,
+      // selectedItemColor: Colors.black,
       unselectedItemColor: Colors.grey,
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       elevation: 0,
       items: const [
         BottomNavigationBarItem(
