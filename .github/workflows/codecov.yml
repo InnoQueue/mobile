@@ -1,4 +1,4 @@
-name: Codecov
+name: Flutter CI
 
 on:
   pull_request:
@@ -11,11 +11,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: Upload Test Report
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '3.7.9'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests with coverage
+        run: |
+          flutter test --coverage
+          lcov --list coverage/lcov.info
+
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV }} # not required for public repos
+          token: ${{ secrets.CODECOV }}
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
