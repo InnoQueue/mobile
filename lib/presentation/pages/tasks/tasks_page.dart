@@ -14,11 +14,6 @@ class TasksPage extends StatefulWidget {
 
 class _TasksPageState extends State<TasksPage> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocProvider<TasksBloc>(
       create: (context) => getIt.get<TasksBloc>()

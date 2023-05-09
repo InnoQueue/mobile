@@ -15,11 +15,6 @@ class NotificationsPage extends StatefulWidget {
 
 class _NotificationsPageState extends State<NotificationsPage> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocProvider<NotificationsBloc>(
       create: (context) => getIt.get<NotificationsBloc>()
