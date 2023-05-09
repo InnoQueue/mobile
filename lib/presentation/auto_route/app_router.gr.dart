@@ -532,7 +532,7 @@ class JoinInProressRouteArgs {
 /// [AddProgressPage]
 class AddProgressRoute extends PageRouteInfo<AddProgressRouteArgs> {
   AddProgressRoute({
-    required void Function(double) submitExpenses,
+    required void Function(int) submitExpenses,
     Key? key,
   }) : super(
           AddProgressRoute.name,
@@ -552,7 +552,7 @@ class AddProgressRouteArgs {
     this.key,
   });
 
-  final void Function(double) submitExpenses;
+  final void Function(int) submitExpenses;
 
   final Key? key;
 

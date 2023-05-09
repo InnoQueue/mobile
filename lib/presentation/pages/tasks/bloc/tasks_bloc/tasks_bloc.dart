@@ -13,7 +13,10 @@ part 'tasks_bloc.freezed.dart';
 class TasksBloc extends Bloc<TasksEvent, TasksState> {
   TasksBloc() : super(const _Initial()) {
     on<_LoadData>(_loadData);
+    on<_SkipTasks>(_skipTasks);
   }
+
+  List<TaskModel> _tasks = [];
 
   Future<void> _loadData(
     _LoadData event,
@@ -21,7 +24,20 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   ) async {
     emit(const TasksState.initial());
     var tasks = await getIt.get<QueuesRepository>().getTasks();
+    _tasks = tasks.toList();
 
     emit(TasksState.dataLoaded(tasks));
+  }
+
+  void _skipTasks(
+    _SkipTasks event,
+    Emitter<TasksState> emit,
+  ) {
+    for (final int id in event.ids) {
+      getIt.get<QueuesRepository>().skipTask(id);
+    }
+
+    _tasks.removeWhere((element) => event.ids.contains(element.queueId));
+    emit(TasksState.dataLoaded(_tasks.toList()));
   }
 }

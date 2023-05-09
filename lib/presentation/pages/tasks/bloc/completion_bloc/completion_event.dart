@@ -4,6 +4,8 @@ part of 'completion_bloc.dart';
 class CompletionEvent with _$CompletionEvent {
   const factory CompletionEvent.completeTask(TaskModel task) = _CompleteTask;
 
+  const factory CompletionEvent.skipTask(TaskModel task) = _SkipTask;
+
   const factory CompletionEvent.uncompleteTask(TaskModel task) =
       _UncompleteTask;
 

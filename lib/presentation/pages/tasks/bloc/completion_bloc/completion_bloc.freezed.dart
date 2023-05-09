@@ -19,6 +19,7 @@ mixin _$CompletionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(TaskModel task) completeTask,
+    required TResult Function(TaskModel task) skipTask,
     required TResult Function(TaskModel task) uncompleteTask,
     required TResult Function() updateState,
   }) =>
@@ -26,6 +27,7 @@ mixin _$CompletionEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(TaskModel task)? completeTask,
+    TResult? Function(TaskModel task)? skipTask,
     TResult? Function(TaskModel task)? uncompleteTask,
     TResult? Function()? updateState,
   }) =>
@@ -33,6 +35,7 @@ mixin _$CompletionEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TaskModel task)? completeTask,
+    TResult Function(TaskModel task)? skipTask,
     TResult Function(TaskModel task)? uncompleteTask,
     TResult Function()? updateState,
     required TResult orElse(),
@@ -41,6 +44,7 @@ mixin _$CompletionEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CompleteTask value) completeTask,
+    required TResult Function(_SkipTask value) skipTask,
     required TResult Function(_UncompleteTask value) uncompleteTask,
     required TResult Function(_UpdateState value) updateState,
   }) =>
@@ -48,6 +52,7 @@ mixin _$CompletionEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CompleteTask value)? completeTask,
+    TResult? Function(_SkipTask value)? skipTask,
     TResult? Function(_UncompleteTask value)? uncompleteTask,
     TResult? Function(_UpdateState value)? updateState,
   }) =>
@@ -55,6 +60,7 @@ mixin _$CompletionEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CompleteTask value)? completeTask,
+    TResult Function(_SkipTask value)? skipTask,
     TResult Function(_UncompleteTask value)? uncompleteTask,
     TResult Function(_UpdateState value)? updateState,
     required TResult orElse(),
@@ -155,6 +161,7 @@ class _$_CompleteTask implements _CompleteTask {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(TaskModel task) completeTask,
+    required TResult Function(TaskModel task) skipTask,
     required TResult Function(TaskModel task) uncompleteTask,
     required TResult Function() updateState,
   }) {
@@ -165,6 +172,7 @@ class _$_CompleteTask implements _CompleteTask {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(TaskModel task)? completeTask,
+    TResult? Function(TaskModel task)? skipTask,
     TResult? Function(TaskModel task)? uncompleteTask,
     TResult? Function()? updateState,
   }) {
@@ -175,6 +183,7 @@ class _$_CompleteTask implements _CompleteTask {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TaskModel task)? completeTask,
+    TResult Function(TaskModel task)? skipTask,
     TResult Function(TaskModel task)? uncompleteTask,
     TResult Function()? updateState,
     required TResult orElse(),
@@ -189,6 +198,7 @@ class _$_CompleteTask implements _CompleteTask {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CompleteTask value) completeTask,
+    required TResult Function(_SkipTask value) skipTask,
     required TResult Function(_UncompleteTask value) uncompleteTask,
     required TResult Function(_UpdateState value) updateState,
   }) {
@@ -199,6 +209,7 @@ class _$_CompleteTask implements _CompleteTask {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CompleteTask value)? completeTask,
+    TResult? Function(_SkipTask value)? skipTask,
     TResult? Function(_UncompleteTask value)? uncompleteTask,
     TResult? Function(_UpdateState value)? updateState,
   }) {
@@ -209,6 +220,7 @@ class _$_CompleteTask implements _CompleteTask {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CompleteTask value)? completeTask,
+    TResult Function(_SkipTask value)? skipTask,
     TResult Function(_UncompleteTask value)? uncompleteTask,
     TResult Function(_UpdateState value)? updateState,
     required TResult orElse(),
@@ -226,6 +238,161 @@ abstract class _CompleteTask implements CompletionEvent {
   TaskModel get task;
   @JsonKey(ignore: true)
   _$$_CompleteTaskCopyWith<_$_CompleteTask> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SkipTaskCopyWith<$Res> {
+  factory _$$_SkipTaskCopyWith(
+          _$_SkipTask value, $Res Function(_$_SkipTask) then) =
+      __$$_SkipTaskCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TaskModel task});
+
+  $TaskModelCopyWith<$Res> get task;
+}
+
+/// @nodoc
+class __$$_SkipTaskCopyWithImpl<$Res>
+    extends _$CompletionEventCopyWithImpl<$Res, _$_SkipTask>
+    implements _$$_SkipTaskCopyWith<$Res> {
+  __$$_SkipTaskCopyWithImpl(
+      _$_SkipTask _value, $Res Function(_$_SkipTask) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? task = null,
+  }) {
+    return _then(_$_SkipTask(
+      null == task
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as TaskModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TaskModelCopyWith<$Res> get task {
+    return $TaskModelCopyWith<$Res>(_value.task, (value) {
+      return _then(_value.copyWith(task: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_SkipTask implements _SkipTask {
+  const _$_SkipTask(this.task);
+
+  @override
+  final TaskModel task;
+
+  @override
+  String toString() {
+    return 'CompletionEvent.skipTask(task: $task)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SkipTask &&
+            (identical(other.task, task) || other.task == task));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, task);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SkipTaskCopyWith<_$_SkipTask> get copyWith =>
+      __$$_SkipTaskCopyWithImpl<_$_SkipTask>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TaskModel task) completeTask,
+    required TResult Function(TaskModel task) skipTask,
+    required TResult Function(TaskModel task) uncompleteTask,
+    required TResult Function() updateState,
+  }) {
+    return skipTask(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TaskModel task)? completeTask,
+    TResult? Function(TaskModel task)? skipTask,
+    TResult? Function(TaskModel task)? uncompleteTask,
+    TResult? Function()? updateState,
+  }) {
+    return skipTask?.call(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TaskModel task)? completeTask,
+    TResult Function(TaskModel task)? skipTask,
+    TResult Function(TaskModel task)? uncompleteTask,
+    TResult Function()? updateState,
+    required TResult orElse(),
+  }) {
+    if (skipTask != null) {
+      return skipTask(task);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CompleteTask value) completeTask,
+    required TResult Function(_SkipTask value) skipTask,
+    required TResult Function(_UncompleteTask value) uncompleteTask,
+    required TResult Function(_UpdateState value) updateState,
+  }) {
+    return skipTask(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CompleteTask value)? completeTask,
+    TResult? Function(_SkipTask value)? skipTask,
+    TResult? Function(_UncompleteTask value)? uncompleteTask,
+    TResult? Function(_UpdateState value)? updateState,
+  }) {
+    return skipTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CompleteTask value)? completeTask,
+    TResult Function(_SkipTask value)? skipTask,
+    TResult Function(_UncompleteTask value)? uncompleteTask,
+    TResult Function(_UpdateState value)? updateState,
+    required TResult orElse(),
+  }) {
+    if (skipTask != null) {
+      return skipTask(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SkipTask implements CompletionEvent {
+  const factory _SkipTask(final TaskModel task) = _$_SkipTask;
+
+  TaskModel get task;
+  @JsonKey(ignore: true)
+  _$$_SkipTaskCopyWith<_$_SkipTask> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -304,6 +471,7 @@ class _$_UncompleteTask implements _UncompleteTask {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(TaskModel task) completeTask,
+    required TResult Function(TaskModel task) skipTask,
     required TResult Function(TaskModel task) uncompleteTask,
     required TResult Function() updateState,
   }) {
@@ -314,6 +482,7 @@ class _$_UncompleteTask implements _UncompleteTask {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(TaskModel task)? completeTask,
+    TResult? Function(TaskModel task)? skipTask,
     TResult? Function(TaskModel task)? uncompleteTask,
     TResult? Function()? updateState,
   }) {
@@ -324,6 +493,7 @@ class _$_UncompleteTask implements _UncompleteTask {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TaskModel task)? completeTask,
+    TResult Function(TaskModel task)? skipTask,
     TResult Function(TaskModel task)? uncompleteTask,
     TResult Function()? updateState,
     required TResult orElse(),
@@ -338,6 +508,7 @@ class _$_UncompleteTask implements _UncompleteTask {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CompleteTask value) completeTask,
+    required TResult Function(_SkipTask value) skipTask,
     required TResult Function(_UncompleteTask value) uncompleteTask,
     required TResult Function(_UpdateState value) updateState,
   }) {
@@ -348,6 +519,7 @@ class _$_UncompleteTask implements _UncompleteTask {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CompleteTask value)? completeTask,
+    TResult? Function(_SkipTask value)? skipTask,
     TResult? Function(_UncompleteTask value)? uncompleteTask,
     TResult? Function(_UpdateState value)? updateState,
   }) {
@@ -358,6 +530,7 @@ class _$_UncompleteTask implements _UncompleteTask {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CompleteTask value)? completeTask,
+    TResult Function(_SkipTask value)? skipTask,
     TResult Function(_UncompleteTask value)? uncompleteTask,
     TResult Function(_UpdateState value)? updateState,
     required TResult orElse(),
@@ -417,6 +590,7 @@ class _$_UpdateState implements _UpdateState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(TaskModel task) completeTask,
+    required TResult Function(TaskModel task) skipTask,
     required TResult Function(TaskModel task) uncompleteTask,
     required TResult Function() updateState,
   }) {
@@ -427,6 +601,7 @@ class _$_UpdateState implements _UpdateState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(TaskModel task)? completeTask,
+    TResult? Function(TaskModel task)? skipTask,
     TResult? Function(TaskModel task)? uncompleteTask,
     TResult? Function()? updateState,
   }) {
@@ -437,6 +612,7 @@ class _$_UpdateState implements _UpdateState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TaskModel task)? completeTask,
+    TResult Function(TaskModel task)? skipTask,
     TResult Function(TaskModel task)? uncompleteTask,
     TResult Function()? updateState,
     required TResult orElse(),
@@ -451,6 +627,7 @@ class _$_UpdateState implements _UpdateState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CompleteTask value) completeTask,
+    required TResult Function(_SkipTask value) skipTask,
     required TResult Function(_UncompleteTask value) uncompleteTask,
     required TResult Function(_UpdateState value) updateState,
   }) {
@@ -461,6 +638,7 @@ class _$_UpdateState implements _UpdateState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CompleteTask value)? completeTask,
+    TResult? Function(_SkipTask value)? skipTask,
     TResult? Function(_UncompleteTask value)? uncompleteTask,
     TResult? Function(_UpdateState value)? updateState,
   }) {
@@ -471,6 +649,7 @@ class _$_UpdateState implements _UpdateState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CompleteTask value)? completeTask,
+    TResult Function(_SkipTask value)? skipTask,
     TResult Function(_UncompleteTask value)? uncompleteTask,
     TResult Function(_UpdateState value)? updateState,
     required TResult orElse(),
@@ -491,24 +670,34 @@ mixin _$CompletionState {
   List<TaskModel> get selectedTasks => throw _privateConstructorUsedError;
   List<TaskModel> get disappearingTasks => throw _privateConstructorUsedError;
   List<TaskModel> get deletedTasks => throw _privateConstructorUsedError;
+  TaskModel? get skippedTask => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<TaskModel> selectedTasks,
-            List<TaskModel> disappearingTasks, List<TaskModel> deletedTasks)
+    required TResult Function(
+            List<TaskModel> selectedTasks,
+            List<TaskModel> disappearingTasks,
+            List<TaskModel> deletedTasks,
+            TaskModel? skippedTask)
         completionState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<TaskModel> selectedTasks,
-            List<TaskModel> disappearingTasks, List<TaskModel> deletedTasks)?
+    TResult? Function(
+            List<TaskModel> selectedTasks,
+            List<TaskModel> disappearingTasks,
+            List<TaskModel> deletedTasks,
+            TaskModel? skippedTask)?
         completionState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<TaskModel> selectedTasks,
-            List<TaskModel> disappearingTasks, List<TaskModel> deletedTasks)?
+    TResult Function(
+            List<TaskModel> selectedTasks,
+            List<TaskModel> disappearingTasks,
+            List<TaskModel> deletedTasks,
+            TaskModel? skippedTask)?
         completionState,
     required TResult orElse(),
   }) =>
@@ -544,7 +733,10 @@ abstract class $CompletionStateCopyWith<$Res> {
   $Res call(
       {List<TaskModel> selectedTasks,
       List<TaskModel> disappearingTasks,
-      List<TaskModel> deletedTasks});
+      List<TaskModel> deletedTasks,
+      TaskModel? skippedTask});
+
+  $TaskModelCopyWith<$Res>? get skippedTask;
 }
 
 /// @nodoc
@@ -563,6 +755,7 @@ class _$CompletionStateCopyWithImpl<$Res, $Val extends CompletionState>
     Object? selectedTasks = null,
     Object? disappearingTasks = null,
     Object? deletedTasks = null,
+    Object? skippedTask = freezed,
   }) {
     return _then(_value.copyWith(
       selectedTasks: null == selectedTasks
@@ -577,7 +770,23 @@ class _$CompletionStateCopyWithImpl<$Res, $Val extends CompletionState>
           ? _value.deletedTasks
           : deletedTasks // ignore: cast_nullable_to_non_nullable
               as List<TaskModel>,
+      skippedTask: freezed == skippedTask
+          ? _value.skippedTask
+          : skippedTask // ignore: cast_nullable_to_non_nullable
+              as TaskModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TaskModelCopyWith<$Res>? get skippedTask {
+    if (_value.skippedTask == null) {
+      return null;
+    }
+
+    return $TaskModelCopyWith<$Res>(_value.skippedTask!, (value) {
+      return _then(_value.copyWith(skippedTask: value) as $Val);
+    });
   }
 }
 
@@ -592,7 +801,11 @@ abstract class _$$_CompletionStateCopyWith<$Res>
   $Res call(
       {List<TaskModel> selectedTasks,
       List<TaskModel> disappearingTasks,
-      List<TaskModel> deletedTasks});
+      List<TaskModel> deletedTasks,
+      TaskModel? skippedTask});
+
+  @override
+  $TaskModelCopyWith<$Res>? get skippedTask;
 }
 
 /// @nodoc
@@ -609,6 +822,7 @@ class __$$_CompletionStateCopyWithImpl<$Res>
     Object? selectedTasks = null,
     Object? disappearingTasks = null,
     Object? deletedTasks = null,
+    Object? skippedTask = freezed,
   }) {
     return _then(_$_CompletionState(
       selectedTasks: null == selectedTasks
@@ -623,6 +837,10 @@ class __$$_CompletionStateCopyWithImpl<$Res>
           ? _value._deletedTasks
           : deletedTasks // ignore: cast_nullable_to_non_nullable
               as List<TaskModel>,
+      skippedTask: freezed == skippedTask
+          ? _value.skippedTask
+          : skippedTask // ignore: cast_nullable_to_non_nullable
+              as TaskModel?,
     ));
   }
 }
@@ -633,7 +851,8 @@ class _$_CompletionState implements _CompletionState {
   const _$_CompletionState(
       {required final List<TaskModel> selectedTasks,
       required final List<TaskModel> disappearingTasks,
-      required final List<TaskModel> deletedTasks})
+      required final List<TaskModel> deletedTasks,
+      required this.skippedTask})
       : _selectedTasks = selectedTasks,
         _disappearingTasks = disappearingTasks,
         _deletedTasks = deletedTasks;
@@ -664,8 +883,11 @@ class _$_CompletionState implements _CompletionState {
   }
 
   @override
+  final TaskModel? skippedTask;
+
+  @override
   String toString() {
-    return 'CompletionState.completionState(selectedTasks: $selectedTasks, disappearingTasks: $disappearingTasks, deletedTasks: $deletedTasks)';
+    return 'CompletionState.completionState(selectedTasks: $selectedTasks, disappearingTasks: $disappearingTasks, deletedTasks: $deletedTasks, skippedTask: $skippedTask)';
   }
 
   @override
@@ -678,7 +900,9 @@ class _$_CompletionState implements _CompletionState {
             const DeepCollectionEquality()
                 .equals(other._disappearingTasks, _disappearingTasks) &&
             const DeepCollectionEquality()
-                .equals(other._deletedTasks, _deletedTasks));
+                .equals(other._deletedTasks, _deletedTasks) &&
+            (identical(other.skippedTask, skippedTask) ||
+                other.skippedTask == skippedTask));
   }
 
   @override
@@ -686,7 +910,8 @@ class _$_CompletionState implements _CompletionState {
       runtimeType,
       const DeepCollectionEquality().hash(_selectedTasks),
       const DeepCollectionEquality().hash(_disappearingTasks),
-      const DeepCollectionEquality().hash(_deletedTasks));
+      const DeepCollectionEquality().hash(_deletedTasks),
+      skippedTask);
 
   @JsonKey(ignore: true)
   @override
@@ -697,34 +922,45 @@ class _$_CompletionState implements _CompletionState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<TaskModel> selectedTasks,
-            List<TaskModel> disappearingTasks, List<TaskModel> deletedTasks)
+    required TResult Function(
+            List<TaskModel> selectedTasks,
+            List<TaskModel> disappearingTasks,
+            List<TaskModel> deletedTasks,
+            TaskModel? skippedTask)
         completionState,
   }) {
-    return completionState(selectedTasks, disappearingTasks, deletedTasks);
+    return completionState(
+        selectedTasks, disappearingTasks, deletedTasks, skippedTask);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<TaskModel> selectedTasks,
-            List<TaskModel> disappearingTasks, List<TaskModel> deletedTasks)?
+    TResult? Function(
+            List<TaskModel> selectedTasks,
+            List<TaskModel> disappearingTasks,
+            List<TaskModel> deletedTasks,
+            TaskModel? skippedTask)?
         completionState,
   }) {
     return completionState?.call(
-        selectedTasks, disappearingTasks, deletedTasks);
+        selectedTasks, disappearingTasks, deletedTasks, skippedTask);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<TaskModel> selectedTasks,
-            List<TaskModel> disappearingTasks, List<TaskModel> deletedTasks)?
+    TResult Function(
+            List<TaskModel> selectedTasks,
+            List<TaskModel> disappearingTasks,
+            List<TaskModel> deletedTasks,
+            TaskModel? skippedTask)?
         completionState,
     required TResult orElse(),
   }) {
     if (completionState != null) {
-      return completionState(selectedTasks, disappearingTasks, deletedTasks);
+      return completionState(
+          selectedTasks, disappearingTasks, deletedTasks, skippedTask);
     }
     return orElse();
   }
@@ -762,7 +998,8 @@ abstract class _CompletionState implements CompletionState {
   const factory _CompletionState(
       {required final List<TaskModel> selectedTasks,
       required final List<TaskModel> disappearingTasks,
-      required final List<TaskModel> deletedTasks}) = _$_CompletionState;
+      required final List<TaskModel> deletedTasks,
+      required final TaskModel? skippedTask}) = _$_CompletionState;
 
   @override
   List<TaskModel> get selectedTasks;
@@ -770,6 +1007,8 @@ abstract class _CompletionState implements CompletionState {
   List<TaskModel> get disappearingTasks;
   @override
   List<TaskModel> get deletedTasks;
+  @override
+  TaskModel? get skippedTask;
   @override
   @JsonKey(ignore: true)
   _$$_CompletionStateCopyWith<_$_CompletionState> get copyWith =>

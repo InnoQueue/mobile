@@ -7,5 +7,6 @@ class NotificationsState with _$NotificationsState {
   const factory NotificationsState.itemsFetched({
     required List<NotificationModel> items,
     required bool fetchedAll,
+    required NotificationModel? removedBySwipe,
   }) = _ItemsFetched;
 }

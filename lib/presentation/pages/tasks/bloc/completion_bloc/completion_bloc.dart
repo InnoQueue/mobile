@@ -26,9 +26,11 @@ class CompletionBloc extends Bloc<CompletionEvent, CompletionState> {
             selectedTasks: [],
             disappearingTasks: [],
             deletedTasks: [],
+            skippedTask: null,
           ),
         ) {
     on<_CompleteTask>(_completeTask);
+    on<_SkipTask>(_skipTask);
     on<_UncompleteTask>(_uncompleteTask);
     on<_UpdateState>((event, emit) => _updateState(emit));
   }
@@ -60,6 +62,7 @@ class CompletionBloc extends Bloc<CompletionEvent, CompletionState> {
         selectedTasks: selectedTasks.toList(),
         disappearingTasks: disappearingTasks.toList(),
         deletedTasks: deletedTasks.toList(),
+        skippedTask: null,
       ),
     );
   }
@@ -83,6 +86,21 @@ class CompletionBloc extends Bloc<CompletionEvent, CompletionState> {
     deletedTasks = disappearingTasks.toList();
     disappearingTasks = [];
     add(const _UpdateState());
+  }
+
+  void _skipTask(
+    _SkipTask event,
+    Emitter<CompletionState> emit,
+  ) {
+    getIt.get<QueuesRepository>().skipTask(event.task.queueId);
+    emit(
+      _CompletionState(
+        selectedTasks: selectedTasks.toList(),
+        disappearingTasks: disappearingTasks.toList(),
+        deletedTasks: deletedTasks.toList(),
+        skippedTask: event.task,
+      ),
+    );
   }
 
   @override
