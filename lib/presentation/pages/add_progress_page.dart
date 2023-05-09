@@ -63,7 +63,7 @@ class _AddProgressPageState extends State<AddProgressPage> {
                     widget
                         .submitExpenses((double.parse(expenses) * 100).toInt());
                     getIt.get<FBAnalytics>().logExpensesSubmitted(
-                          expenses: (double.parse(expenses) * 100).toInt(),
+                          expenses: double.parse(expenses),
                         );
                     context.router.pop();
                   },
