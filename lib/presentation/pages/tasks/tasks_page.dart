@@ -13,22 +13,41 @@ class TasksPage extends StatefulWidget {
 }
 
 class _TasksPageState extends State<TasksPage> {
+  final SelectionBloc _selectionBloc = SelectionBloc();
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<TasksBloc>(
-      create: (context) => getIt.get<TasksBloc>()
-        ..add(
-          const TasksEvent.loadData(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TasksBloc>(
+          create: (context) => getIt.get<TasksBloc>()
+            ..add(
+              const TasksEvent.loadData(),
+            ),
         ),
+        BlocProvider<SelectionBloc>(create: (context) => _selectionBloc),
+      ],
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: const Text(
-            'Tasks',
-            style: TextStyle(color: Colors.black),
+        appBar: SelectableAppBar(
+          title: 'Tasks',
+          action: GestureDetector(
+            onTap: () {
+              final List<int> selectedNotificationIds =
+                  _selectionBloc.selectedIds.toList();
+
+              getIt.get<TasksBloc>().add(
+                    TasksEvent.skipTasks(
+                      selectedNotificationIds,
+                    ),
+                  );
+
+              _selectionBloc.add(const SelectionEvent.unselectAll());
+            },
+            child: const Icon(
+              Icons.autorenew,
+              color: Colors.black,
+            ),
           ),
-          centerTitle: true,
         ),
         backgroundColor: Colors.grey.shade100,
         body: RefreshIndicator(

@@ -14,13 +14,20 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
+  final SelectionBloc _selectionBloc = SelectionBloc();
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<NotificationsBloc>(
-      create: (context) => getIt.get<NotificationsBloc>()
-        ..add(
-          const NotificationsEvent.fetchNotifications(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => _selectionBloc),
+        BlocProvider(
+          create: (context) => getIt.get<NotificationsBloc>()
+            ..add(
+              const NotificationsEvent.fetchNotifications(),
+            ),
         ),
+      ],
       child: BlocListener<FirebaseNotifcationsCubit, RemoteMessage?>(
         listener: (context, state) {
           if (state != null) {
@@ -32,14 +39,26 @@ class _NotificationsPageState extends State<NotificationsPage> {
           }
         },
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            title: const Text(
-              'Notifications',
-              style: TextStyle(color: Colors.black),
+          appBar: SelectableAppBar(
+            title: 'Notifications',
+            action: GestureDetector(
+              onTap: () {
+                final List<int> selectedNotificationIds =
+                    _selectionBloc.selectedIds.toList();
+
+                getIt.get<NotificationsBloc>().add(
+                      NotificationsEvent.removeNotifications(
+                        selectedNotificationIds,
+                      ),
+                    );
+
+                _selectionBloc.add(const SelectionEvent.unselectAll());
+              },
+              child: const Icon(
+                Icons.delete_outline,
+                color: Colors.black,
+              ),
             ),
-            centerTitle: true,
           ),
           backgroundColor: Colors.grey.shade100,
           body: BlocBuilder<NotificationsBloc, NotificationsState>(
@@ -48,9 +67,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 initial: () => const Center(
                   child: CircularProgressIndicator(),
                 ),
-                itemsFetched: (items, fetchedAll) => NotificationList(
+                itemsFetched: (items, fetchedAll, removedBySwipe) =>
+                    NotificationList(
                   notifications: items,
                   fetchedAll: fetchedAll,
+                  removedBySwipe: removedBySwipe,
                 ),
               );
             },

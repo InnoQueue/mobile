@@ -219,7 +219,7 @@ class MockQueuesRepositoryImpl implements QueuesRepository {
   @override
   Future<void> completeTask({
     required int queueId,
-    double? expenses,
+    int? expenses,
   }) async {
     await Future.delayed(const Duration(milliseconds: 300));
 

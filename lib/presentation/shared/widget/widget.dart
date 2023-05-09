@@ -5,3 +5,5 @@ export 'selection_list.dart';
 export 'shakeable.dart';
 export 'custom_dismissible.dart';
 export 'queue_title.dart';
+export 'selectable_item.dart';
+export 'selectable_app_bar.dart';
