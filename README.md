@@ -3,6 +3,7 @@
 > Semester 8, 4th study-year, Innopolis University.
 
 [![Hits-of-Code](https://hitsofcode.com/github/InnoQueue/mobile?branch=main)](https://hitsofcode.com/github/InnoQueue/mobile/view?branch=main)
+[![codecov](https://codecov.io/gh/InnoQueue/mobile/branch/main/graph/badge.svg?token=CsXJoUf8BV)](https://codecov.io/gh/InnoQueue/mobile)
 
 ## **Team**
 
@@ -22,6 +23,7 @@
   roommates based on their contribution.
 - For the [REST API](https://innoqueue-dev.herokuapp.com/swagger-ui.html),
   the [Backend](https://github.com/InnoQueue/backend) project was developed.
+- [SonarQube analysis](https://sonarcloud.io/summary/overall?id=InnoQueue_mobile)
 
 <p float="center">
 <img width="300" src="https://user-images.githubusercontent.com/49106163/167298525-fa458bd1-4e28-4593-a738-8c26a4bdf7a6.png"/>
