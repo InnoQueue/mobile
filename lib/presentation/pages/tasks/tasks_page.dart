@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/application.dart';
+import '../../../data/analytics/fb_analytics.dart';
 import '../../presentation.dart';
 
 class TasksPage extends StatefulWidget {
@@ -12,6 +13,11 @@ class TasksPage extends StatefulWidget {
 }
 
 class _TasksPageState extends State<TasksPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<TasksBloc>(

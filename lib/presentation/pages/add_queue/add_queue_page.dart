@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:innoq/data/analytics/fb_analytics.dart';
 
 import '../../../application/application.dart';
 import '../../presentation.dart';
@@ -81,6 +82,7 @@ class _AddQueuePageState extends State<AddQueuePage> {
                             trackExpenses: trackExpenses,
                           ),
                         );
+                    getIt.get<FBAnalytics>().logCreateQueue();
                     context.router.pop();
                   },
           ),

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:innoq/data/analytics/fb_analytics.dart';
 import 'package:innoq/domain/domain.dart';
 
 import '../../../application/application.dart';
@@ -14,6 +15,11 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String name = "";
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
