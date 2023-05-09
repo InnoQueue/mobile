@@ -1,4 +1,4 @@
-name: Flutter CI
+name: Codecov
 
 on:
   pull_request:
