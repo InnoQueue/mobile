@@ -116,6 +116,26 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     getIt.get<FBAnalytics>().logNotificationRemoved();
   }
 
+  void _removeNotifications(
+    _RemoveNotifications event,
+    Emitter<NotificationsState> emit,
+  ) {
+    currentNotifications.removeWhere(
+      (element) => event.notificationIds.contains(element.notificationId),
+    );
+
+    getIt
+        .get<NotificationsRepository>()
+        .removeNotifications(event.notificationIds);
+    
+    emit(NotificationsState.itemsFetched(
+      items: filteredNotifications.toList(),
+      fetchedAll: _fetchedAll,
+      removedBySwipe: null,
+    ));
+    getIt.get<FBAnalytics>().logNotificationRemoved();
+  }
+
   List<NotificationModel> get filteredNotifications => currentNotifications
       .map(
         (e) => e.copyWith(
