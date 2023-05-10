@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/application.dart';
-import '../../../data/analytics/fb_analytics.dart';
 import '../../presentation.dart';
 
 class NotificationsPage extends StatefulWidget {
@@ -39,12 +38,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
           }
         },
         child: Scaffold(
-<<<<<<< HEAD
-          appBar: AppBar(
-            elevation: 0,
-            title: const Text('Notifications'),
-            centerTitle: true,
-=======
           appBar: SelectableAppBar(
             title: 'Notifications',
             action: GestureDetector(
@@ -60,12 +53,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
                 _selectionBloc.add(const SelectionEvent.unselectAll());
               },
-              child: const Icon(
-                Icons.delete_outline,
-                color: Colors.black,
-              ),
+              child: const Icon(Icons.delete_outline),
             ),
->>>>>>> 6a8f470 (Add selection (#58))
           ),
           body: BlocBuilder<NotificationsBloc, NotificationsState>(
             builder: (context, state) {

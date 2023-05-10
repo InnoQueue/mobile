@@ -38,7 +38,14 @@ class SelectableAppBarState extends State<SelectableAppBar> {
                 scale: isAnythingSelected ? 1 : 0,
                 curve: Curves.easeInOutBack,
                 child: isAnythingSelected
-                    ? const Icon(Icons.close)
+                    ? GestureDetector(
+                        onTap: () {
+                          context
+                              .read<SelectionBloc>()
+                              .add(const SelectionEvent.unselectAll());
+                        },
+                        child: const Icon(Icons.close),
+                      )
                     : const SizedBox(),
               ),
               const SizedBox(width: 16),
