@@ -48,7 +48,6 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
               vertical: 15,
             ),
           ),
-      color: context.watch<AppThemeCubit>().state.themeData.cardColor,
       child: notificationSettings == null
           ? const Center(
               child: CircularProgressIndicator(),

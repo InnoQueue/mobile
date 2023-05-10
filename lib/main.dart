@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
         builder: (context, state) => MaterialApp.router(
           routerDelegate: AutoRouterDelegate(
             getIt.get<AppRouter>(),
-            navigatorObservers: () => [AppRouterObserver()],
+            navigatorObservers: () => [AppRouterObserver(), HeroController()],
           ),
           routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
           theme: state.themeData.copyWith(

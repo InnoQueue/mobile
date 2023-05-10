@@ -27,7 +27,6 @@ class _AddProgressPageState extends State<AddProgressPage> {
               vertical: 15,
             ),
           ),
-      color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

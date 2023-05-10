@@ -31,7 +31,6 @@ class SelectionList extends StatelessWidget {
               vertical: 15,
             ),
           ),
-      color: context.watch<AppThemeCubit>().state.themeData.cardColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
