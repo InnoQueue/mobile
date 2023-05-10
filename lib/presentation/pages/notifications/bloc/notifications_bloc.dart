@@ -107,7 +107,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     getIt
         .get<NotificationsRepository>()
         .removeNotifications(event.notificationIds);
-    
+
     emit(NotificationsState.itemsFetched(
       items: filteredNotifications.toList(),
       fetchedAll: _fetchedAll,
@@ -127,7 +127,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     getIt
         .get<NotificationsRepository>()
         .removeNotifications(event.notificationIds);
-    
+
     emit(NotificationsState.itemsFetched(
       items: filteredNotifications.toList(),
       fetchedAll: _fetchedAll,
