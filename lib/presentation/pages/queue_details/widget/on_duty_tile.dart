@@ -30,7 +30,7 @@ class _OnDutyTileState extends State<OnDutyTile>
             height: 60,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Colors.white,
+              color: context.read<AppThemeCubit>().state.cardColor,
             ),
             child: Row(
               children: [
@@ -48,7 +48,7 @@ class _OnDutyTileState extends State<OnDutyTile>
                       'shake',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.red.shade300,
+                        color: Colors.red.shade400,
                       ),
                     ),
                   ),

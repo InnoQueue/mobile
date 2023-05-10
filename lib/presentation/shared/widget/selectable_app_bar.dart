@@ -26,7 +26,6 @@ class SelectableAppBarState extends State<SelectableAppBar> {
     bool isAnythingSelected = selectionBloc.selectedIds.isNotEmpty;
 
     return AppBar(
-      backgroundColor: Colors.white,
       elevation: 0,
       title: Stack(
         children: [
@@ -39,9 +38,13 @@ class SelectableAppBarState extends State<SelectableAppBar> {
                 scale: isAnythingSelected ? 1 : 0,
                 curve: Curves.easeInOutBack,
                 child: isAnythingSelected
-                    ? const Icon(
-                        Icons.close,
-                        color: Colors.black,
+                    ? GestureDetector(
+                        onTap: () {
+                          context
+                              .read<SelectionBloc>()
+                              .add(const SelectionEvent.unselectAll());
+                        },
+                        child: const Icon(Icons.close),
                       )
                     : const SizedBox(),
               ),
@@ -64,7 +67,6 @@ class SelectableAppBarState extends State<SelectableAppBar> {
                     key: Key(
                       '${widget.title}_${selectionBloc.selectedIds.length.toString()}',
                     ),
-                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ),
@@ -80,7 +82,6 @@ class SelectableAppBarState extends State<SelectableAppBar> {
           Center(
             child: Text(
               widget.title,
-              style: const TextStyle(color: Colors.black),
             ),
           ),
         ],

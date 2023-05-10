@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:innoq/data/models/queue_info/queue_info.dart';
 
 import '../../../presentation.dart';
@@ -48,7 +49,7 @@ class QueueItem extends StatelessWidget {
         height: 65,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: Colors.white,
+          color: context.watch<AppThemeCubit>().state.themeData.cardColor,
         ),
         child: Row(
           children: [

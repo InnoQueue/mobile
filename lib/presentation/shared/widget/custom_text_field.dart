@@ -33,11 +33,14 @@ class CustomTextField extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.start,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle: const TextStyle(
+          color: Colors.grey,
+        ),
         enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey.shade800),
+          borderSide: BorderSide(color: Colors.grey.shade600),
         ),
         focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey.shade800),
+          borderSide: BorderSide(color: Colors.grey.shade600),
         ),
       ),
       onChanged: onChanged,

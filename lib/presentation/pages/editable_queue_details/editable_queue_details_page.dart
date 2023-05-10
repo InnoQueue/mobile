@@ -13,12 +13,9 @@ class EditableQueueDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
         elevation: 0,
         title: const Text(
           'Edit',
-          style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         actions: [
@@ -33,7 +30,6 @@ class EditableQueueDetailsPage extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Colors.grey.shade100,
       body: const _MainContent(),
     );
   }

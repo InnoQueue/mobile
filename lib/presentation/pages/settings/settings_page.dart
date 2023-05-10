@@ -9,15 +9,10 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
-        title: const Text(
-          'Settings',
-          style: TextStyle(color: Colors.black),
-        ),
+        title: const Text('Settings'),
         centerTitle: true,
       ),
-      backgroundColor: Colors.grey.shade100,
       body: ListView(
         padding: const EdgeInsets.all(10),
         children: const [

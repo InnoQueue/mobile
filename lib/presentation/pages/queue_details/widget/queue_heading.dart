@@ -17,7 +17,7 @@ class QueueHeading extends StatelessWidget {
           height: 80,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: Colors.white,
+            color: context.watch<AppThemeCubit>().state.cardColor,
           ),
           child: Row(
             children: [

@@ -38,6 +38,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  late final AppThemeCubit _appThemeCubit = AppThemeCubit(Theme.of(context));
+
   @override
   void initState() {
     super.initState();
@@ -62,21 +64,21 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    Colors.grey[50];
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(value: getIt.get<FirebaseNotifcationsCubit>()),
+        BlocProvider.value(value: _appThemeCubit),
       ],
-      child: MaterialApp.router(
-        routerDelegate: AutoRouterDelegate(
-          getIt.get<AppRouter>(),
-          navigatorObservers: () => [
-            AppRouterObserver(),
-          ],
-        ),
-        routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
-        theme: ThemeData(
-          platform: TargetPlatform.iOS,
+      child: BlocBuilder<AppThemeCubit, AppTheme>(
+        builder: (context, state) => MaterialApp.router(
+          routerDelegate: AutoRouterDelegate(
+            getIt.get<AppRouter>(),
+            navigatorObservers: () => [AppRouterObserver()],
+          ),
+          routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
+          theme: state.themeData.copyWith(
+            platform: TargetPlatform.iOS,
+          ),
         ),
       ),
     );

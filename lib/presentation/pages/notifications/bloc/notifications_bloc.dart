@@ -93,6 +93,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       fetchedAll: _fetchedAll,
       removedBySwipe: removedBySwipe,
     ));
+    getIt.get<FBAnalytics>().logNotificationRemoved();
   }
 
   void _removeNotifications(
@@ -106,7 +107,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     getIt
         .get<NotificationsRepository>()
         .removeNotifications(event.notificationIds);
-    
+
     emit(NotificationsState.itemsFetched(
       items: filteredNotifications.toList(),
       fetchedAll: _fetchedAll,

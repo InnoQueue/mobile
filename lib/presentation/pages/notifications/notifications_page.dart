@@ -54,13 +54,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
                 _selectionBloc.add(const SelectionEvent.unselectAll());
               },
-              child: const Icon(
-                Icons.delete_outline,
-                color: Colors.black,
-              ),
+              child: const Icon(Icons.delete_outline),
             ),
           ),
-          backgroundColor: Colors.grey.shade100,
           body: BlocBuilder<NotificationsBloc, NotificationsState>(
             builder: (context, state) {
               return state.when(

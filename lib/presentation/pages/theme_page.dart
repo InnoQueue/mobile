@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/get_it/get_it_service_locator.dart';
 import '../../data/analytics/fb_analytics.dart';
@@ -12,8 +13,9 @@ class ThemePage extends StatefulWidget {
 }
 
 class _ThemePageState extends State<ThemePage> {
-  var themes = ['Bright', 'Dark'];
-  var currentTheme = 'Bright';
+  var themes = ['Light', 'Dark'];
+  late var currentTheme =
+      context.read<AppThemeCubit>().isLight ? 'Light' : 'Dark';
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,9 @@ class _ThemePageState extends State<ThemePage> {
       nameBuilder: (index) => themes[index],
       onTap: (index) {
         currentTheme = themes[index];
+        index == 0
+            ? context.read<AppThemeCubit>().enableLightTheme()
+            : context.read<AppThemeCubit>().enableDarkTheme();
         getIt.get<FBAnalytics>().logThemeSettingsUpdated(
               preferredTheme: currentTheme,
             );

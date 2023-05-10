@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../application/application.dart';
@@ -41,18 +42,18 @@ class _PinCodeFieldState extends State<PinCodeField> with OpenQueueMixin {
             borderRadius: BorderRadius.circular(5),
             fieldHeight: 30,
             fieldWidth: 25,
-            activeFillColor: Colors.white,
-            inactiveFillColor: Colors.white,
-            selectedFillColor: Colors.white,
+            activeFillColor: backgroundColor,
+            inactiveFillColor: backgroundColor,
+            selectedFillColor: backgroundColor,
             activeColor: Colors.grey.shade700,
             inactiveColor: Colors.grey.shade700,
-            disabledColor: Colors.grey.shade300,
+            disabledColor: Colors.grey.shade500,
             selectedColor: Colors.grey.shade700,
             errorBorderColor: colors['RED'],
             borderWidth: 1,
           ),
           errorAnimationController: errorController,
-          cursorColor: Colors.black,
+          cursorColor: context.watch<AppThemeCubit>().state.labelPrimary,
           cursorHeight: 20,
           cursorWidth: 1,
           textStyle: const TextStyle(
@@ -68,6 +69,9 @@ class _PinCodeFieldState extends State<PinCodeField> with OpenQueueMixin {
       ),
     );
   }
+
+  Color get backgroundColor =>
+      context.watch<AppThemeCubit>().state.themeData.cardColor;
 
   void _checkPin(String value) async {
     setState(() {

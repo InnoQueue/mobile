@@ -92,6 +92,7 @@ class SelectableItemContent extends StatelessWidget {
   Widget build(BuildContext context) {
     SelectionBloc selectionBloc = context.watch<SelectionBloc>();
     bool isSelected = selectionBloc.selectedIds.contains(id);
+    Color cardColor = context.watch<AppThemeCubit>().state.cardColor;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
@@ -106,13 +107,13 @@ class SelectableItemContent extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isSelected
-              ? Color.alphaBlend(Colors.blue.withOpacity(0.05), Colors.white)
-              : Colors.white,
+              ? Color.alphaBlend(Colors.blue.withOpacity(0.05), cardColor)
+              : cardColor,
           width: 0,
         ),
         color: isSelected
-            ? Color.alphaBlend(Colors.blue.withOpacity(0.05), Colors.white)
-            : Colors.white,
+            ? Color.alphaBlend(Colors.blue.withOpacity(0.05), cardColor)
+            : cardColor,
       ),
       child: child,
     );

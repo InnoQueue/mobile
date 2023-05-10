@@ -49,7 +49,6 @@ class _TasksPageState extends State<TasksPage> {
             ),
           ),
         ),
-        backgroundColor: Colors.grey.shade100,
         body: RefreshIndicator(
           onRefresh: () async {
             getIt.get<TasksBloc>().add(const TasksEvent.loadData());
