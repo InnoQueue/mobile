@@ -19,9 +19,6 @@ Route<T> modalSheetBuilder<T>(
         ? const Duration(milliseconds: 700)
         : null,
     builder: (context) {
-      return child;
-    },
-    containerBuilder: (context, animation, child) {
       return Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(

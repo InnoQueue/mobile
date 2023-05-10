@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../application/application.dart';s
+import '../../../application/application.dart';
 import '../../presentation.dart';
 
 class TasksPage extends StatefulWidget {
