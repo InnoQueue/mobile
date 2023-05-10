@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:innoq/data/analytics/fb_analytics.dart';
 
 import '../../../../application/application.dart';
 import '../../../../data/data.dart';
