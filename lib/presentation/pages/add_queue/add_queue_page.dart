@@ -83,7 +83,6 @@ class _AddQueuePageState extends State<AddQueuePage> {
                             trackExpenses: trackExpenses,
                           ),
                         );
-                    getIt.get<FBAnalytics>().logCreateQueue();
                     context.router.pop();
                   },
           ),
