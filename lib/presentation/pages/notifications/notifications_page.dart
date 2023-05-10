@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/application.dart';
+import '../../../data/analytics/fb_analytics.dart';
 import '../../presentation.dart';
 
 class NotificationsPage extends StatefulWidget {
