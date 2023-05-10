@@ -1,11 +1,8 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:injectable/injectable.dart';
 import 'package:innoq/domain/models/sort_enum/sort_enum.dart';
-
-import '../data.dart';
 
 @Singleton()
 class FBAnalytics {
@@ -21,7 +18,6 @@ class FBAnalytics {
   }
 
   void logTest() async {
-    print("FBAnalytics: logging test event");
     await analytics.logEvent(
       name: 'test_event',
       parameters: {
