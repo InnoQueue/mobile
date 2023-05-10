@@ -28,7 +28,7 @@ class _ChooseAvatarColorPageState extends State<ChooseAvatarColorPage> {
               vertical: 10,
             ),
           ),
-      color: Colors.white,
+      color: context.watch<AppThemeCubit>().state.cardColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,

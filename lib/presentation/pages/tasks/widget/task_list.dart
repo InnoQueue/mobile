@@ -142,20 +142,6 @@ class _TaskItemState extends State<TaskItem> {
       duration: widget.disappearing
           ? context.read<CompletionBloc>().disappearingDuration
           : Duration.zero,
-<<<<<<< HEAD
-      child: Container(
-        height: 65,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: context.watch<AppThemeCubit>().state.themeData.cardColor,
-        ),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 50,
-              child:
-                  widget.task.important ? const _ImportanceIndicator() : null,
-=======
       child: SelectableItemBackground(
         id: widget.task.queueId,
         child: Padding(
@@ -163,7 +149,6 @@ class _TaskItemState extends State<TaskItem> {
           child: CustomDismissible(
             key: Key(
               'dissmisible_task_${widget.task.hashCode.toString()}',
->>>>>>> 6a8f470 (Add selection (#58))
             ),
             dismissibleKey: Key(
               'task_${widget.task.hashCode.toString()}',

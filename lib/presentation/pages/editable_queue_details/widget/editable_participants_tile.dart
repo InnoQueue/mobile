@@ -23,7 +23,7 @@ class _EditableParticipantsTileState extends State<EditableParticipantsTile> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: Colors.white,
+        color: context.watch<AppThemeCubit>().state.cardColor,
       ),
       child: AnimatedList(
         key: _listKey,
@@ -103,11 +103,7 @@ class _ParticipantShell extends StatelessWidget {
             ],
           ),
         ),
-        if (!isLast)
-          Container(
-            height: 1,
-            color: Colors.grey.shade200,
-          ),
+        if (!isLast) const Divider(height: 1),
       ],
     );
   }

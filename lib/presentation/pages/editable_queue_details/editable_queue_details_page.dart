@@ -16,7 +16,6 @@ class EditableQueueDetailsPage extends StatelessWidget {
         elevation: 0,
         title: const Text(
           'Edit',
-          style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         actions: [

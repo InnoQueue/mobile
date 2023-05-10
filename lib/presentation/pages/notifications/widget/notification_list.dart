@@ -181,32 +181,6 @@ class NotifiationItem extends StatelessWidget {
               .markNotificationAsDisplayed(notification.notificationId);
         }
       },
-<<<<<<< HEAD
-      child: Container(
-        padding: const EdgeInsets.only(
-          left: 20,
-          top: 14,
-          bottom: 14,
-          right: 40,
-        ),
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: context.watch<AppThemeCubit>().state.cardColor,
-            width: 0,
-          ),
-          color: context.watch<AppThemeCubit>().state.cardColor,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SuperText(
-              getText(notification),
-              style: const TextStyle(fontSize: 16),
-              isNew: !notification.read,
-=======
       child: SelectableItemBackground(
         id: notification.notificationId,
         child: Padding(
@@ -214,7 +188,6 @@ class NotifiationItem extends StatelessWidget {
           child: CustomDismissible(
             key: Key(
               'dissmisible_notification_${notification.hashCode.toString()}',
->>>>>>> 6a8f470 (Add selection (#58))
             ),
             dismissibleKey: Key(
               'notification_${notification.hashCode.toString()}',
