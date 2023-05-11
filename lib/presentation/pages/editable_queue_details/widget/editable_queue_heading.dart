@@ -50,12 +50,15 @@ class _AvatarState extends State<_Avatar> {
     return Stack(
       alignment: Alignment.topRight,
       children: [
-        Container(
-          height: 55,
-          width: 55,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: colors[currentColor]!,
+        Hero(
+          tag: 'avatar_hero',
+          child: Container(
+            height: 55,
+            width: 55,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: colors[currentColor]!,
+            ),
           ),
         ),
         GestureDetector(

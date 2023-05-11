@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:innoq/data/analytics/fb_analytics.dart';
 
 import '../../../application/application.dart';
 import '../../presentation.dart';
@@ -27,7 +25,6 @@ class _AddQueuePageState extends State<AddQueuePage> {
               vertical: 10,
             ),
           ),
-      color: context.watch<AppThemeCubit>().state.themeData.cardColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
