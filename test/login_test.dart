@@ -143,7 +143,7 @@ void main() {
     expect(s.trackExpenses, 'Track expenses');
     expect(s.spent, 'spent');
     expect(s.createQueue, 'Create a Queue');
-    expect(s.inputName, 'inpupt name');
+    expect(s.inputName, 'input name');
     expect(s.create, 'Create');
     expect(s.scanQrCode, 'Scan QR code');
     expect(s.or, 'or');
@@ -222,7 +222,9 @@ void main() {
       '**participantName** deleted the queue **queueName**',
     );
     expect(
-        s.youCompleted('queueName'), 'You completed the queue **queueName**');
+      s.youCompleted('queueName'),
+      'You completed the queue **queueName**',
+    );
     expect(
       s.theyCompleted('participantName', 'queueName'),
       '**participantName** completed the queue **queueName**',
