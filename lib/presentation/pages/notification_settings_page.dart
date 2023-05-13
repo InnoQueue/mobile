@@ -17,13 +17,13 @@ class NotificationSettingsPage extends StatefulWidget {
 class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
   NotificationSettingsModel? notificationSettings;
 
-  var settings = [
-    "Notify when someone completes a task",
-    "Notify when someone skips a task",
-    "Notify when someone joins a queue",
-    "Notify when someone freezes a queue",
-    "Notify when someone leaves a queue",
-    "Notify when it's your turn",
+  late List<String> settings = [
+    S.of(context).taskCompleteNotification,
+    S.of(context).taskSkippedNotification,
+    S.of(context).queueJoinedNotification,
+    S.of(context).queueFrozenNotification,
+    S.of(context).queueLeftNotification,
+    S.of(context).yourTurnNotification,
   ]; // todo : fix this
 
   @override
@@ -55,9 +55,9 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Notification settings',
-                  style: TextStyle(
+                Text(
+                  S.of(context).notificationSettings,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -146,7 +146,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                     context.router.pop();
                   },
                   backgroundColor: Colors.grey.shade900,
-                  text: 'Save',
+                  text: S.of(context).save,
                 ),
               ],
             ),
@@ -171,8 +171,10 @@ class NotificationTile extends StatelessWidget {
       height: 50,
       child: Row(
         children: [
-          Text(name),
-          const Spacer(),
+          Expanded(
+            child: Text(name),
+          ),
+          const SizedBox(width: 20),
           Switch(
             value: value,
             onChanged: onChanged,

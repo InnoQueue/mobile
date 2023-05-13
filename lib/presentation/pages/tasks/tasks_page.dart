@@ -28,7 +28,7 @@ class _TasksPageState extends State<TasksPage> {
       ],
       child: Scaffold(
         appBar: SelectableAppBar(
-          title: 'Tasks',
+          title: S.of(context).tasks,
           action: GestureDetector(
             onTap: () {
               final List<int> selectedNotificationIds =

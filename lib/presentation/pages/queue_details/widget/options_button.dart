@@ -24,7 +24,7 @@ class OptionsButton extends StatelessWidget {
       itemBuilder: (context) => [
         _Option(
           icon: Icons.exit_to_app,
-          text: 'Leave',
+          text: S.of(context).leave,
           onTap: () {
             context
                 .read<QueueDetailsBloc>()
@@ -34,7 +34,7 @@ class OptionsButton extends StatelessWidget {
         ),
         _Option(
           icon: CupertinoIcons.snow,
-          text: isActive ? 'Freeze' : 'Unfreeze',
+          text: isActive ? S.of(context).freeze : S.of(context).unfreeze,
           onTap: () {
             context.read<QueueDetailsBloc>().add(isActive
                 ? const QueueDetailsEvent.freezeQueue()
@@ -43,7 +43,7 @@ class OptionsButton extends StatelessWidget {
         ),
         _Option(
           icon: Icons.share,
-          text: 'Share',
+          text: S.of(context).share,
           onTap: () {
             context.router.push(
               ShareQueueRoute(

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/domain.dart';
+import '../../../presentation.dart';
 
 class UserInfo extends StatelessWidget {
   final ParticipantModel user;
@@ -26,7 +27,7 @@ class UserInfo extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         Text(
-          '${(user.expenses / 100).toStringAsFixed(2)}₽ spent',
+          '${(user.expenses / 100).toStringAsFixed(2)}₽ ${S.of(context).spent}',
           style: const TextStyle(
             fontSize: 12,
             color: Colors.grey,

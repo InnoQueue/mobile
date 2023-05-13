@@ -70,7 +70,7 @@ class SelectionList extends StatelessWidget {
             CustomButton(
               onPressed: onApplyButtonPressed,
               backgroundColor: Colors.grey.shade900,
-              text: 'Apply sorting',
+              text: S.of(context).applySorting,
             ),
         ],
       ),

@@ -5,6 +5,7 @@ import '../domain.dart';
 
 const _sortKey = 'sort';
 const _themeKey = 'key';
+const _language = 'language';
 
 @Singleton()
 class SettingsRepository {
@@ -25,6 +26,12 @@ class SettingsRepository {
   }
 
   String get theme => storage.getString(_themeKey) ?? 'bright';
+
+  Future<void> setLanguage(String language) async {
+    await storage.setString(_language, language);
+  }
+
+  String? get language => storage.getString(_language);
 
   SortEnum? getPrefferedSort() {
     var sortStr = storage.getString(_sortKey);

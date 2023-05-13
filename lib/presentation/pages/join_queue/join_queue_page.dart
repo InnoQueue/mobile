@@ -18,34 +18,34 @@ class JoinQueuePage extends StatelessWidget {
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
+          children: [
             Text(
-              'Scan QR code',
-              style: TextStyle(
+              S.of(context).scanQrCode,
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            QrScanner(),
-            SizedBox(height: 10),
+            const QrScanner(),
+            const SizedBox(height: 10),
             Text(
-              'or',
-              style: TextStyle(
+              S.of(context).or,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
-              'Enter PIN code',
-              style: TextStyle(
+              S.of(context).enterPinCode,
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 10),
-            PinCodeField(),
+            const SizedBox(height: 10),
+            const PinCodeField(),
           ],
         ),
       ),

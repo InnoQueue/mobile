@@ -23,7 +23,7 @@ class _QueuesPageState extends State<QueuesPage> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          title: const Text('Queues'),
+          title: Text(S.of(context).queues),
           centerTitle: true,
           actions: const [
             _FilterButtom(),

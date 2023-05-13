@@ -20,7 +20,7 @@ class _EditableTrackExpensesSwitchState
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text('Track Expenses'),
+        Text(S.of(context).trackExpenses),
         const Spacer(),
         Switch(
           value: currentValue,

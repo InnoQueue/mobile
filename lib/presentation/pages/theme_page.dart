@@ -13,16 +13,25 @@ class ThemePage extends StatefulWidget {
 }
 
 class _ThemePageState extends State<ThemePage> {
-  var themes = ['Light', 'Dark'];
+  var themes = ['light', 'dark'];
   late var currentTheme =
-      context.read<AppThemeCubit>().isLight ? 'Light' : 'Dark';
+      context.read<AppThemeCubit>().isLight ? 'light' : 'dark';
 
   @override
   Widget build(BuildContext context) {
     return SelectionList(
-      title: 'Theme',
+      title: S.of(context).theme,
       selectedIndex: themes.indexOf(currentTheme),
-      nameBuilder: (index) => themes[index],
+      nameBuilder: (index) {
+        switch (index) {
+          case 0:
+            return S.of(context).light;
+          case 1:
+            return S.of(context).dark;
+          default:
+            throw UnimplementedError();
+        }
+      },
       onTap: (index) {
         currentTheme = themes[index];
         index == 0

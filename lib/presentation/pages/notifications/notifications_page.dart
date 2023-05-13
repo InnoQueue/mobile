@@ -39,7 +39,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         },
         child: Scaffold(
           appBar: SelectableAppBar(
-            title: 'Notifications',
+            title: S.of(context).notifications,
             action: GestureDetector(
               onTap: () {
                 final List<int> selectedNotificationIds =

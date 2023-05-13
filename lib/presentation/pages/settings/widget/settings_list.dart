@@ -26,45 +26,45 @@ class SettingsList extends StatefulWidget {
 }
 
 class _SettingsListState extends State<SettingsList> {
-  late final settings = [
-    _SettingDTO(
-      name: 'Notification Settings',
-      icon: Icons.notifications_outlined,
-      onTap: () {
-        getIt.get<FBAnalytics>().logNotificationSettingsOpened();
-        context.router.push(const NotificationSettingsRoute());
-      },
-    ),
-    _SettingDTO(
-      name: 'Theme',
-      icon: Icons.lightbulb_outline,
-      onTap: () {
-        if (context.mounted) {
-          getIt.get<FBAnalytics>().logThemeSettingsOpened();
-          context.router.push(const ThemeRoute());
-        }
-      },
-    ),
-    _SettingDTO(
-      name: 'Language',
-      icon: CupertinoIcons.globe,
-      onTap: () {
-        if (context.mounted) {
-          getIt.get<FBAnalytics>().logLanguageSettingsOpened();
-          context.router.push(const LanguageRoute());
-        }
-      },
-    ),
-    _SettingDTO(
-      name: 'Leave feedback',
-      icon: Icons.mail_outline,
-      onTap: () {
-        if (context.mounted) {
-          getIt.get<FBAnalytics>().logLeaveFeedbackOpened();
-        }
-      },
-    ),
-  ];
+  List<_SettingDTO> get settings => [
+        _SettingDTO(
+          name: S.of(context).notificationSettings,
+          icon: Icons.notifications_outlined,
+          onTap: () {
+            getIt.get<FBAnalytics>().logNotificationSettingsOpened();
+            context.router.push(const NotificationSettingsRoute());
+          },
+        ),
+        _SettingDTO(
+          name: S.of(context).theme,
+          icon: Icons.lightbulb_outline,
+          onTap: () {
+            if (context.mounted) {
+              getIt.get<FBAnalytics>().logThemeSettingsOpened();
+              context.router.push(const ThemeRoute());
+            }
+          },
+        ),
+        _SettingDTO(
+          name: S.of(context).language,
+          icon: CupertinoIcons.globe,
+          onTap: () {
+            if (context.mounted) {
+              getIt.get<FBAnalytics>().logLanguageSettingsOpened();
+              context.router.push(const LanguageRoute());
+            }
+          },
+        ),
+        _SettingDTO(
+          name: S.of(context).leaveFeedback,
+          icon: Icons.mail_outline,
+          onTap: () {
+            if (context.mounted) {
+              getIt.get<FBAnalytics>().logLeaveFeedbackOpened();
+            }
+          },
+        ),
+      ];
 
   @override
   Widget build(BuildContext context) {

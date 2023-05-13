@@ -10,7 +10,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text('Settings'),
+        title: Text(S.of(context).settings),
         centerTitle: true,
       ),
       body: ListView(

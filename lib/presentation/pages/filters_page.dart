@@ -22,9 +22,22 @@ class _FiltersPageState extends State<FiltersPage> {
   @override
   Widget build(BuildContext context) {
     return SelectionList(
-      title: 'Sort',
+      title: S.of(context).sort,
       selectedIndex: selectedIndex,
-      nameBuilder: (index) => SortEnum.values[index].presentationName,
+      nameBuilder: (index) {
+        switch (SortEnum.values[index]) {
+          case SortEnum.byQueueName:
+            return S.of(context).byQueueName;
+          case SortEnum.byParticipantName:
+            return S.of(context).byParticipantName;
+          case SortEnum.byDateJoined:
+            return S.of(context).byDateJoined;
+          case SortEnum.byDueDate:
+            return S.of(context).byDueDate;
+          default:
+            throw UnimplementedError();
+        }
+      },
       onTap: (index) {
         currentSort = SortEnum.values[index];
         setState(() {});
@@ -35,7 +48,9 @@ class _FiltersPageState extends State<FiltersPage> {
         context.router.pop();
         await getIt.get<SettingsRepository>().setPrefferedSort(currentSort);
         getIt.get<QueuesBloc>().add(const QueuesEvent.loadData());
-        getIt.get<FBAnalytics>().logSortSettingsSaved(preferredSort: currentSort);
+        getIt
+            .get<FBAnalytics>()
+            .logSortSettingsSaved(preferredSort: currentSort);
       },
     );
   }
