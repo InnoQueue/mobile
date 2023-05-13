@@ -38,7 +38,7 @@
     "save": "Save",
     "system": "System",
     "yourTurn": "It's now Your turn in the queue **{queueName}**",
-    "theirTurn": "{participantName} is now responsible for the queue **{queueName}**",
+    "theirTurn": "**{participantName}** is now responsible for the queue **{queueName}**",
     "youWereShaken": "You were shaken by roommate to remind You that it is Your turn in **{queueName}**",
     "youFroze": "You froze the queue **{queueName}**",
     "theyFroze": "**{participantName}** froze the queue **{queueName}**",
@@ -59,7 +59,7 @@
     "sort": "Sort",
     "byQueueName": "By queue name",
     "byParticipantName": "By participant name",
-    "byDateJoined": "by Date Joined",
-    "byDueDate": "by Due Date",
+    "byDateJoined": "By Date Joined",
+    "byDueDate": "By Due Date",
     "applySorting": "Apply sorting"
 }

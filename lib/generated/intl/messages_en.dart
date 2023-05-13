@@ -21,7 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   static String m0(participantName, queueName) =>
-      "${participantName} is now responsible for the queue **${queueName}**";
+      "**${participantName}** is now responsible for the queue **${queueName}**";
 
   static String m1(participantName, queueName) =>
       "**${participantName}** completed the queue **${queueName}**";
@@ -68,8 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addProgress": MessageLookupByLibrary.simpleMessage("Add progress"),
         "applySorting": MessageLookupByLibrary.simpleMessage("Apply sorting"),
-        "byDateJoined": MessageLookupByLibrary.simpleMessage("by Date Joined"),
-        "byDueDate": MessageLookupByLibrary.simpleMessage("by Due Date"),
+        "byDateJoined": MessageLookupByLibrary.simpleMessage("By Date Joined"),
+        "byDueDate": MessageLookupByLibrary.simpleMessage("By Due Date"),
         "byParticipantName":
             MessageLookupByLibrary.simpleMessage("By participant name"),
         "byQueueName": MessageLookupByLibrary.simpleMessage("By queue name"),

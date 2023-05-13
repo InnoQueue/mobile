@@ -440,10 +440,10 @@ class S {
     );
   }
 
-  /// `{participantName} is now responsible for the queue **{queueName}**`
+  /// `**{participantName}** is now responsible for the queue **{queueName}**`
   String theirTurn(Object participantName, Object queueName) {
     return Intl.message(
-      '$participantName is now responsible for the queue **$queueName**',
+      '**$participantName** is now responsible for the queue **$queueName**',
       name: 'theirTurn',
       desc: '',
       args: [participantName, queueName],
@@ -650,20 +650,20 @@ class S {
     );
   }
 
-  /// `by Date Joined`
+  /// `By Date Joined`
   String get byDateJoined {
     return Intl.message(
-      'by Date Joined',
+      'By Date Joined',
       name: 'byDateJoined',
       desc: '',
       args: [],
     );
   }
 
-  /// `by Due Date`
+  /// `By Due Date`
   String get byDueDate {
     return Intl.message(
-      'by Due Date',
+      'By Due Date',
       name: 'byDueDate',
       desc: '',
       args: [],

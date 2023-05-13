@@ -21,7 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
   static String m0(participantName, queueName) =>
-      "Сейчас очередь ${participantName} в **${queueName}**";
+      "Сейчас очередь **${participantName}** в **${queueName}**";
 
   static String m1(participantName, queueName) =>
       "**${participantName}** завершил(-а, -и) **${queueName}**";
@@ -42,7 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "**${participantName}** пропустил(а, -и) **${queueName}**";
 
   static String m7(participantName, queueName) =>
-      "**${participantName}** заморозил(-а, -и) **${queueName}**";
+      "**${participantName}** разморозил(-а, -и) **${queueName}**";
 
   static String m8(queueName) => "Вы завершили **${queueName}**";
 
@@ -91,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notificationSettings":
             MessageLookupByLibrary.simpleMessage("Настройки уведомлений"),
         "notifications": MessageLookupByLibrary.simpleMessage("Уведомления"),
+        "onDuty": MessageLookupByLibrary.simpleMessage("Дежурный:"),
         "or": MessageLookupByLibrary.simpleMessage("или"),
         "otherParticipants":
             MessageLookupByLibrary.simpleMessage("Другие участники:"),
@@ -117,7 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Уведомлять, когда кто-то завершил задание"),
         "taskSkippedNotification": MessageLookupByLibrary.simpleMessage(
             "Уведомлять, когда кто-то пропустил задание"),
-        "tasks": MessageLookupByLibrary.simpleMessage(" Задания"),
+        "tasks": MessageLookupByLibrary.simpleMessage("Задания"),
         "theirTurn": m0,
         "theme": MessageLookupByLibrary.simpleMessage("Тема"),
         "theyCompleted": m1,
