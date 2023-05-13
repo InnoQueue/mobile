@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:innoq/data/analytics/fb_analytics.dart';
 
 import '../../../application/application.dart';
 import '../../presentation.dart';
@@ -33,15 +32,15 @@ class _AddQueuePageState extends State<AddQueuePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 8),
-          const Text(
-            'Create a Queue',
-            style: TextStyle(
+          Text(
+            S.of(context).createQueue,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
           CustomTextField(
-            hintText: 'input name',
+            hintText: S.of(context).inputName,
             onChanged: (value) => setState(() => name = value),
             keyBoardType: TextInputType.name,
           ),
@@ -54,9 +53,9 @@ class _AddQueuePageState extends State<AddQueuePage> {
           const SizedBox(height: 50),
           Row(
             children: [
-              const Text(
-                'Track Expenses',
-                style: TextStyle(
+              Text(
+                S.of(context).trackExpenses,
+                style: const TextStyle(
                   fontSize: 16,
                 ),
               ),
@@ -118,8 +117,8 @@ class _SubmitButton extends StatelessWidget {
             ),
           ),
         ),
-        child: const Text(
-          'Create',
+        child: Text(
+          S.of(context).create,
         ),
       ),
     );

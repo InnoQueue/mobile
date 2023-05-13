@@ -14,8 +14,8 @@ class EditableQueueDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          'Edit',
+        title: Text(
+          S.of(context).edit,
         ),
         centerTitle: true,
         actions: [
@@ -47,20 +47,20 @@ class _MainContentState extends State<_MainContent> {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(10),
-      children: const [
-        EditableQueueHeading(),
-        SizedBox(height: 20),
+      children: [
+        const EditableQueueHeading(),
+        const SizedBox(height: 20),
         Padding(
-          padding: EdgeInsets.only(left: 15),
+          padding: const EdgeInsets.only(left: 15),
           child: Text(
-            'Participants:',
-            style: TextStyle(color: Colors.grey),
+            S.of(context).participants,
+            style: const TextStyle(color: Colors.grey),
           ),
         ),
-        SizedBox(height: 10),
-        EditableParticipantsTile(),
-        SizedBox(height: 10),
-        Padding(
+        const SizedBox(height: 10),
+        const EditableParticipantsTile(),
+        const SizedBox(height: 10),
+        const Padding(
           padding: EdgeInsets.only(left: 15, right: 5),
           child: EditableTrackExpensesSwitch(),
         ),

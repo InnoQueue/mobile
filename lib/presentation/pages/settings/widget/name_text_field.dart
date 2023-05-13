@@ -16,7 +16,7 @@ class NameTextField extends StatelessWidget {
       onSubmitted: (value) {
         getIt.get<UserRepository>().changeName(value);
       },
-      hintText: 'Your name',
+      hintText: S.of(context).yourName,
       keyBoardType: TextInputType.name,
     );
   }

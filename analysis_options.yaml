@@ -8,6 +8,7 @@ analyzer:
     - '**.g.dart'
     - '**.gr.dart'
     - '**.config.dart'
+    - 'lib/generated/**'
 
 dart_code_metrics:
   metrics:

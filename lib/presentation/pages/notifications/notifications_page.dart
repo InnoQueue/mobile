@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/application.dart';
-import '../../../data/analytics/fb_analytics.dart';
 import '../../presentation.dart';
 
 class NotificationsPage extends StatefulWidget {
@@ -40,7 +39,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         },
         child: Scaffold(
           appBar: SelectableAppBar(
-            title: 'Notifications',
+            title: S.of(context).notifications,
             action: GestureDetector(
               onTap: () {
                 final List<int> selectedNotificationIds =

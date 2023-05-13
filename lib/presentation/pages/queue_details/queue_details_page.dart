@@ -92,21 +92,21 @@ class _MainContent extends StatelessWidget {
           const SkipButton(),
           const SizedBox(height: 20),
         ],
-        const Padding(
-          padding: EdgeInsets.only(left: 15),
+        Padding(
+          padding: const EdgeInsets.only(left: 15),
           child: Text(
-            'On duty:',
-            style: TextStyle(color: Colors.grey),
+            S.of(context).onDuty,
+            style: const TextStyle(color: Colors.grey),
           ),
         ),
         const SizedBox(height: 10),
         const OnDutyTile(),
         const SizedBox(height: 20),
-        const Padding(
-          padding: EdgeInsets.only(left: 15),
+        Padding(
+          padding: const EdgeInsets.only(left: 15),
           child: Text(
-            'Other participants:',
-            style: TextStyle(color: Colors.grey),
+            S.of(context).otherParticipants,
+            style: const TextStyle(color: Colors.grey),
           ),
         ),
         const SizedBox(height: 10),

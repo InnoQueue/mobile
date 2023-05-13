@@ -45,7 +45,7 @@ class _OnDutyTileState extends State<OnDutyTile>
                       context.read<QueueDetailsBloc>().shakeUser();
                     },
                     child: Text(
-                      'shake',
+                      S.of(context).shake,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.red.shade400,

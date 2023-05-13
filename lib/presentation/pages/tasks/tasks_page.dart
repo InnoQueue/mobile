@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/application.dart';
-import '../../../data/analytics/fb_analytics.dart';
 import '../../presentation.dart';
 
 class TasksPage extends StatefulWidget {
@@ -29,7 +28,7 @@ class _TasksPageState extends State<TasksPage> {
       ],
       child: Scaffold(
         appBar: SelectableAppBar(
-          title: 'Tasks',
+          title: S.of(context).tasks,
           action: GestureDetector(
             onTap: () {
               final List<int> selectedNotificationIds =

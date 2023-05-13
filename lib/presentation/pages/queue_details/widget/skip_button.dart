@@ -17,7 +17,7 @@ class SkipButton extends StatelessWidget {
                 .add(const QueueDetailsEvent.skipTask());
           },
           backgroundColor: Colors.deepOrange.shade400,
-          text: 'Skip',
+          text: S.of(context).skip,
         );
       },
     );

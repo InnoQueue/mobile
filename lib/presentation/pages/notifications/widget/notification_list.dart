@@ -154,8 +154,11 @@ class _LoadingIndicatorState extends State<_LoadingIndicator> {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(),
+    return const Padding(
+      padding: EdgeInsets.all(20),
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 }
@@ -211,7 +214,7 @@ class NotifiationItem extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SuperText(
-                      getText(notification),
+                      getText(notification, context),
                       style: const TextStyle(fontSize: 16),
                       isNew: !notification.read,
                     ),
@@ -230,78 +233,56 @@ class NotifiationItem extends StatelessWidget {
       ),
     );
   }
-}
 
-String getText(NotificationModel notificationModel) {
-  String? participantName = notificationModel.participantName;
-  String? queueName = notificationModel.queueName;
-  int? participantId = notificationModel.participantId;
+  String getText(
+    NotificationModel notificationModel,
+    BuildContext context,
+  ) {
+    String? participantName = notificationModel.participantName;
+    String? queueName = notificationModel.queueName;
+    int? participantId = notificationModel.participantId;
 
-  int userId = getIt.get<UserRepository>().getUser()!.userId;
+    int userId = getIt.get<UserRepository>().getUser()!.userId;
 
-  switch (notificationModel.messageType) {
-    case NotificationType.yourTurn:
-      return userId == participantId
-          ? "It's now your turn in queues"
-              " **$queueName**"
-          : "$participantName"
-              " is now responsible for a queue"
-              " **$queueName**";
-    case NotificationType.shook:
-      return "You were shaken by roommate to remind you that it is your turn in"
-          " **$queueName**";
-    case NotificationType.frozen:
-      return userId == participantId
-          ? "You froze a queue"
-              " **$queueName**"
-          : "$participantName"
-              " froze a queue"
-              " **$queueName**";
-    case NotificationType.unforzen:
-      return userId == participantId
-          ? "You unfroze a queue"
-              " **$queueName**"
-          : "$participantName"
-              " unfroze a queue"
-              " **$queueName**";
-    case NotificationType.joinedQueue:
-      return userId == participantId
-          ? "You joined a queue"
-              " **$queueName**"
-          : "$participantName"
-              " joined a queue"
-              " **$queueName**";
-    case NotificationType.leftQueue:
-      return userId == participantId
-          ? "You left a queue"
-              " **$queueName**"
-          : "$participantName"
-              " left a queue"
-              " **$queueName**";
-    case NotificationType.deleteQueue:
-      return userId == participantId
-          ? "You deleted a queue"
-              " **$queueName**"
-          : "$participantName"
-              " deleted a queue"
-              " **$queueName**";
-    case NotificationType.completed:
-      return userId == participantId
-          ? "You completed"
-              " **$queueName**"
-          : "$participantName"
-              " completed"
-              " **$queueName**";
-    case NotificationType.skipped:
-      return userId == participantId
-          ? "You skipped your turn in"
-              " **$queueName**"
-          : "$participantName"
-              " skipped their turn in"
-              " **$queueName**";
-    case NotificationType.other:
-      return notificationModel.message.toString();
-    case NotificationType.update:
-      return notificationModel.message.toString();
+    switch (notificationModel.messageType) {
+      case NotificationType.yourTurn:
+        return userId == participantId
+            ? S.of(context).yourTurn(queueName!)
+            : S.of(context).theirTurn(participantName!, queueName!);
+      case NotificationType.shook:
+        return S.of(context).youWereShaken(queueName!);
+      case NotificationType.frozen:
+        return userId == participantId
+            ? S.of(context).youFroze(queueName!)
+            : S.of(context).theyFroze(participantName!, queueName!);
+      case NotificationType.unforzen:
+        return userId == participantId
+            ? S.of(context).youUnfroze(queueName!)
+            : S.of(context).theyUnfroze(participantName!, queueName!);
+      case NotificationType.joinedQueue:
+        return userId == participantId
+            ? S.of(context).youJoined(queueName!)
+            : S.of(context).theyJoined(participantName!, queueName!);
+      case NotificationType.leftQueue:
+        return userId == participantId
+            ? S.of(context).youLeft(queueName!)
+            : S.of(context).theyLeft(participantName!, queueName!);
+      case NotificationType.deleteQueue:
+        return userId == participantId
+            ? S.of(context).youDeleted(queueName!)
+            : S.of(context).theyDeleted(participantName!, queueName!);
+      case NotificationType.completed:
+        return userId == participantId
+            ? S.of(context).youCompleted(queueName!)
+            : S.of(context).theyCompleted(participantName!, queueName!);
+      case NotificationType.skipped:
+        return userId == participantId
+            ? S.of(context).youSkipped(queueName!)
+            : S.of(context).theySkipped(participantName!, queueName!);
+      case NotificationType.other:
+        return notificationModel.message.toString();
+      case NotificationType.update:
+        return notificationModel.message.toString();
+    }
   }
 }

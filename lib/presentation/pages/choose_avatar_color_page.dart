@@ -34,9 +34,9 @@ class _ChooseAvatarColorPageState extends State<ChooseAvatarColorPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 8),
-          const Text(
-            'Choose Color',
-            style: TextStyle(
+          Text(
+            S.of(context).chooseColor,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),

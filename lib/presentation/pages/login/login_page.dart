@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:innoq/data/analytics/fb_analytics.dart';
 import 'package:innoq/domain/domain.dart';
 
 import '../../../application/application.dart';
@@ -27,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               CustomTextField(
                 onChanged: (value) => setState(() => name = value),
-                hintText: 'your name',
+                hintText: S.of(context).yourName,
                 keyBoardType: TextInputType.name,
                 textAlign: TextAlign.center,
               ),
@@ -43,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
                 backgroundColor: Colors.grey.shade900,
-                text: 'Submit',
+                text: S.of(context).submit,
               ),
             ],
           ),

@@ -4,10 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:innoq/presentation/auto_route/app_router.dart';
-import 'package:innoq/presentation/bloc/bloc.dart';
 
 import '../../application/application.dart';
+import '../presentation.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -79,22 +78,22 @@ class _BottomNavigationBar extends StatelessWidget {
       unselectedItemColor: Colors.grey,
       // backgroundColor: Colors.white,
       elevation: 0,
-      items: const [
+      items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.check),
-          label: 'Tasks',
+          icon: const Icon(Icons.check),
+          label: S.of(context).tasks,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.list),
-          label: 'Queues',
+          icon: const Icon(Icons.list),
+          label: S.of(context).queues,
         ),
         BottomNavigationBarItem(
-          icon: _BellIcon(),
-          label: 'Notifications',
+          icon: const _BellIcon(),
+          label: S.of(context).notifications,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
+          icon: const Icon(Icons.settings),
+          label: S.of(context).settings,
         ),
       ],
     );

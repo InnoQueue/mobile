@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/get_it/get_it_service_locator.dart';
 import '../../data/analytics/fb_analytics.dart';
@@ -12,23 +13,38 @@ class LanguagePage extends StatefulWidget {
 }
 
 class _LanguagePageState extends State<LanguagePage> {
-  var themes = ['English', 'Russian'];
-  var currentTheme = 'English';
+  List<String> get languages => [
+        'en',
+        'ru',
+      ];
+
+  late String currentLanguage =
+      context.read<LocalizationCubit>().state.languageCode;
 
   @override
   Widget build(BuildContext context) {
     return SelectionList(
-      title: 'Language',
-      selectedIndex: themes.indexOf(currentTheme),
-      nameBuilder: (index) => themes[index],
-      onTap: (index) {
-        currentTheme = themes[index];
-        getIt.get<FBAnalytics>().logLanguageSettingsUpdated(
-              preferredLanguage: currentTheme,
-            );
-        setState(() {});
+      title: S.of(context).language,
+      selectedIndex: languages.indexOf(currentLanguage),
+      nameBuilder: (index) {
+        switch (languages[index]) {
+          case 'en':
+            return 'English';
+          case 'ru':
+            return 'Русский';
+          default:
+            throw UnimplementedError();
+        }
       },
-      length: themes.length,
+      onTap: (index) {
+        currentLanguage = languages[index];
+        setState(() {});
+        getIt.get<FBAnalytics>().logLanguageSettingsUpdated(
+              preferredLanguage: currentLanguage,
+            );
+        context.read<LocalizationCubit>().setLanguage(currentLanguage);
+      },
+      length: languages.length,
       applyButtonPresent: false,
     );
   }

@@ -34,7 +34,7 @@ class AddProgressButton extends StatelessWidget {
             }
           },
           backgroundColor: Colors.green.shade400,
-          text: 'Add Progress',
+          text: S.of(context).addProgress,
         );
       },
     );
