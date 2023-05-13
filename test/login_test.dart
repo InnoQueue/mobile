@@ -174,14 +174,14 @@ void main() {
     expect(s.dark, 'Dark');
     expect(s.yourName, 'Your name');
     expect(s.save, 'Save');
-    expect(s.system, 'Save');
+    expect(s.system, 'System');
     expect(
       s.yourTurn('queueName'),
       'It\'s now Your turn in the queue **queueName**',
     );
     expect(
       s.theirTurn('participantName', 'queueName'),
-      'participantName is now responsible for the queue **queueName**',
+      '**participantName** is now responsible for the queue **queueName**',
     );
     expect(
       s.youWereShaken('queueName'),
