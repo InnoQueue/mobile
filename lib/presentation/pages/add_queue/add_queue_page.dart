@@ -26,7 +26,6 @@ class _AddQueuePageState extends State<AddQueuePage> {
               vertical: 10,
             ),
           ),
-      color: context.watch<AppThemeCubit>().state.themeData.cardColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,

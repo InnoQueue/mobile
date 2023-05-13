@@ -17,46 +17,66 @@ class ChooseAvatarColorPage extends StatefulWidget {
 
 class _ChooseAvatarColorPageState extends State<ChooseAvatarColorPage> {
   late var currentQueue = context.read<QueueDetailsBloc>().currentQueue;
-  late var color = currentQueue.queueColor;
+  late var color = context.read<QueueDetailsBloc>().fieldsToSubmit.queueColor;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: MediaQuery.of(context).viewInsets.add(
-            const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        Container(
+          padding: MediaQuery.of(context).viewInsets.add(
+                const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+              ),
+          color: context.watch<AppThemeCubit>().state.cardColor,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 8),
+              Text(
+                S.of(context).chooseColor,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: ColorPalette(
+                  onUpdate: (value) => setState(() => color = value),
+                  initialColor: color,
+                ),
+              ),
+              const SizedBox(height: 50),
+              _SubmitButton(
+                onPressed: () {
+                  widget.updateColor(color);
+                  context.router.pop();
+                },
+              ),
+            ],
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(0, -(MediaQuery.of(context).size.height - 200) / 2),
+          child: Hero(
+            tag: 'avatar_hero',
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              height: 120,
+              width: 120,
+              decoration: BoxDecoration(
+                color: colors[color],
+                shape: BoxShape.circle,
+              ),
             ),
           ),
-      color: context.watch<AppThemeCubit>().state.cardColor,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 8),
-          Text(
-            S.of(context).chooseColor,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 20),
-          Center(
-            child: ColorPalette(
-              onUpdate: (value) => color = value,
-              initialColor: color,
-            ),
-          ),
-          const SizedBox(height: 50),
-          _SubmitButton(
-            onPressed: () {
-              widget.updateColor(color);
-              context.router.pop();
-            },
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

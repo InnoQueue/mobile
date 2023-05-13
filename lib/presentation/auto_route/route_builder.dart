@@ -15,43 +15,52 @@ Route<T> modalSheetBuilder<T>(
   return mbsh.ModalBottomSheetRoute(
     expanded: false,
     settings: page,
-    builder: (context) => Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Column(
-        children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: () => context.router.pop(),
+    duration: page.name == ChooseAvatarColorRoute.name
+        ? const Duration(milliseconds: 700)
+        : null,
+    builder: (context) {
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Column(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onTap: () => context.router.pop(),
+              ),
             ),
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Center(
-                child: Container(
-                  height: 4,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    color: context.watch<AppThemeCubit>().state.labelPrimary,
-                    borderRadius: BorderRadius.circular(2),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Center(
+                  child: Container(
+                    height: 4,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      color: context.watch<AppThemeCubit>().state.labelPrimary,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: context
+                          .watch<AppThemeCubit>()
+                          .state
+                          .themeData
+                          .cardColor,
+                    ),
+                    child: child,
                   ),
-                  child: child,
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
   );
 }
 

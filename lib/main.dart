@@ -87,7 +87,7 @@ class _MyAppState extends State<MyApp> {
           locale: context.watch<LocalizationCubit>().state,
           routerDelegate: AutoRouterDelegate(
             getIt.get<AppRouter>(),
-            navigatorObservers: () => [AppRouterObserver()],
+            navigatorObservers: () => [AppRouterObserver(), HeroController()],
           ),
           routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
           theme: context.watch<AppThemeCubit>().state.themeData.copyWith(
