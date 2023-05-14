@@ -44,7 +44,7 @@ class FirebaseNotifcationsCubit extends Cubit<RemoteMessage?> {
       }
     });
 
-    messageStream = _firebaseMessagingRepository.onMessageOpenedAppListen(
+    messageStream = _firebaseMessagingRepository.onMessageAppListen(
       emit,
     );
 
