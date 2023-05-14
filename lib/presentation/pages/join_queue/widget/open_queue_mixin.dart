@@ -28,8 +28,8 @@ mixin OpenQueueMixin<T extends StatefulWidget> on State<T> {
         ),
       );
       getIt.get<QueuesBloc>().add(const QueuesEvent.loadData());
-      getIt
-          .get<AnalyticsRepository>()
+      getIt // coverage:ignore-line
+          .get<AnalyticsRepository>() // coverage:ignore-line
           .logJoinQueue(queue.queueId); // coverage:ignore-line
     }
   }

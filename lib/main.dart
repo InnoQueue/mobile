@@ -121,8 +121,8 @@ class _MyAppState extends State<MyApp> {
             JoinInProressRoute(qrCode: link.pathSegments[1]),
           );
 
-      getIt
-          .get<AnalyticsRepository>()
+      getIt // coverage:ignore-line
+          .get<AnalyticsRepository>() // coverage:ignore-line
           .logDeeplinkOpen(link); // coverage:ignore-line
     }
   }

@@ -84,8 +84,8 @@ class _PinCodeFieldState extends State<PinCodeField> with OpenQueueMixin {
     if (queue != null) {
       openQueue(queue);
     } else {
-      getIt
-          .get<AnalyticsRepository>()
+      getIt // coverage:ignore-line
+          .get<AnalyticsRepository>() // coverage:ignore-line
           .logJoinQueueFailed(); // coverage:ignore-line
 
       setState(() {

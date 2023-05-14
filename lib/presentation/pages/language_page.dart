@@ -43,7 +43,7 @@ class _LanguagePageState extends State<LanguagePage> {
         setState(() {});
         getIt.get<AnalyticsRepository>().logLanguageSettingsUpdated(
               preferredLanguage: currentLanguage,
-            ); // coverage:ignore-line
+            );
         context.read<LocalizationCubit>().setLanguage(currentLanguage);
       },
       length: languages.length,

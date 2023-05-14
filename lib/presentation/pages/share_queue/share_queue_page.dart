@@ -33,6 +33,7 @@ class _ShareQueuePageState extends State<ShareQueuePage> {
         });
 
         getIt.get<AnalyticsRepository>().logQueueShared(
+              // coverage:ignore-line
               queueId: widget.queue.queueId,
               queueName: widget.queue.queueName,
             ); // coverage:ignore-line

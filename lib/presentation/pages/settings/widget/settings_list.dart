@@ -67,9 +67,9 @@ class _SettingsListState extends State<SettingsList> {
           icon: Icons.mail_outline,
           onTap: () {
             if (context.mounted) {
-              getIt
+              getIt // coverage:ignore-line
                   .get<AnalyticsRepository>()
-                  .logLeaveFeedbackOpened(); // coverage:ignore-line
+                  .logLeaveFeedbackOpened();
             }
           },
         ),

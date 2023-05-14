@@ -42,8 +42,8 @@ class AppRouterObserver extends AutoRouterObserver {
     }
     notificationsOpen = route.name == NotificationsRouter.name;
 
-    getIt
-        .get<AnalyticsRepository>()
+    getIt // coverage:ignore-line
+        .get<AnalyticsRepository>() // coverage:ignore-line
         .logPageOpen(route.name); // coverage:ignore-line
   }
 }
