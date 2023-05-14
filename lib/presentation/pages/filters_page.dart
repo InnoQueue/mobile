@@ -43,6 +43,7 @@ class _FiltersPageState extends State<FiltersPage> {
       },
       length: SortEnum.values.length,
       applyButtonPresent: true,
+      applyButtonTitle: S.of(context).applySorting,
       onApplyButtonPressed: () async {
         context.router.pop();
         await getIt.get<SettingsRepository>().setPrefferedSort(currentSort);

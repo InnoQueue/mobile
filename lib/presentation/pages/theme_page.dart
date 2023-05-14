@@ -43,7 +43,6 @@ class _ThemePageState extends State<ThemePage> {
         setState(() {});
       },
       length: themes.length,
-      applyButtonPresent: false,
     );
   }
 }

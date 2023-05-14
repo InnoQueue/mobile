@@ -45,7 +45,6 @@ class _LanguagePageState extends State<LanguagePage> {
         context.read<LocalizationCubit>().setLanguage(currentLanguage);
       },
       length: languages.length,
-      applyButtonPresent: false,
     );
   }
 }

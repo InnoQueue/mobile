@@ -9,14 +9,17 @@ class SelectionList extends StatelessWidget {
   final int length;
   final bool applyButtonPresent;
   final void Function()? onApplyButtonPressed;
+  final String? applyButtonTitle;
   final String title;
+
   const SelectionList({
     required this.selectedIndex,
     required this.nameBuilder,
     required this.onTap,
     required this.length,
     required this.title,
-    this.applyButtonPresent = true,
+    this.applyButtonPresent = false,
+    this.applyButtonTitle,
     this.onApplyButtonPressed,
     super.key,
   });
@@ -55,7 +58,7 @@ class SelectionList extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  _SelectionButton(
+                  SelectionButton(
                     selected: index == selectedIndex,
                     onTap: () {
                       onTap(index);
@@ -70,7 +73,7 @@ class SelectionList extends StatelessWidget {
             CustomButton(
               onPressed: onApplyButtonPressed,
               backgroundColor: Colors.grey.shade900,
-              text: S.of(context).applySorting,
+              text: applyButtonTitle!,
             ),
         ],
       ),
@@ -78,10 +81,10 @@ class SelectionList extends StatelessWidget {
   }
 }
 
-class _SelectionButton extends StatelessWidget {
+class SelectionButton extends StatelessWidget {
   final void Function() onTap;
   final bool selected;
-  const _SelectionButton({
+  const SelectionButton({
     required this.onTap,
     required this.selected,
   });
