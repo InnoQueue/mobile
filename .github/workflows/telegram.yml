@@ -1,7 +1,7 @@
 # boilerplate
 name: Telegram
 
-on: [ push ]
+on: [ pull_request, push ]
 
 jobs: 
   telegram_fail:
@@ -28,4 +28,3 @@ jobs:
             Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-            
