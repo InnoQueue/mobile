@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+// ignore_for_file: invalid_annotation_target
 
-import '../../../application/application.dart';
 import '../../domain.dart';
 
 @Singleton(
@@ -60,11 +60,13 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     'queueShared': 'queue_shared',
   };
 
+  @override
   void logPageOpen(String pageName) async {
     if (_debug) log("FBAnalytics: logging pageOpen event");
     await analytics.setCurrentScreen(screenName: pageName);
   }
 
+  @override
   void logAppOpen() {
     if (_debug) log("FBAnalytics: logging appOpen event");
     analytics.logAppOpen(
@@ -74,6 +76,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logDeeplinkOpen(Uri link) {
     if (_debug) log("FBAnalytics: logging deeplinkOpen event");
     analytics.logEvent(
@@ -84,6 +87,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logNotificationRemoved() {
     if (_debug) log("FBAnalytics: logging notificationRemoved event");
     analytics.logEvent(
@@ -91,6 +95,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logNotificationsUpdated() {
     if (_debug) log("FBAnalytics: logging notificationsUpdated event");
     analytics.logEvent(
@@ -98,6 +103,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logNotificationsRead() {
     if (_debug) log("FBAnalytics: logging notificationsRead event");
     analytics.logEvent(
@@ -105,6 +111,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logJoinQueue(int queueId) {
     if (_debug) log("FBAnalytics: logging joinQueue event");
     analytics.logEvent(
@@ -115,6 +122,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logCreateQueue() {
     if (_debug) log("FBAnalytics: logging createQueue event");
     analytics.logEvent(
@@ -122,6 +130,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logNotificationSettingsOpened() {
     if (_debug) log("FBAnalytics: logging notificationSettingsOpened event");
     analytics.logEvent(
@@ -129,6 +138,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logThemeSettingsOpened() {
     if (_debug) log("FBAnalytics: logging themeSettingsOpened event");
     analytics.logEvent(
@@ -136,6 +146,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logLanguageSettingsOpened() {
     if (_debug) log("FBAnalytics: logging languageSettingsOpened event");
     analytics.logEvent(
@@ -143,6 +154,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logLeaveFeedbackOpened() {
     if (_debug) log("FBAnalytics: logging leaveFeedbackOpened event");
     analytics.logEvent(
@@ -150,6 +162,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logNotificationSettingsUpdated({
     required String setting,
     required bool newValue,
@@ -164,6 +177,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logNotificationSettingsSaved() {
     if (_debug) log("FBAnalytics: logging notificationSettingsSaved event");
     analytics.logEvent(
@@ -171,6 +185,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logSortSettingsSaved({SortEnum? preferredSort}) {
     if (_debug) log("FBAnalytics: logging sortSettingsSaved event");
     analytics.logEvent(
@@ -181,6 +196,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logLanguageSettingsUpdated({required String preferredLanguage}) {
     if (_debug) log("FBAnalytics: logging languageSettingsUpdated event");
     analytics.logEvent(
@@ -191,6 +207,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logThemeSettingsUpdated({required String preferredTheme}) {
     if (_debug) log("FBAnalytics: logging themeSettingsUpdated event");
     analytics.logEvent(
@@ -201,6 +218,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logExpensesSubmitted({required double expenses}) {
     if (_debug) log("FBAnalytics: logging expensesSubmitted event");
     analytics.logEvent(
@@ -211,6 +229,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logJoinQueueFailed() {
     if (_debug) log("FBAnalytics: logging joinQueueFailed event");
     analytics.logEvent(
@@ -218,6 +237,7 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
     );
   }
 
+  @override
   void logQueueShared({required int queueId, required String queueName}) {
     if (_debug) log("FBAnalytics: logging queueShared event");
     analytics.logEvent(

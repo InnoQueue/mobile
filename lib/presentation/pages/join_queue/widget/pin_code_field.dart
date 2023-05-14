@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../application/application.dart';
-import '../../../../domain/repositories/analytics_repository/analytics_repository_impl.dart';
 import '../../../../domain/domain.dart';
 import '../../../presentation.dart';
 

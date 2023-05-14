@@ -65,7 +65,9 @@ void main() {
         notificationListResponse.toJson();
 
     expect(
-        notificationListResponseEncoded['content'].first['notificationId'], 0);
+      notificationListResponseEncoded['content'].first['notificationId'],
+      0,
+    );
     expect(notificationListResponseEncoded['last'], false);
 
     final NotificationListResponse notificationListResponseDecoded =
@@ -164,7 +166,8 @@ void main() {
       ],
     );
 
-    final Map<String, dynamic> taskListResponseEncoded = taskListResponse.toJson();
+    final Map<String, dynamic> taskListResponseEncoded =
+        taskListResponse.toJson();
 
     expect(taskListResponseEncoded['toDoTasks'].first['queueId'], 0);
 

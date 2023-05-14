@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../application/application.dart';
-import '../../../../domain/repositories/analytics_repository/analytics_repository_impl.dart';
 import '../../../../data/data.dart';
 import '../../../../domain/domain.dart';
 import '../../../presentation.dart';

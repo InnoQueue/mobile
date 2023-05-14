@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:innoq/application/application.dart';
-import 'package:innoq/domain/repositories/analytics_repository/analytics_repository_impl.dart';
 
+import '../../application/application.dart';
 import '../../domain/domain.dart';
 import '../presentation.dart';
 

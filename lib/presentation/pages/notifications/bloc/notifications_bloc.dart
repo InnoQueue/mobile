@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../application/application.dart';
-import '../../../../domain/repositories/analytics_repository/analytics_repository_impl.dart';
 import '../../../../domain/domain.dart';
 
 part 'notifications_state.dart';
