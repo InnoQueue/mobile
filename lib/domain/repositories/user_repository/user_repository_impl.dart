@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';

@@ -1,6 +1,7 @@
-import 'package:injectable/injectable.dart';
+// coverage:ignore-file
 
-import '../../domain.dart';
+import 'package:injectable/injectable.dart';
+import '../../../domain/domain.dart';
 
 @Singleton(as: AnalyticsRepository, env: ['test'])
 class MockAnalyticsRepositoryImpl implements AnalyticsRepository {

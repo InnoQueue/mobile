@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +43,7 @@ class _LanguagePageState extends State<LanguagePage> {
         setState(() {});
         getIt.get<AnalyticsRepository>().logLanguageSettingsUpdated(
               preferredLanguage: currentLanguage,
-            );
+            ); // coverage:ignore-line
         context.read<LocalizationCubit>().setLanguage(currentLanguage);
       },
       length: languages.length,

@@ -15,7 +15,7 @@ import 'package:innoq/data/data.dart' as _i18;
 import 'package:innoq/domain/domain.dart' as _i3;
 import 'package:innoq/domain/repositories/analytics_repository/analytics_repository_impl.dart'
     as _i23;
-import 'package:innoq/domain/repositories/analytics_repository/mock_analytics_repository_ompl.dart'
+import 'package:innoq/domain/repositories/analytics_repository/mock_analytics_repository_impl.dart'
     as _i4;
 import 'package:innoq/domain/repositories/firebase_messaging_repository/firebase_messaging_repository_impl.dart'
     as _i5;
@@ -23,15 +23,15 @@ import 'package:innoq/domain/repositories/firebase_messaging_repository/mock_fir
     as _i6;
 import 'package:innoq/domain/repositories/notifications_repository.dart'
     as _i17;
-import 'package:innoq/domain/repositories/queues_repository/mock_queues_repositpry_impl.dart'
+import 'package:innoq/domain/repositories/queues_repository/mock_queues_repository_impl.dart'
     as _i10;
 import 'package:innoq/domain/repositories/queues_repository/queues_repository_impl.dart'
     as _i20;
 import 'package:innoq/domain/repositories/settings_repository.dart' as _i21;
-import 'package:innoq/domain/repositories/user_repository/mock_user_repository_repository.dart'
-    as _i13;
-import 'package:innoq/domain/repositories/user_repository/user_repository_impl.dart'
+import 'package:innoq/domain/repositories/user_repository/mock_user_repository_impl.dart'
     as _i14;
+import 'package:innoq/domain/repositories/user_repository/user_repository_impl.dart'
+    as _i13;
 import 'package:innoq/presentation/bloc/firebase_notifications_cubit/firebase_notifications_cubit.dart'
     as _i7;
 import 'package:innoq/presentation/pages/notifications/bloc/notifications_bloc.dart'
@@ -96,15 +96,15 @@ Future<_i1.GetIt> $initGetIt(
   );
   gh.singleton<_i12.TasksBloc>(_i12.TasksBloc());
   gh.singleton<_i3.UserRepository>(
-    _i13.MockUserRepositoryImpl(gh<_i11.SharedPreferences>()),
-    registerFor: {_test},
-  );
-  gh.singleton<_i3.UserRepository>(
-    _i14.UserRepositoryImpl(gh<_i11.SharedPreferences>()),
+    _i13.UserRepositoryImpl(gh<_i11.SharedPreferences>()),
     registerFor: {
       _dev,
       _prod,
     },
+  );
+  gh.singleton<_i3.UserRepository>(
+    _i14.MockUserRepositoryImpl(gh<_i11.SharedPreferences>()),
+    registerFor: {_test},
   );
   gh.singleton<_i15.BaseApi>(_i15.BaseApi(gh<_i3.UserRepository>()));
   gh.singleton<_i16.NotificationsApi>(

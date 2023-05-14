@@ -1,5 +1,8 @@
 import '../../domain.dart';
 
+export 'analytics_repository_impl.dart';
+export 'mock_analytics_repository_impl.dart';
+
 abstract class AnalyticsRepository {
   void logPageOpen(String pageName);
   void logAppOpen();

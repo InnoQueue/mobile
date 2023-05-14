@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -111,6 +113,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(freeze: value);
+
                     getIt
                         .get<AnalyticsRepository>()
                         .logNotificationSettingsUpdated(

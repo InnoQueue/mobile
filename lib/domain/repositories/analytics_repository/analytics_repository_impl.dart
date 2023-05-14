@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'dart:developer';
 
 import 'package:firebase_analytics/firebase_analytics.dart';

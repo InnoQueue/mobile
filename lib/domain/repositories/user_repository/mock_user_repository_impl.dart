@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../domain.dart';
+import '../../../domain/domain.dart';
 
 const _userKey = 'user';
 

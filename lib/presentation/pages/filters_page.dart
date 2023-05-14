@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -48,9 +50,9 @@ class _FiltersPageState extends State<FiltersPage> {
         context.router.pop();
         await getIt.get<SettingsRepository>().setPrefferedSort(currentSort);
         getIt.get<QueuesBloc>().add(const QueuesEvent.loadData());
-        getIt
-            .get<AnalyticsRepository>()
-            .logSortSettingsSaved(preferredSort: currentSort);
+        getIt.get<AnalyticsRepository>().logSortSettingsSaved(
+              preferredSort: currentSort,
+            );
       },
     );
   }

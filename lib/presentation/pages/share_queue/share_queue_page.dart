@@ -31,10 +31,11 @@ class _ShareQueuePageState extends State<ShareQueuePage> {
         setState(() {
           this.invitation = invitation;
         });
+
         getIt.get<AnalyticsRepository>().logQueueShared(
               queueId: widget.queue.queueId,
               queueName: widget.queue.queueName,
-            );
+            ); // coverage:ignore-line
       },
     );
   }

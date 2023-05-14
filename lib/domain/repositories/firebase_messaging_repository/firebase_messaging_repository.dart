@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+export 'firebase_messaging_repository_impl.dart';
+export 'mock_firebase_messaging_repository_impl.dart';
+
 abstract class FirebaseMessagingRepository {
   FirebaseMessaging? get fcm;
 

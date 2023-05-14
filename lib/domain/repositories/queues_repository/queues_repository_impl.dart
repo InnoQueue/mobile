@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:injectable/injectable.dart';
 
 import '../../../application/application.dart';

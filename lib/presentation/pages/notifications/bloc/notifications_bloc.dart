@@ -50,7 +50,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     _page = 0;
 
     await _fetchNotificationsAndEmit(emit);
-    getIt.get<AnalyticsRepository>().logNotificationsUpdated();
+    getIt
+        .get<AnalyticsRepository>()
+        .logNotificationsUpdated(); // coverage:ignore-line
   }
 
   bool _fetchedAll = false;
@@ -92,7 +94,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       fetchedAll: _fetchedAll,
       removedBySwipe: removedBySwipe,
     ));
-    getIt.get<AnalyticsRepository>().logNotificationRemoved();
+    getIt
+        .get<AnalyticsRepository>()
+        .logNotificationRemoved(); // coverage:ignore-line
   }
 
   void _removeNotifications(
@@ -112,7 +116,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       fetchedAll: _fetchedAll,
       removedBySwipe: null,
     ));
-    getIt.get<AnalyticsRepository>().logNotificationRemoved();
+    getIt
+        .get<AnalyticsRepository>()
+        .logNotificationRemoved(); // coverage:ignore-line
   }
 
   List<NotificationModel> get filteredNotifications => currentNotifications
@@ -136,6 +142,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       ),
     );
     _displayedNotificationIds.clear();
-    getIt.get<AnalyticsRepository>().logNotificationsRead();
+    getIt
+        .get<AnalyticsRepository>()
+        .logNotificationsRead(); // coverage:ignore-line
   }
 }

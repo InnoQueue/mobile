@@ -22,7 +22,8 @@ void main() async {
   );
   await configureDependencies();
   initAnalyticsScope(getIt);
-  getIt.get<AnalyticsRepository>().logAppOpen();
+
+  getIt.get<AnalyticsRepository>().logAppOpen(); // coverage:ignore-line
 
   getIt.registerSingleton(AppRouter(
     loginGuard: LoginGuard(),
@@ -119,7 +120,10 @@ class _MyAppState extends State<MyApp> {
       getIt.get<AppRouter>().push(
             JoinInProressRoute(qrCode: link.pathSegments[1]),
           );
-      getIt.get<AnalyticsRepository>().logDeeplinkOpen(link);
+
+      getIt
+          .get<AnalyticsRepository>()
+          .logDeeplinkOpen(link); // coverage:ignore-line
     }
   }
 }

@@ -63,7 +63,8 @@ class _AddProgressPageState extends State<AddProgressPage> {
                         .submitExpenses((double.parse(expenses) * 100).toInt());
                     getIt.get<AnalyticsRepository>().logExpensesSubmitted(
                           expenses: double.parse(expenses),
-                        );
+                        ); // coverage:ignore-file
+
                     context.router.pop();
                   },
           ),

@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../data/data.dart';
-import '../../domain.dart';
+import '../../../domain/domain.dart';
 
 @Singleton(as: QueuesRepository, env: ['test'])
 class MockQueuesRepositoryImpl implements QueuesRepository {

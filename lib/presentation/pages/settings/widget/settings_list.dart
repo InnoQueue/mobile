@@ -32,7 +32,9 @@ class _SettingsListState extends State<SettingsList> {
           name: S.of(context).notificationSettings,
           icon: Icons.notifications_outlined,
           onTap: () {
-            getIt.get<AnalyticsRepository>().logNotificationSettingsOpened();
+            getIt
+                .get<AnalyticsRepository>()
+                .logNotificationSettingsOpened(); // coverage:ignore-line
             context.router.push(const NotificationSettingsRoute());
           },
         ),
@@ -41,7 +43,9 @@ class _SettingsListState extends State<SettingsList> {
           icon: Icons.lightbulb_outline,
           onTap: () {
             if (context.mounted) {
-              getIt.get<AnalyticsRepository>().logThemeSettingsOpened();
+              getIt
+                  .get<AnalyticsRepository>()
+                  .logThemeSettingsOpened(); // coverage:ignore-line
               context.router.push(const ThemeRoute());
             }
           },
@@ -51,7 +55,9 @@ class _SettingsListState extends State<SettingsList> {
           icon: CupertinoIcons.globe,
           onTap: () {
             if (context.mounted) {
-              getIt.get<AnalyticsRepository>().logLanguageSettingsOpened();
+              getIt
+                  .get<AnalyticsRepository>()
+                  .logLanguageSettingsOpened(); // coverage:ignore-line
               context.router.push(const LanguageRoute());
             }
           },
@@ -61,7 +67,9 @@ class _SettingsListState extends State<SettingsList> {
           icon: Icons.mail_outline,
           onTap: () {
             if (context.mounted) {
-              getIt.get<AnalyticsRepository>().logLeaveFeedbackOpened();
+              getIt
+                  .get<AnalyticsRepository>()
+                  .logLeaveFeedbackOpened(); // coverage:ignore-line
             }
           },
         ),

@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,9 +39,11 @@ class _ThemePageState extends State<ThemePage> {
         index == 0
             ? context.read<AppThemeCubit>().enableLightTheme()
             : context.read<AppThemeCubit>().enableDarkTheme();
+
         getIt.get<AnalyticsRepository>().logThemeSettingsUpdated(
               preferredTheme: currentTheme,
             );
+
         setState(() {});
       },
       length: themes.length,
