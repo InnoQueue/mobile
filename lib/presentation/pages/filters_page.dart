@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:innoq/application/application.dart';
-import 'package:innoq/data/analytics/fb_analytics.dart';
+import 'package:innoq/domain/repositories/analytics_repository/analytics_repository_impl.dart';
 
 import '../../domain/domain.dart';
 import '../presentation.dart';
@@ -49,7 +49,7 @@ class _FiltersPageState extends State<FiltersPage> {
         await getIt.get<SettingsRepository>().setPrefferedSort(currentSort);
         getIt.get<QueuesBloc>().add(const QueuesEvent.loadData());
         getIt
-            .get<FBAnalytics>()
+            .get<AnalyticsRepository>()
             .logSortSettingsSaved(preferredSort: currentSort);
       },
     );

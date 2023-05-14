@@ -2,7 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
-import 'get_it_service_locator.config.dart';
+import '../application.dart';
+
+export 'get_it_service_locator.config.dart';
 
 final getIt = GetIt.instance;
 

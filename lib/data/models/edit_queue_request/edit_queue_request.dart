@@ -5,6 +5,7 @@ part 'edit_queue_request.g.dart';
 
 @freezed
 class EditQueueRequest with _$EditQueueRequest {
+  @JsonSerializable(explicitToJson: true)
   const factory EditQueueRequest({
     String? queueName,
     String? queueColor,

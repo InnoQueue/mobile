@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:innoq/data/analytics/fb_analytics.dart';
+import 'package:innoq/domain/repositories/analytics_repository/analytics_repository_impl.dart';
 
 import '../../application/application.dart';
 import '../../domain/domain.dart';
@@ -70,7 +70,9 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(completed: value);
-                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                    getIt
+                        .get<AnalyticsRepository>()
+                        .logNotificationSettingsUpdated(
                           setting: settings[0],
                           newValue: value,
                         );
@@ -82,7 +84,9 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(skipped: value);
-                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                    getIt
+                        .get<AnalyticsRepository>()
+                        .logNotificationSettingsUpdated(
                           setting: settings[1],
                           newValue: value,
                         );
@@ -94,7 +98,9 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(joinedQueue: value);
-                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                    getIt
+                        .get<AnalyticsRepository>()
+                        .logNotificationSettingsUpdated(
                           setting: settings[2],
                           newValue: value,
                         );
@@ -106,7 +112,9 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(freeze: value);
-                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                    getIt
+                        .get<AnalyticsRepository>()
+                        .logNotificationSettingsUpdated(
                           setting: settings[3],
                           newValue: value,
                         );
@@ -118,7 +126,9 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(leftQueue: value);
-                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                    getIt
+                        .get<AnalyticsRepository>()
+                        .logNotificationSettingsUpdated(
                           setting: settings[4],
                           newValue: value,
                         );
@@ -130,7 +140,9 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                   onChanged: (value) => setState(() {
                     notificationSettings =
                         notificationSettings!.copyWith(yourTurn: value);
-                    getIt.get<FBAnalytics>().logNotificationSettingsUpdated(
+                    getIt
+                        .get<AnalyticsRepository>()
+                        .logNotificationSettingsUpdated(
                           setting: settings[5],
                           newValue: value,
                         );
@@ -142,7 +154,9 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                     getIt.get<UserRepository>().updateNotificationSettings(
                           notificationSettings!,
                         );
-                    getIt.get<FBAnalytics>().logNotificationSettingsSaved();
+                    getIt
+                        .get<AnalyticsRepository>()
+                        .logNotificationSettingsSaved();
                     context.router.pop();
                   },
                   backgroundColor: Colors.grey.shade900,

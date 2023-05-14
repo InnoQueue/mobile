@@ -15,5 +15,5 @@ _$_TaskListResponse _$$_TaskListResponseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_TaskListResponseToJson(_$_TaskListResponse instance) =>
     <String, dynamic>{
-      'toDoTasks': instance.toDoTasks,
+      'toDoTasks': instance.toDoTasks.map((e) => e.toJson()).toList(),
     };

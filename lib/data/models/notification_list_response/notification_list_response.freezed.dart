@@ -110,7 +110,8 @@ class __$$_NotificationListResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_NotificationListResponse implements _NotificationListResponse {
   const _$_NotificationListResponse(
       {required final List<NotificationModel> content, required this.last})

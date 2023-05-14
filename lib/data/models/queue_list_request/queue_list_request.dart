@@ -7,6 +7,7 @@ part 'queue_list_request.g.dart';
 
 @freezed
 class QueueListRequest with _$QueueListRequest {
+  @JsonSerializable(explicitToJson: true)
   const factory QueueListRequest({
     SortEnum? sort,
   }) = _QueueListRequest;

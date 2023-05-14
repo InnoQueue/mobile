@@ -16,5 +16,5 @@ _$_QueueListResponse _$$_QueueListResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_QueueListResponseToJson(
         _$_QueueListResponse instance) =>
     <String, dynamic>{
-      'queues': instance.queues,
+      'queues': instance.queues.map((e) => e.toJson()).toList(),
     };

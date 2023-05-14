@@ -7,6 +7,7 @@ part 'queue_model.g.dart';
 
 @freezed
 class QueueModel with _$QueueModel {
+  @JsonSerializable(explicitToJson: true)
   const factory QueueModel({
     required int queueId,
     required String queueName,

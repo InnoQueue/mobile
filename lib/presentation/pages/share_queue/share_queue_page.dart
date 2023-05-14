@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:innoq/data/analytics/fb_analytics.dart';
+import 'package:innoq/domain/repositories/analytics_repository/analytics_repository_impl.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -32,7 +32,7 @@ class _ShareQueuePageState extends State<ShareQueuePage> {
         setState(() {
           this.invitation = invitation;
         });
-        getIt.get<FBAnalytics>().logQueueShared(
+        getIt.get<AnalyticsRepository>().logQueueShared(
               queueId: widget.queue.queueId,
               queueName: widget.queue.queueName,
             );

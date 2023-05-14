@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../application/application.dart';
-import '../../../../data/analytics/fb_analytics.dart';
+import '../../../../domain/repositories/analytics_repository/analytics_repository_impl.dart';
 import '../../../../domain/domain.dart';
 import '../../../presentation.dart';
 
@@ -85,7 +85,7 @@ class _PinCodeFieldState extends State<PinCodeField> with OpenQueueMixin {
     if (queue != null) {
       openQueue(queue);
     } else {
-      getIt.get<FBAnalytics>().logJoinQueueFailed();
+      getIt.get<AnalyticsRepository>().logJoinQueueFailed();
 
       setState(() {
         enabled = true;

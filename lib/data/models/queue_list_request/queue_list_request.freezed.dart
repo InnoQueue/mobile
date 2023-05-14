@@ -95,7 +95,8 @@ class __$$_QueueListRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_QueueListRequest implements _QueueListRequest {
   const _$_QueueListRequest({this.sort});
 

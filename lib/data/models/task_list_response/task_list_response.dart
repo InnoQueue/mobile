@@ -7,6 +7,7 @@ part 'task_list_response.g.dart';
 
 @freezed
 class TaskListResponse with _$TaskListResponse {
+  @JsonSerializable(explicitToJson: true)
   const factory TaskListResponse({
     required List<TaskModel> toDoTasks,
   }) = _TaskListResponse;

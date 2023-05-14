@@ -1,21 +1,25 @@
 import 'dart:developer';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:innoq/domain/models/sort_enum/sort_enum.dart';
 
-@Singleton()
-class FBAnalytics {
-  final bool _debug = true;
+import '../../../application/application.dart';
+import '../../domain.dart';
 
-  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  late FirebaseAnalyticsObserver _observer;
+@Singleton(
+  as: AnalyticsRepository,
+  env: ['prod', 'dev'],
+  scope: 'analytics',
+)
+class AnalyticsRepositoryImpl implements AnalyticsRepository {
+  final bool _debug = kDebugMode;
+
+  late final FirebaseAnalytics analytics;
+  late final FirebaseAnalyticsObserver _observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
 
   get observer => _observer;
-
-  FBAnalytics() {
-    _observer = FirebaseAnalyticsObserver(analytics: analytics);
-  }
 
   void logTest() async {
     await analytics.logEvent(

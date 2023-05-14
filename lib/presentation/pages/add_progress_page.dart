@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../application/get_it/get_it_service_locator.dart';
-import '../../data/analytics/fb_analytics.dart';
+import '../../domain/domain.dart';
 import '../presentation.dart';
 
 class AddProgressPage extends StatefulWidget {
@@ -61,7 +61,7 @@ class _AddProgressPageState extends State<AddProgressPage> {
                 : () {
                     widget
                         .submitExpenses((double.parse(expenses) * 100).toInt());
-                    getIt.get<FBAnalytics>().logExpensesSubmitted(
+                    getIt.get<AnalyticsRepository>().logExpensesSubmitted(
                           expenses: double.parse(expenses),
                         );
                     context.router.pop();
