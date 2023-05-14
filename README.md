@@ -51,26 +51,19 @@
 
 ### Onboarding screen
 
-- Welcome screen
 - Input user name
 
-<p float="left">
-<img width="300" src="https://user-images.githubusercontent.com/49106163/167304630-ba232283-5a35-4327-8dbe-478ee2ccf7ef.png"/>
-<img width="300" src="https://user-images.githubusercontent.com/49106163/167304996-224fa0b4-954a-46e8-945e-e32bb9e7dfd5.png"/>
+<img width="300" src="https://github.com/InnoQueue/mobile/assets/69918609/11f4678f-5f52-4d93-b686-aa096d4710c3"/>
 </p>
 
 ## To-do tasks
 
 - To-do tasks section
-- Open a task
-- Input expenses
 - Select several tasks
 
-<p float="left">
-<img width="230" src="https://user-images.githubusercontent.com/49106163/167305031-9c3177ce-0f86-4398-a510-09acb9a71141.png"/>
-<img width="230" src="https://user-images.githubusercontent.com/49106163/167305039-f561ff93-bf3d-4db6-a63c-419920cba0d1.png"/>
-<img width="230" src="https://user-images.githubusercontent.com/49106163/167305053-ee21117d-17d6-4916-928f-bd9f38bc9562.png"/>
-<img width="230" src="https://user-images.githubusercontent.com/49106163/167305058-cae30116-50a7-42b1-aea2-ed438bb4383d.png"/>
+<p float="left">  
+<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/4c351cdc-7e21-4aec-a6c6-1e61b5beeda0"/>
+<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/31fcf2c4-335d-4075-a82f-156fece6b01d"/>
 </p>
 
 ## Queues
@@ -83,14 +76,14 @@
 - Invite in queue
 
 <p float="left">
-<img width="230" src="https://user-images.githubusercontent.com/49106163/167305063-cab2a097-e01c-44b9-8803-649877a5daab.png"/>
-<img width="250" src="https://user-images.githubusercontent.com/49106163/167305074-5fd5d490-8661-4ce5-88d7-d47322f0baff.png"/>
-<img width="250" src="https://user-images.githubusercontent.com/49106163/167305602-f19a4260-8498-4608-a92e-8760516210e5.png"/>
+<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/596cd29f-d831-4a03-866e-ebb9b55f310c"/>
+<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/e768a9a2-c418-4fc9-9bd8-0c357ab36b0d"/>
+<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/c2004f47-71d8-4088-a8d7-d59d6f3c61a5"/>
 </p>
 <p float="left">
-<img width="250" src="https://user-images.githubusercontent.com/49106163/167305083-b5cdcfd7-20a4-4771-a559-e0e164303d78.png"/>
-<img width="250" src="https://user-images.githubusercontent.com/49106163/167305086-87fd3ad8-64df-4673-ab97-cd9bb2b39bab.png"/>
-<img width="250" src="https://user-images.githubusercontent.com/49106163/167305088-23b97860-5086-4b4e-8cf7-88f184ec53c7.png"/>
+<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/e7268fef-2902-4967-bbc0-d3c43e6f2de6"/>
+<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/2e4f3ec7-90ee-49bf-a3c8-667bc479dcda"/>
+<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/a2075ceb-3cb3-4f0f-89ce-8b9c3103f71b"/>
 </p>
 
 ## Notifications
@@ -99,8 +92,8 @@
 - push notifications on Android
 
 <p float="left">
-<img width="300" src="https://user-images.githubusercontent.com/49106163/167305111-da3c460a-f741-4b02-a242-7d22d4204c30.png"/>
-<img width="250" src="https://user-images.githubusercontent.com/49106163/167305411-7e81c94f-87fe-4b8e-8307-d291b5e1c5f8.jpg"/>
+<img width="300" src="https://github.com/InnoQueue/mobile/assets/69918609/1659076a-9ae0-4cac-bbd1-aea2bf1da4e3"/>
+<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/ffd0732a-47e8-4c00-9a7a-926420cffbff"/>
 </p>
 
 ## Settings
@@ -110,11 +103,11 @@
 - Theme
 - Language
 
-<p float="left">
-<img width="230" src="https://user-images.githubusercontent.com/49106163/167305093-2cb6f67b-4637-4b1c-883f-d5aae2bfdfa2.png"/>
-<img width="230" src="https://user-images.githubusercontent.com/49106163/167305097-6c68f9ce-f8dc-477e-b23e-fd2422e3778e.png"/>
-<img width="230" src="https://user-images.githubusercontent.com/49106163/167305103-2890f9eb-c153-44ca-be6f-5c1d02a5a25e.png"/>
-<img width="230" src="https://user-images.githubusercontent.com/49106163/167305109-1b8bd969-da07-4fa8-9692-5274fbdd7564.png"/>
+<p float="left">  
+<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/6d7dfdcd-7d38-45f8-ac9c-ceb36ec26c0e"/>
+<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/d18c8544-d11f-4286-8c2a-c80f1edd5f5d"/>
+<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/10f49038-98ff-444c-8e67-7cb49d5d7dcc"/>
+<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/719f1cd8-ddba-487a-9600-80b900f39345"/>
 </p>
 
 ## 🕹 List of features
