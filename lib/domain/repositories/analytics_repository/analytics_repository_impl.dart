@@ -17,7 +17,7 @@ import '../../domain.dart';
 class AnalyticsRepositoryImpl implements AnalyticsRepository {
   final bool _debug = kDebugMode;
 
-  late final FirebaseAnalytics analytics;
+  late final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   late final FirebaseAnalyticsObserver _observer =
       FirebaseAnalyticsObserver(analytics: analytics);
 

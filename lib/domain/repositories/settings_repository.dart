@@ -25,7 +25,7 @@ class SettingsRepository {
     await storage.setString(_themeKey, theme);
   }
 
-  String get theme => storage.getString(_themeKey) ?? 'bright';
+  String get theme => storage.getString(_themeKey) ?? 'light';
 
   Future<void> setLanguage(String language) async {
     await storage.setString(_language, language);
