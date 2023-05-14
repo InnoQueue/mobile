@@ -95,7 +95,8 @@ class __$$_QueueListResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_QueueListResponse implements _QueueListResponse {
   const _$_QueueListResponse({required final List<QueueInfo> queues})
       : _queues = queues;

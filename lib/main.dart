@@ -5,7 +5,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:innoq/data/analytics/fb_analytics.dart';
 import 'package:innoq/domain/domain.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -22,13 +21,13 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await configureDependencies();
+  initAnalyticsScope(getIt);
+
+  getIt.get<AnalyticsRepository>().logAppOpen(); // coverage:ignore-line
 
   getIt.registerSingleton(AppRouter(
     loginGuard: LoginGuard(),
   ));
-
-  getIt.registerSingleton(FBAnalytics());
-  getIt.get<FBAnalytics>().logAppOpen();
 
   runApp(const MyApp());
 }
@@ -121,7 +120,10 @@ class _MyAppState extends State<MyApp> {
       getIt.get<AppRouter>().push(
             JoinInProressRoute(qrCode: link.pathSegments[1]),
           );
-      getIt.get<FBAnalytics>().logDeeplinkOpen(link);
+
+      getIt // coverage:ignore-line
+          .get<AnalyticsRepository>() // coverage:ignore-line
+          .logDeeplinkOpen(link); // coverage:ignore-line
     }
   }
 }

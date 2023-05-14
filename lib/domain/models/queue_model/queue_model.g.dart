@@ -23,7 +23,7 @@ Map<String, dynamic> _$$_QueueModelToJson(_$_QueueModel instance) =>
       'queueId': instance.queueId,
       'queueName': instance.queueName,
       'queueColor': instance.queueColor,
-      'participants': instance.participants,
+      'participants': instance.participants.map((e) => e.toJson()).toList(),
       'trackExpenses': instance.trackExpenses,
       'admin': instance.admin,
     };

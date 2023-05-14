@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../application/application.dart';
-import '../../../../data/analytics/fb_analytics.dart';
 import '../../../../domain/domain.dart';
 
 part 'notifications_state.dart';
@@ -51,7 +50,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     _page = 0;
 
     await _fetchNotificationsAndEmit(emit);
-    getIt.get<FBAnalytics>().logNotificationsUpdated();
+    getIt // coverage:ignore-line
+        .get<AnalyticsRepository>() // coverage:ignore-line
+        .logNotificationsUpdated(); // coverage:ignore-line
   }
 
   bool _fetchedAll = false;
@@ -93,7 +94,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       fetchedAll: _fetchedAll,
       removedBySwipe: removedBySwipe,
     ));
-    getIt.get<FBAnalytics>().logNotificationRemoved();
+    getIt // coverage:ignore-line
+        .get<AnalyticsRepository>() // coverage:ignore-line
+        .logNotificationRemoved(); // coverage:ignore-line
   }
 
   void _removeNotifications(
@@ -113,7 +116,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       fetchedAll: _fetchedAll,
       removedBySwipe: null,
     ));
-    getIt.get<FBAnalytics>().logNotificationRemoved();
+    getIt // coverage:ignore-line
+        .get<AnalyticsRepository>() // coverage:ignore-line
+        .logNotificationRemoved(); // coverage:ignore-line
   }
 
   List<NotificationModel> get filteredNotifications => currentNotifications
@@ -137,6 +142,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       ),
     );
     _displayedNotificationIds.clear();
-    getIt.get<FBAnalytics>().logNotificationsRead();
+    getIt // coverage:ignore-line
+        .get<AnalyticsRepository>() // coverage:ignore-line
+        .logNotificationsRead(); // coverage:ignore-line
   }
 }

@@ -1,7 +1,8 @@
+// coverage:ignore-file
+
 import 'package:injectable/injectable.dart';
 
 import '../../../application/application.dart';
-import '../../../data/analytics/fb_analytics.dart';
 import '../../../data/data.dart';
 import '../../domain.dart';
 
@@ -34,7 +35,7 @@ class QueuesRepositoryImpl implements QueuesRepository {
     required String color,
     required bool trackExpenses,
   }) async {
-    getIt.get<FBAnalytics>().logCreateQueue();
+    getIt.get<AnalyticsRepository>().logCreateQueue();
     await queuesApi.createQueue(
       CreateQueueRequest(
         queueName: name,

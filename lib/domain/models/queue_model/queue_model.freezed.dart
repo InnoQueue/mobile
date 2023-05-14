@@ -162,7 +162,8 @@ class __$$_QueueModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_QueueModel implements _QueueModel {
   const _$_QueueModel(
       {required this.queueId,

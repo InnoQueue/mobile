@@ -1,8 +1,10 @@
+// coverage:ignore-file
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/get_it/get_it_service_locator.dart';
-import '../../data/analytics/fb_analytics.dart';
+import '../../domain/domain.dart';
 import '../presentation.dart';
 
 class LanguagePage extends StatefulWidget {
@@ -39,13 +41,12 @@ class _LanguagePageState extends State<LanguagePage> {
       onTap: (index) {
         currentLanguage = languages[index];
         setState(() {});
-        getIt.get<FBAnalytics>().logLanguageSettingsUpdated(
+        getIt.get<AnalyticsRepository>().logLanguageSettingsUpdated(
               preferredLanguage: currentLanguage,
             );
         context.read<LocalizationCubit>().setLanguage(currentLanguage);
       },
       length: languages.length,
-      applyButtonPresent: false,
     );
   }
 }

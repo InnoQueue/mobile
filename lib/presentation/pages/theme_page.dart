@@ -1,8 +1,10 @@
+// coverage:ignore-file
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/get_it/get_it_service_locator.dart';
-import '../../data/analytics/fb_analytics.dart';
+import '../../domain/domain.dart';
 import '../presentation.dart';
 
 class ThemePage extends StatefulWidget {
@@ -37,13 +39,14 @@ class _ThemePageState extends State<ThemePage> {
         index == 0
             ? context.read<AppThemeCubit>().enableLightTheme()
             : context.read<AppThemeCubit>().enableDarkTheme();
-        getIt.get<FBAnalytics>().logThemeSettingsUpdated(
+
+        getIt.get<AnalyticsRepository>().logThemeSettingsUpdated(
               preferredTheme: currentTheme,
             );
+
         setState(() {});
       },
       length: themes.length,
-      applyButtonPresent: false,
     );
   }
 }

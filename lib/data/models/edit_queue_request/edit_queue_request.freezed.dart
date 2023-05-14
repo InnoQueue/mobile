@@ -136,7 +136,8 @@ class __$$_EditQueueRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_EditQueueRequest implements _EditQueueRequest {
   const _$_EditQueueRequest(
       {this.queueName,

@@ -2,7 +2,7 @@ import '../../../data/data.dart';
 import '../../domain.dart';
 
 export 'queues_repository_impl.dart';
-export 'mock_queues_repositpry_impl.dart';
+export 'mock_queues_repository_impl.dart';
 
 abstract class QueuesRepository {
   QueuesApi queuesApi;

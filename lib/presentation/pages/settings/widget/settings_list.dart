@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:innoq/application/application.dart';
-import 'package:innoq/data/analytics/fb_analytics.dart';
 import 'package:innoq/presentation/presentation.dart';
+
+import '../../../../domain/domain.dart';
 
 class _SettingDTO {
   final String name;
@@ -31,7 +32,9 @@ class _SettingsListState extends State<SettingsList> {
           name: S.of(context).notificationSettings,
           icon: Icons.notifications_outlined,
           onTap: () {
-            getIt.get<FBAnalytics>().logNotificationSettingsOpened();
+            getIt
+                .get<AnalyticsRepository>()
+                .logNotificationSettingsOpened(); // coverage:ignore-line
             context.router.push(const NotificationSettingsRoute());
           },
         ),
@@ -40,7 +43,9 @@ class _SettingsListState extends State<SettingsList> {
           icon: Icons.lightbulb_outline,
           onTap: () {
             if (context.mounted) {
-              getIt.get<FBAnalytics>().logThemeSettingsOpened();
+              getIt
+                  .get<AnalyticsRepository>()
+                  .logThemeSettingsOpened(); // coverage:ignore-line
               context.router.push(const ThemeRoute());
             }
           },
@@ -50,7 +55,9 @@ class _SettingsListState extends State<SettingsList> {
           icon: CupertinoIcons.globe,
           onTap: () {
             if (context.mounted) {
-              getIt.get<FBAnalytics>().logLanguageSettingsOpened();
+              getIt
+                  .get<AnalyticsRepository>()
+                  .logLanguageSettingsOpened(); // coverage:ignore-line
               context.router.push(const LanguageRoute());
             }
           },
@@ -60,7 +67,9 @@ class _SettingsListState extends State<SettingsList> {
           icon: Icons.mail_outline,
           onTap: () {
             if (context.mounted) {
-              getIt.get<FBAnalytics>().logLeaveFeedbackOpened();
+              getIt // coverage:ignore-line
+                  .get<AnalyticsRepository>()
+                  .logLeaveFeedbackOpened();
             }
           },
         ),

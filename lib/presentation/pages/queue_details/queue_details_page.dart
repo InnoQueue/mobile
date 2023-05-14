@@ -30,9 +30,10 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
           appBar: AppBar(
             elevation: 0,
             title: QueueTitle(
-              queueName:
-                  context.read<QueueDetailsBloc>().queueInfo?.queueName ??
-                      '...',
+              queueName: state.when(
+                initial: () => '...',
+                queueFetched: (queue) => queue.queueName,
+              ),
               fontSize: 20,
             ),
             centerTitle: true,
@@ -51,24 +52,20 @@ class _QueueDetailsPageState extends State<QueueDetailsPage> {
               if (initialized) const OptionsButton(),
             ],
           ),
-          body: BlocBuilder<QueueDetailsBloc, QueueDetailsState>(
-            builder: (context, state) {
-              return state.when(
-                initial: () => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                queueFetched: (queue) => RefreshIndicator(
-                  onRefresh: () async {
-                    context.read<QueueDetailsBloc>().add(
-                          QueueDetailsEvent.fetchQueue(queue.queueId),
-                        );
+          body: state.when(
+            initial: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            queueFetched: (queue) => RefreshIndicator(
+              onRefresh: () async {
+                context.read<QueueDetailsBloc>().add(
+                      QueueDetailsEvent.fetchQueue(queue.queueId),
+                    );
 
-                    return;
-                  },
-                  child: const _MainContent(),
-                ),
-              );
-            },
+                return;
+              },
+              child: const _MainContent(),
+            ),
           ),
         );
       },

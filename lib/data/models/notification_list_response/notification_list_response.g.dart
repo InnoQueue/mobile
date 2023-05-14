@@ -18,6 +18,6 @@ _$_NotificationListResponse _$$_NotificationListResponseFromJson(
 Map<String, dynamic> _$$_NotificationListResponseToJson(
         _$_NotificationListResponse instance) =>
     <String, dynamic>{
-      'content': instance.content,
+      'content': instance.content.map((e) => e.toJson()).toList(),
       'last': instance.last,
     };

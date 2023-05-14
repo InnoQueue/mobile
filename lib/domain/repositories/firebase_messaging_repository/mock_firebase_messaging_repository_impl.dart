@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import 'dart:async';
 
-import '../../domain.dart';
+import '../../../domain/domain.dart';
 
 @Singleton(as: FirebaseMessagingRepository, env: ['test'])
 class MockFirebaseMesssagingRepository implements FirebaseMessagingRepository {

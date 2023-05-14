@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain.dart';
 
 export 'user_repository_impl.dart';
-export 'mock_user_repository_repository.dart';
+export 'mock_user_repository_impl.dart';
 
 abstract class UserRepository {
   final SharedPreferences storage;

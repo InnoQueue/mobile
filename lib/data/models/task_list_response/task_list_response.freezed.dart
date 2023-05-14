@@ -95,7 +95,8 @@ class __$$_TaskListResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_TaskListResponse implements _TaskListResponse {
   const _$_TaskListResponse({required final List<TaskModel> toDoTasks})
       : _toDoTasks = toDoTasks;
