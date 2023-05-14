@@ -76,14 +76,14 @@
 - Invite in queue
 
 <p float="left">
-<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/596cd29f-d831-4a03-866e-ebb9b55f310c"/>
-<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/e768a9a2-c418-4fc9-9bd8-0c357ab36b0d"/>
-<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/c2004f47-71d8-4088-a8d7-d59d6f3c61a5"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/596cd29f-d831-4a03-866e-ebb9b55f310c"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/e768a9a2-c418-4fc9-9bd8-0c357ab36b0d"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/c2004f47-71d8-4088-a8d7-d59d6f3c61a5"/>
 </p>
 <p float="left">
-<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/e7268fef-2902-4967-bbc0-d3c43e6f2de6"/>
-<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/2e4f3ec7-90ee-49bf-a3c8-667bc479dcda"/>
-<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/a2075ceb-3cb3-4f0f-89ce-8b9c3103f71b"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/e7268fef-2902-4967-bbc0-d3c43e6f2de6"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/2e4f3ec7-90ee-49bf-a3c8-667bc479dcda"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/a2075ceb-3cb3-4f0f-89ce-8b9c3103f71b"/>
 </p>
 
 ## Notifications
@@ -92,8 +92,8 @@
 - push notifications on Android
 
 <p float="left">
-<img width="300" src="https://github.com/InnoQueue/mobile/assets/69918609/1659076a-9ae0-4cac-bbd1-aea2bf1da4e3"/>
-<img width="250" src="https://github.com/InnoQueue/mobile/assets/69918609/ffd0732a-47e8-4c00-9a7a-926420cffbff"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/1659076a-9ae0-4cac-bbd1-aea2bf1da4e3"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/ffd0732a-47e8-4c00-9a7a-926420cffbff"/>
 </p>
 
 ## Settings
@@ -104,10 +104,10 @@
 - Language
 
 <p float="left">  
-<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/6d7dfdcd-7d38-45f8-ac9c-ceb36ec26c0e"/>
-<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/d18c8544-d11f-4286-8c2a-c80f1edd5f5d"/>
-<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/10f49038-98ff-444c-8e67-7cb49d5d7dcc"/>
-<img width="230" src="https://github.com/InnoQueue/mobile/assets/69918609/719f1cd8-ddba-487a-9600-80b900f39345"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/6d7dfdcd-7d38-45f8-ac9c-ceb36ec26c0e"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/d18c8544-d11f-4286-8c2a-c80f1edd5f5d"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/10f49038-98ff-444c-8e67-7cb49d5d7dcc"/>
+<img width="200" src="https://github.com/InnoQueue/mobile/assets/69918609/719f1cd8-ddba-487a-9600-80b900f39345"/>
 </p>
 
 ## 🕹 List of features
